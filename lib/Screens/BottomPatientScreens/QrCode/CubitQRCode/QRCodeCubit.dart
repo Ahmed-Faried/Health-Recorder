@@ -1,10 +1,7 @@
 
-import 'dart:io';
 
-// import 'package:barcode/barcode.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/Components/const.dart';
-import 'package:shop_app/moudel/LoginModel/PatientDataMoudleing.dart';
 
 import 'QRCodeStates.dart';
 
@@ -17,7 +14,8 @@ class QRCodeCubit extends Cubit<QRCodeStates> {
 
 
   late Map<String, dynamic> data = {
-    '\n,email': '${patientDataModel?.data?.pationt?.email }\n',
+     "\n"
+    ' email': '${patientDataModel?.data?.pationt?.email }\n',
     "name": "${patientDataModel?.data?.pationt?.fristName } ${patientDataModel?.data?.pationt?.lastName}\n",
     "age":  "${patientDataModel?.data?.pationt?.age}\n",
     "phone": "${patientDataModel?.data?.pationt?.phoneNumber}\n" ,

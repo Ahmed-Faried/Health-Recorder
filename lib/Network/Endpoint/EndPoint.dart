@@ -1,7 +1,6 @@
 
 
 
-import 'package:shop_app/Screens/Register/RegisterCubit/RegisterStates.dart';
 
 const GETDATADOCTOR               =  'v1/doctors/login';
 const RegisterDoctorApi           =  'v1/doctors'; //signup

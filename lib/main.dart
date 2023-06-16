@@ -9,7 +9,6 @@ import 'package:shop_app/Bloc/HomeCubit.dart';
 import 'package:shop_app/Screens/BottomDoctorScreens/HomePageDoctor/HomePageDoctorScreen.dart';
 import 'package:shop_app/Screens/BottomPatientScreens/HomePagePatient/HomePagePatientScreen.dart';
 import 'package:shop_app/Screens/Edit%20Profile/ProfileCubit/ProfileCubit.dart';
-import 'package:shop_app/Screens/Register/RegisterCubit/RegisterCubit.dart';
 import 'Components/const.dart';
 import 'Network/local/shared_preferences.dart';
 import 'Network/remote/dioHelper.dart';
@@ -91,7 +90,7 @@ class MyApp extends StatelessWidget {
       [
         BlocProvider(create: (BuildContext context) => HomeCubit()),//..getData_Doctor(idDoctor)
         BlocProvider(create: (BuildContext context) => ProfileCubit()),
-        BlocProvider(create: (BuildContext context) => RegisterCubit()),
+        // BlocProvider(create: (BuildContext context) => RegisterCubit()),
         BlocProvider(create: (BuildContext context) => LoginScreenCubit()),
       ],
       child: MaterialApp(
@@ -137,7 +136,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         darkTheme: ThemeData(
-              fontFamily:'MontaguSlab',
+              // fontFamily:'MontaguSlab',
           scaffoldBackgroundColor: Colors.white,
           useMaterial3 : true,
           primarySwatch: Colors.deepOrange,

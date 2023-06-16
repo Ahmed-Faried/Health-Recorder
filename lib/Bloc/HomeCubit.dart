@@ -11,6 +11,7 @@ import '../Screens/BottomDoctorScreens/AccountDr/AccountDrScreen.dart';
 import '../Screens/BottomDoctorScreens/HomeDr/HomeDrScreen.dart';
 import '../Screens/BottomPatientScreens/AccountPatient/AccountPatientScreen.dart';
 import '../Screens/BottomPatientScreens/HomePatient/HomePatientScreen.dart';
+import '../Screens/BottomPatientScreens/QrCode/QrCodeScreen.dart';
 import '../Screens/PatientDetails/PatientDetailsScreen.dart';
 import '../moudel/LoginModel/DoctorDataMoudleing.dart';
 import '../moudel/LoginModel/PatientDataMoudleing.dart';
@@ -45,6 +46,8 @@ class HomeCubit extends Cubit<HomeStates>{
   [
     HomePatientScreen(),
     AccountPatientScreen(),
+    QrCodeScreen(),
+
   ];
 
 

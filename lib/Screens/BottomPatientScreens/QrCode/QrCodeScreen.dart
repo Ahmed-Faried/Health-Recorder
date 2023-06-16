@@ -1,19 +1,17 @@
-import 'dart:io';
-
-// import 'package:barcode/barcode.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../BottomPatientScreens/QrCode/CubitQRCode/QRCodeCubit.dart';
-import '../BottomPatientScreens/QrCode/CubitQRCode/QRCodeStates.dart';
+import 'CubitQRCode/QRCodeCubit.dart';
+import 'CubitQRCode/QRCodeStates.dart';
 
-class PatientQRCode extends StatelessWidget {
+
+class QrCodeScreen extends StatelessWidget {
+  const QrCodeScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-   
-    return BlocProvider(
+    return   BlocProvider(
       create: (BuildContext context) => QRCodeCubit(),
       child: BlocConsumer<QRCodeCubit , QRCodeStates>(
         builder: (context , state) {return Scaffold(
@@ -52,12 +50,9 @@ class PatientQRCode extends StatelessWidget {
             ],
           ),
         );
-          },
-       listener: (context , state) {},
+        },
+        listener: (context , state) {},
       ),
     );
   }
-
-
-
 }

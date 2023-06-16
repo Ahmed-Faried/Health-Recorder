@@ -2,20 +2,19 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../Components/components.dart';
-import '../../../Components/const.dart';
-import '../../../Network/Endpoint/EndPoint.dart';
-import '../../../Network/remote/dioHelper.dart';
-import '../../../moudel/LoginModel/DoctorDataMoudleing.dart';
-import '../../../moudel/LoginModel/PatientDataMoudleing.dart';
-import '../../BottomDoctorScreens/HomePageDoctor/HomePageDoctorScreen.dart';
-import '../../BottomPatientScreens/HomePagePatient/HomePagePatientScreen.dart';
-import 'RegisterStates.dart';
 
-class RegisterCubit extends Cubit<RegisterStates> {
-  RegisterCubit() : super(InitialRegisterStates());
+import '../../../../Components/components.dart';
+import '../../../../Components/const.dart';
+import '../../../../Network/Endpoint/EndPoint.dart';
+import '../../../../Network/remote/dioHelper.dart';
+import '../../../../moudel/LoginModel/DoctorDataMoudleing.dart';
+import '../../../../moudel/LoginModel/PatientDataMoudleing.dart';
+import 'DR_RegisterStates.dart';
 
-  static RegisterCubit get(context) {
+class DR_Cubit_Register extends Cubit<RegisterDR_States> {
+  DR_Cubit_Register() : super(InitialDrRegisterStates());
+
+  static DR_Cubit_Register get(context) {
     return BlocProvider.of(context);
   }
 
@@ -27,17 +26,6 @@ class RegisterCubit extends Cubit<RegisterStates> {
   var addressDoctorController = TextEditingController();
   var numberDoctorController = TextEditingController();
 
-
-
-  var firstNamePatientController = TextEditingController();
-  var lastNamePatientController  = TextEditingController();
-  var passwordPatientController  = TextEditingController();
-  var emailPatientController     = TextEditingController();
-  var agePatientController       = TextEditingController();
-  var nationalIDPatientController = TextEditingController();
-  var numberPatientController     = TextEditingController();
-  var genderPatientController     = TextEditingController();
-  var bloodTypePatientController  = TextEditingController();
 
 
   bool checkBoxValue = false;
@@ -182,57 +170,7 @@ class RegisterCubit extends Cubit<RegisterStates> {
   //     print(" Patient eslam errrrrrrrrror eslam server eslam or net ");
   //   });
   // }
-  PatientRegister({
-    required  fristName,
-    required  lastName,
-    required  age,
-    required  bloodType,
-    required  gender,
-    required  password,
-    required  email,
-    required  number,
-    required  National_ID,
-  }) {
-    emit(PatientRegisterLoadingState());
 
-    DioHelper.postData(
-        path: RegisterPatientApi,
-        data: {
-          'fristName': fristName,
-          'lastName': lastName,
-          'age': age,
-          'bloodType': bloodType,
-          'gender': gender,
-          'email': email,
-          'password': password,
-          'phoneNumber': number,
-          'National_ID': National_ID
-        }
-    ).then((value) async {
-      patientDataModel = PatientDataModel.fromJson(value.data);
-
-      print(patientDataModel?.status);
-
-
-      emit(PatientRegisterSuccessState(patientDataModel!));
-    }).catchError((onError) {
-      if (onError is DioError) {
-        if (onError.response != null) {
-          // يمكن الوصول إلى البياناتالتي تم إرجاعها من الخادم باستخدام onError.response.data
-          print(onError.response?.data);
-          print(onError.toString());
-          print(onError.type.name);
-
-        } else {
-          print(onError.message);
-        }
-      } else {
-        print(onError.toString());
-      }
-      toastShow(msg: "error leh msh 3aref ", state: toastStates.ERROR);
-      emit(PatientRegisterErrorState());
-    });
-  }
   //
   //  PatientRegister({
   //   required  firstName,
