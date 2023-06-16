@@ -5,6 +5,7 @@ import 'package:shop_app/Bloc/HomeCubit.dart';
 import 'package:shop_app/Bloc/HomeStates.dart';
 import '../../Components/components.dart';
 import '../../Components/const.dart';
+import '../BottomPatientScreens/PatientCubit/PatientStates.dart';
 
 
 class PatientDetails extends StatelessWidget {

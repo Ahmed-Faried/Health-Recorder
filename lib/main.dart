@@ -1,23 +1,20 @@
+
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shop_app/Bloc/HomeCubit.dart';
-import 'package:shop_app/OnBoardingScreen/OnBoardingScreen.dart';
 import 'package:shop_app/Screens/BottomDoctorScreens/HomePageDoctor/HomePageDoctorScreen.dart';
 import 'package:shop_app/Screens/BottomPatientScreens/HomePagePatient/HomePagePatientScreen.dart';
 import 'package:shop_app/Screens/Edit%20Profile/ProfileCubit/ProfileCubit.dart';
 import 'package:shop_app/Screens/Register/RegisterCubit/RegisterCubit.dart';
-import 'package:shop_app/Screens/Register/RegisterPatient/RegisterPatientScreen2.dart';
 import 'Components/const.dart';
 import 'Network/local/shared_preferences.dart';
 import 'Network/remote/dioHelper.dart';
 import 'Screens/Login/Cubit/CubitLoginScreen.dart';
-import 'Screens/Login/LoginDoctorScreen.dart';
 import 'Screens/LoginAndRegister/LoginAndRegister.dart';
-
-import 'Screens/Register/RegisterDr/RegisterDrScreen.dart';
 import 'bloc/bloc_observer.dart';
 void main()async {
 
@@ -28,28 +25,33 @@ void main()async {
 
    Widget widget ;
 
-   var onboarding  = CacheHelper.getData(key:'onBoarding') ;
+   var onBoarding  = CacheHelper.getData(key:'onBoarding') ;
        token       = CacheHelper.getData(key:'token') ;
        idPatient   = CacheHelper.getData(key:'id') ;
        department  = CacheHelper.getData(key:'department') ;
        isdark      = CacheHelper.getData(key:'isDark') ;
        idDoctor    = CacheHelper.getData(key:'idDoctor') ;
+       National_ID = CacheHelper.getData(key:'National_ID') ;
 
 
-  print("ana el print $isdark");
-
-  print("ana el print $onboarding");
-
-  print("ana el print $token");
-
-  print("ana el print $idPatient");
-
-  print("ana el print $department");
-
-  print("ana el print $idDoctor");
 
 
-  if(onboarding != null ){
+  print("isdark el print $isdark");
+
+  print("National_ID el print $National_ID");
+
+  print("onBoarding el print $onBoarding");
+
+  print("token el print $token");
+
+  print("idPatient el print $idPatient");
+
+  print("department el print $department");
+
+  print("idDoctor el print $idDoctor");
+
+
+  if(onBoarding != null ){
 
     if(token == null){
       widget = LoginAndRegister();
@@ -79,23 +81,21 @@ class MyApp extends StatelessWidget {
    var startWidget ;
 
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-        statusBarColor: Colors.white,
-        statusBarIconBrightness: Brightness.dark
-    ));
+    // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+    //     statusBarColor: Colors.white,
+    //     statusBarIconBrightness: Brightness.dark
+    // ));
 
     return MultiBlocProvider(
       providers:
       [
-        BlocProvider(create: (BuildContext context) => HomeCubit()),
+        BlocProvider(create: (BuildContext context) => HomeCubit()),//..getData_Doctor(idDoctor)
         BlocProvider(create: (BuildContext context) => ProfileCubit()),
         BlocProvider(create: (BuildContext context) => RegisterCubit()),
-        BlocProvider(create: (BuildContext context) => LoginScreenCubit()..getData_Patient(idPatient)..getData_Doctor(idDoctor)),
+        BlocProvider(create: (BuildContext context) => LoginScreenCubit()),
       ],
       child: MaterialApp(
 
-
-        title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme:     ThemeData(
 
@@ -137,7 +137,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         darkTheme: ThemeData(
-
+              fontFamily:'MontaguSlab',
           scaffoldBackgroundColor: Colors.white,
           useMaterial3 : true,
           primarySwatch: Colors.deepOrange,
@@ -170,7 +170,14 @@ class MyApp extends StatelessWidget {
           ),
         ),
         themeMode: ThemeMode.dark,
-        home: startWidget ,
+        home:  AnimatedSplashScreen(
+          splash: Image.asset('assets/Logo.png'),
+          nextScreen: startWidget,
+          splashTransition: SplashTransition.slideTransition,
+          backgroundColor: HexColor('5DCDC6'),
+          splashIconSize: 100,
+            duration: 5000,
+        ) // startWidget ,
 
       ),
     );

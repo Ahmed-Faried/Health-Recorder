@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "522652671340",
+    "project_id": "health-recorder-d5206",
+    "storage_bucket": "health-recorder-d5206.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:522652671340:android:9144d4dfe7559d6a9e2749",
+        "android_client_info": {
+          "package_name": "com.example.shop_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "522652671340-9vm39urqlq1t2fg0uui12qcr3qr93jmu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDEar-6arhrT-xL0BBieKVT6YmJyRMaiGM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "522652671340-9vm39urqlq1t2fg0uui12qcr3qr93jmu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

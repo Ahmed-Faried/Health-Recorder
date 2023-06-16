@@ -92,9 +92,12 @@ class ProfileCubit extends Cubit<ProfileStates> {
     }).catchError((onError){
       if (onError is DioError) {
         if (onError.response != null) {
-          // يمكن الوصول إلى البياناتالتي تم إرجاعها من الخادم باستخدام onError.response.data
-          print(onError.response?.data);
+
+          print(onError.response?.data['massage']);
+          print("---------------------------");
           print(onError.toString());
+          print("---------------------------");
+
           print(onError.type.name);
 
         } else {
@@ -103,8 +106,6 @@ class ProfileCubit extends Cubit<ProfileStates> {
       } else {
         print(onError.toString());
       }
-      print(onError.toString());
-      print(onError.toString());
       emit(DoctorUpdateErrorState());
     });
   }
@@ -141,6 +142,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
       patientDataModel = PatientDataModel.fromJson(value.data);
       CacheHelper.saveData(key: 'id', value: patientDataModel?.data?.pationt?.id);
+      CacheHelper.saveData(key: 'National_ID', value: patientDataModel?.data?.pationt?.nationalId);
 
       try {
         patientDataModel = PatientDataModel.fromJson(value.data);

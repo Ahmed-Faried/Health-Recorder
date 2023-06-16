@@ -12,26 +12,31 @@ import '../../../Components/const.dart';
 import '../../../Network/local/shared_preferences.dart';
 import '../../LoginAndRegister/LoginAndRegister.dart';
 import '../../Security/SecurtiyScreen.dart';
+import '../DoctorCubit/DoctorCubit.dart';
+import '../DoctorCubit/DoctorStates.dart';
 
 class AccountDoctorScreen extends StatelessWidget {
   AccountDoctorScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit, HomeStates>(
-      listener: (context, state) {
-        if (state is DarkMode) {
-          CacheHelper.saveData(key: 'isDark', value: true);
-        }
-        if (state is NotDarkMode) {
-          CacheHelper.saveData(key: 'isDark', value: true);
-        }
-      },
-      builder: (context, state) {
-        return Scaffold(
-          body: bodyAccountDoctorScreen(context , doctorDataModel ),
-        );
-      },
+    return BlocProvider(
+      create: (BuildContext context) => DoctorCubit()..getData_Doctor(idDoctor),
+      child: BlocConsumer<DoctorCubit, DoctorStates>(
+        listener: (context, state) {
+          if (state is DarkMode) {
+            CacheHelper.saveData(key: 'isDark', value: true);
+          }
+          if (state is NotDarkMode) {
+            CacheHelper.saveData(key: 'isDark', value: true);
+          }
+        },
+        builder: (context, state) {
+          return Scaffold(
+            body: bodyAccountDoctorScreen(context , doctorDataModel ),
+          );
+        },
+      ),
     );
   }
 
@@ -114,13 +119,13 @@ class AccountDoctorScreen extends StatelessWidget {
             MyDivider(context, 1.2),
             Padding(
               padding: const EdgeInsets.only(top: 15.0),
-              child: cardAccountDoctor(
+              child: cardAccount(
 
                   context, "Edit Profile", Icons.person, EditProfileDoctor()),
             ),
-            cardAccountDoctor(context, "Security",
+            cardAccount(context, "Security",
                 Icons.security_outlined, Securtiy()),
-            cardAccountDoctor(context, "Help center", Icons.help_center,
+            cardAccount(context, "Help center", Icons.help_center,
                 HelpCenter()),
             Padding(
               padding: EdgeInsets.only(bottom: 0),

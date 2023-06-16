@@ -5,6 +5,8 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:shop_app/Bloc/HomeCubit.dart';
 import 'package:shop_app/Bloc/HomeStates.dart';
 import 'package:shop_app/Components/components.dart';
+import 'package:shop_app/Screens/BottomDoctorScreens/DoctorCubit/DoctorCubit.dart';
+import 'package:shop_app/Screens/BottomDoctorScreens/DoctorCubit/DoctorStates.dart';
 import 'package:shop_app/Screens/Login/Cubit/CubitLoginScreen.dart';
 import 'package:shop_app/Screens/Login/Cubit/StatesLoginScreen.dart';
 import 'package:shop_app/Screens/LoginAndRegister/LoginAndRegister.dart';
@@ -19,20 +21,26 @@ class HomeDoctorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return BlocConsumer<LoginScreenCubit, LoginScreenStates>(
-      listener: (context, state) {},
-      builder: (context, state) {
-        return ConditionalBuilder(
-          condition:doctorDataModel != null,
-          builder: (BuildContext context) {
 
-           return ProfiledoctorScreen(doctorDataModel,context);
-          },
-          fallback: (BuildContext context) {
-            return Center(child: CircularProgressIndicator());
-          },
-        );
-      },
+
+    return BlocProvider(
+
+      create: (BuildContext context) => DoctorCubit()..getData_Doctor(idDoctor),
+      child: BlocConsumer<DoctorCubit, DoctorStates>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return ConditionalBuilder(
+            condition:doctorDataModel != null,
+            builder: (BuildContext context) {
+
+             return ProfiledoctorScreen(doctorDataModel,context);
+            },
+            fallback: (BuildContext context) {
+              return Center(child: CircularProgressIndicator());
+            },
+          );
+        },
+      ),
     );
   }
 }

@@ -26,14 +26,14 @@ class  LoginPatientScreenLoadingState extends LoginScreenStates {}
 
 class LoginPatientScreenSuccessState extends LoginScreenStates {
 
-  final PatientDataModel  loginPatientModel ;
+  final PatientDataModel  patientDataModel ;
 
-  LoginPatientScreenSuccessState(this.loginPatientModel);
+  LoginPatientScreenSuccessState(this.patientDataModel);
 }
 
 class LoginPatientScreenErrorState extends LoginScreenStates {
 
-  final String error ;
+  final String? error ;
 
   LoginPatientScreenErrorState(this.error);
 

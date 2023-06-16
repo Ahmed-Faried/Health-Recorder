@@ -6,6 +6,8 @@ import '../moudel/LoginModel/PatientDataMoudleing.dart';
 String? token = '';
 String? department = '';
 String? idPatient;
+String? National_ID;
+
 String? idDoctor;
 bool?  isdark;
 

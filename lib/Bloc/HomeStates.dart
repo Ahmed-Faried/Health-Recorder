@@ -10,11 +10,17 @@ class Data_Patient_ErrorState extends HomeStates {}
 
 class Data_Patient_LoadingState extends HomeStates {}
 
-class Data_PatientFromID_SuccessState extends HomeStates {}
+// class Data_PatientFromID_SuccessState extends HomeStates {}
+//
+// class Data_PatientFromID_ErrorState extends HomeStates {}
+//
+// class Data_PatientFromID_LoadingState extends HomeStates {}
 
-class Data_PatientFromID_ErrorState extends HomeStates {}
-
-class Data_PatientFromID_LoadingState extends HomeStates {}
+// class Data_DoctorFromID_SuccessState extends HomeStates {}
+//
+// class Data_DoctorFromID_ErrorState extends HomeStates {}
+//
+// class Data_DoctorFromID_LoadingState extends HomeStates {}
 
 class Data_Doctor_SuccessState extends HomeStates {}
 

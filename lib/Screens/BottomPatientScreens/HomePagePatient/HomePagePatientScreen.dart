@@ -10,6 +10,12 @@ class HomePagePatientScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+        statusBarColor: Colors.white,
+        statusBarIconBrightness: Brightness.dark//or set color with: Color(0xFF0000FF)
+    ));
+
     return  BlocConsumer<HomeCubit , HomeStates>(
       listener:(context ,state){} ,
       builder: (context ,state){

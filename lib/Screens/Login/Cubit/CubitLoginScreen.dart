@@ -102,38 +102,15 @@ emit(LoginDoctorScreenLoadingState());
 
       emit(LoginPatientScreenSuccessState(patientDataModel!));
     }).catchError((onError){
-      print(onError.toString());
-      print("eslam errrrrrrrrror eslam server eslam or net ");
-      emit(LoginPatientScreenErrorState(onError.toString()));
-    });
-  }
-
-
-
-
-
-
-
-  // function of getDataFromPatient
-  void getData_Patient(id)  {
-
-    emit(PatientScreenLoadingState());
-
-    DioHelper.getData( urlMethod: "$GETALLDATAPATIENTFROMID$id"  ).then((value) {
-
-      patientDataModel = PatientDataModel.fromJson(value.data);
-
-      print(" Data El patient Gat tany ya 3alee ");
-      emit(PatientScreenSuccessState());
-
-    }).catchError((onError){
-      print("$GETALLDATAPATIENTFROMID$id");
 
       if (onError is DioError) {
         if (onError.response != null) {
-          // يمكن الوصول إلى البياناتالتي تم إرجاعها من الخادم باستخدام onError.response.data
+
           print(onError.response?.data);
+          print("---------------------------");
           print(onError.toString());
+          print("---------------------------");
+
           print(onError.type.name);
 
         } else {
@@ -142,39 +119,78 @@ emit(LoginDoctorScreenLoadingState());
       } else {
         print(onError.toString());
       }
+
       print(onError.toString());
-      emit(PatientScreenErrorState());
+      print("eslam errrrrrrrrror eslam server eslam or net ");
+      emit(LoginPatientScreenErrorState(onError.response?.data['message'].toString()));
     });
   }
 
 
-  void getData_Doctor(id){
-
-    emit(DoctorScreenLoadingState());
-
-    DioHelper.getData( urlMethod: "$GETALLDATADOCTORFROMID$id" ).then((value) {
-
-      doctorDataModel = DoctorDataModel.fromJson(value.data);
-      try {
-        doctorDataModel = DoctorDataModel.fromJson(value.data);
-      } catch (e) {
-        print('Error id idi id id id d data: $e');
-      }
-      if (doctorDataModel == null) {
-        print('Data conversion error null id id id id id ');
-      } else {
-        print('Data id id id id id id di successful');
-      }
-      print(" Data El Doctor Gat tany ya 3alee ");
-      emit(DoctorScreenSuccessState());
-
-    }).catchError((onError){
-      print(onError.toString());
-      emit(DoctorScreenErrorState());
-    });
-  }
 
 
+  //
+  // // function of getDataFromPatient
+  // void getData_Patient(id)  {
+  //
+  //   emit(PatientScreenLoadingState());
+  //
+  //   DioHelper.getData( urlMethod: "$GETALLDATAPATIENTFROMID$id"  ).then((value) {
+  //
+  //     patientDataModel = PatientDataModel.fromJson(value.data);
+  //
+  //     print(" Data El patient Gat tany ya 3alee ");
+  //     emit(PatientScreenSuccessState());
+  //
+  //   }).catchError((onError){
+  //     print("$GETALLDATAPATIENTFROMID$id");
+  //
+  //     if (onError is DioError) {
+  //       if (onError.response != null) {
+  //         // يمكن الوصول إلى البياناتالتي تم إرجاعها من الخادم باستخدام onError.response.data
+  //         print(onError.response?.data);
+  //         print(onError.toString());
+  //         print(onError.type.name);
+  //
+  //       } else {
+  //         print(onError.message);
+  //       }
+  //     } else {
+  //       print(onError.toString());
+  //     }
+  //     print(onError.toString());
+  //     emit(PatientScreenErrorState());
+  //   });
+  // }
+  //
+  //
+  // void getData_Doctor(id){
+  //
+  //   emit(DoctorScreenLoadingState());
+  //
+  //   DioHelper.getData( urlMethod: "$GETALLDATADOCTORFROMID$id" ).then((value) {
+  //
+  //     doctorDataModel = DoctorDataModel.fromJson(value.data);
+  //     try {
+  //       doctorDataModel = DoctorDataModel.fromJson(value.data);
+  //     } catch (e) {
+  //       print('Error id idi id id id d data: $e');
+  //     }
+  //     if (doctorDataModel == null) {
+  //       print('Data conversion error null id id id id id ');
+  //     } else {
+  //       print('Data id id id id id id di successful');
+  //     }
+  //     print(" Data El Doctor Gat tany ya 3alee ");
+  //     emit(DoctorScreenSuccessState());
+  //
+  //   }).catchError((onError){
+  //     print(onError.toString());
+  //     emit(DoctorScreenErrorState());
+  //   });
+  // }
+  //
+  //
 
 
 

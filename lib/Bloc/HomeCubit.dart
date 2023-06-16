@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/Network/Endpoint/EndPoint.dart';
@@ -159,8 +160,70 @@ class HomeCubit extends Cubit<HomeStates>{
 //
 //
 
-
-
+/*Patient*/
+  //
+  //
+  // // function of getDataFromPatient
+  // void getData_Patient(id)  {
+  //
+  //   emit(Data_PatientFromID_LoadingState());
+  //
+  //   DioHelper.getData( urlMethod: "$GETALLDATAPATIENTFROMID$id"  ).then((value) {
+  //
+  //     patientDataModel = PatientDataModel.fromJson(value.data);
+  //
+  //     print(" Data El patient Gat tany ya 3alee ");
+  //     emit(Data_PatientFromID_SuccessState());
+  //
+  //   }).catchError((onError){
+  //     print("$GETALLDATAPATIENTFROMID$id");
+  //
+  //     if (onError is DioError) {
+  //       if (onError.response != null) {
+  //         // يمكن الوصول إلى البياناتالتي تم إرجاعها من الخادم باستخدام onError.response.data
+  //         print(onError.response?.data);
+  //         print(onError.toString());
+  //         print(onError.type.name);
+  //
+  //       } else {
+  //         print(onError.message);
+  //       }
+  //     } else {
+  //       print(onError.toString());
+  //     }
+  //     print(onError.toString());
+  //     emit(Data_PatientFromID_ErrorState());
+  //   });
+  // }
+/*doctor*/
+  //
+  // void getData_Doctor(id){
+  //
+  //   emit(Data_DoctorFromID_LoadingState());
+  //
+  //   DioHelper.getData( urlMethod: "$GETALLDATADOCTORFROMID$id" ).then((value) {
+  //
+  //     doctorDataModel = DoctorDataModel.fromJson(value.data);
+  //     try {
+  //       doctorDataModel = DoctorDataModel.fromJson(value.data);
+  //     } catch (e) {
+  //       print('Error id idi id id id d data: $e');
+  //     }
+  //     if (doctorDataModel == null) {
+  //       print('Data conversion error null id id id id id ');
+  //     } else {
+  //       print('Data id id id id id id di successful');
+  //     }
+  //     print(" Data El Doctor Gat tany ya 3alee ");
+  //     emit(Data_DoctorFromID_SuccessState());
+  //
+  //   }).catchError((onError){
+  //     print(onError.toString());
+  //     emit(Data_DoctorFromID_ErrorState());
+  //   });
+  // }
+  //
+  //
 
 
 

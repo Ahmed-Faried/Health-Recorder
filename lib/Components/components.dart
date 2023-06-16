@@ -383,7 +383,7 @@ FieldFromRegistr({
 //       ),
 //     );
 
-Widget cardAccountDoctor(context, String title, firstIcon, Screen) => Padding(
+Widget cardAccount(context, String title, firstIcon, Screen) => Padding(
       padding: EdgeInsets.only(bottom: 15),
       child: InkWell(
         child: Container(
@@ -407,7 +407,7 @@ Widget cardAccountDoctor(context, String title, firstIcon, Screen) => Padding(
                 ),
                 Text(
                   title,
-                  style: TextStyle(fontSize: 14),
+                  style: TextStyle(fontSize: 13,),
                 ),
                 Spacer(),
                 Icon(
@@ -429,6 +429,7 @@ Widget cardHelpCenter(context, String title, firstIcon, Screen) => Padding(
       padding: EdgeInsets.only(bottom: 25),
       child: InkWell(
         child: Container(
+          padding: EdgeInsets.only(top: 20),
           width: MediaQuery.of(context).size.width / 1.2,
           height: 55,
           decoration: BoxDecoration(
@@ -556,88 +557,83 @@ Widget CardPatientDetialsPatient(
         context, String text1, String text2, IconData icon, Widget) =>
     Row(
       children: [
-        Container(
-          width: MediaQuery.of(context).size.width / 1.12,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: const [
-              BoxShadow(
-                color: Color.fromRGBO(0, 0, 0, 0.35),
-                offset: Offset(0, 3),
-                blurRadius: 8,
-              ),
-            ],
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Container(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                " $text1",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black87,
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              child: const Text(
-                                "Show",
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.blue,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.blue,
-                                ),
-                              ),
-                              onTap: () {
-                                navigateTo(context, Widget);
-                              },
-                            )
-                          ],
-                        ),
-                        Divider(
-                          color: Colors.grey,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                " $text2",
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14),
-                              ),
-                            ),
-                            Icon(icon,color: HexColor("5DCDC6"),)
-                          ],
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ),
-                  ),
+        InkWell(
+          child: Container(
+            width: MediaQuery.of(context).size.width / 1.12,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(15),
+              boxShadow: const [
+                BoxShadow(
+                  color: Color.fromRGBO(0, 0, 0, 0.35),
+                  offset: Offset(0, 1),
+                  blurRadius: 1,
                 ),
               ],
             ),
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Container(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  " $text1",
+                                  style: TextStyle(
+                                    fontSize: 13,
+                                    color: Colors.black87,
+                                    fontFamily: 'MontaguSlab',
+                                  ),
+                                ),
+                              ),
+
+                            ],
+                          ),
+                          Divider(
+                            color: Colors.grey,
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  " $text2",
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 11,
+                                    fontFamily: 'MontaguSlab',
+                                  ),
+                                ),
+                              ),
+                              Icon(icon,color: Colors.grey[300],)
+                            ],
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
+          onTap: () {
+            navigateTo(context, Widget);
+          },
         ),
       ],
     );
