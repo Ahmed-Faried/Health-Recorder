@@ -45,8 +45,8 @@ class HomeCubit extends Cubit<HomeStates>{
   List<Widget> PatientScreens =
   [
     HomePatientScreen(),
-    AccountPatientScreen(),
     QrCodeScreen(),
+    AccountPatientScreen(),
 
   ];
 

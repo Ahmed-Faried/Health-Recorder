@@ -12,8 +12,12 @@ import 'package:shop_app/Screens/Edit%20Profile/ProfileCubit/ProfileCubit.dart';
 import 'Components/const.dart';
 import 'Network/local/shared_preferences.dart';
 import 'Network/remote/dioHelper.dart';
+import 'OnBoardingScreen/OnBoardingScreen.dart';
 import 'Screens/Login/Cubit/CubitLoginScreen.dart';
 import 'Screens/LoginAndRegister/LoginAndRegister.dart';
+import 'Screens/Register/RegisterPatient/Cubit_Patient_Register/Patient_Register_Cubit.dart';
+import 'Screens/Register/RegisterPatient/RegisterPatientScreen1.dart';
+import 'Screens/TEST/test.dart';
 import 'bloc/bloc_observer.dart';
 void main()async {
 
@@ -24,7 +28,7 @@ void main()async {
 
    Widget widget ;
 
-   var onBoarding  = CacheHelper.getData(key:'onBoarding') ;
+   var onboarding  = CacheHelper.getData(key:'onBoarding') ;
        token       = CacheHelper.getData(key:'token') ;
        idPatient   = CacheHelper.getData(key:'id') ;
        department  = CacheHelper.getData(key:'department') ;
@@ -39,7 +43,7 @@ void main()async {
 
   print("National_ID el print $National_ID");
 
-  print("onBoarding el print $onBoarding");
+  print("onBoarding el print $onboarding");
 
   print("token el print $token");
 
@@ -50,7 +54,7 @@ void main()async {
   print("idDoctor el print $idDoctor");
 
 
-  if(onBoarding != null ){
+  if(onboarding != null ){
 
     if(token == null){
       widget = LoginAndRegister();
@@ -92,6 +96,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => ProfileCubit()),
         // BlocProvider(create: (BuildContext context) => RegisterCubit()),
         BlocProvider(create: (BuildContext context) => LoginScreenCubit()),
+        // BlocProvider(create: (BuildContext context) => Patient_RegisterCubit())
       ],
       child: MaterialApp(
 
@@ -171,9 +176,9 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.dark,
         home:  AnimatedSplashScreen(
           splash: Image.asset('assets/Logo.png'),
-          nextScreen: startWidget,
+          nextScreen: RegisterPatientScreen(), //startWidget,
           splashTransition: SplashTransition.slideTransition,
-          backgroundColor: HexColor('5DCDC6'),
+          backgroundColor:  Colors.white, //HexColor('5DCDC6'),
           splashIconSize: 100,
             duration: 5000,
         ) // startWidget ,

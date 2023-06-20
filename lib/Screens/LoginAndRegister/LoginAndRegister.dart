@@ -5,7 +5,7 @@ import 'package:shop_app/Components/components.dart';
 import 'package:shop_app/Screens/Login/LoginDoctorScreen.dart';
 import 'package:shop_app/Screens/Login/LoginPatientScreen.dart';
 import 'package:shop_app/Screens/Register/RegisterDr/RegisterDrScreen.dart';
-import 'package:shop_app/Screens/Register/RegisterPatient/RegisterPatientScreen.dart';
+import 'package:shop_app/Screens/Register/RegisterPatient/RegisterPatientScreen1.dart';
 
 import '../../Network/local/shared_preferences.dart';
 
@@ -214,7 +214,7 @@ class LoginAndRegister extends StatelessWidget {
                 //   ),)), // Sign in Button &&  backgroundColor #5DCEC8
                 const SizedBox(height: 10,),
                 Padding(
-                  padding: const EdgeInsets.only(left: 22.0),
+                 padding: const EdgeInsets.only(left: 22.0),
                   child: DropdownButton(
                     underline: Container() ,
                     icon: Icon(Icons.list,color: Colors.black,),
@@ -233,7 +233,6 @@ class LoginAndRegister extends StatelessWidget {
                           color: Colors.white,
                         )))
                     ),
-
                     elevation: 8,
                     style: const TextStyle(
                       fontSize: 16,
@@ -249,7 +248,7 @@ class LoginAndRegister extends StatelessWidget {
                         value: 'Page 1',
                         child:    TextButton(
                             onPressed:(){
-                              CacheHelper.RemveData(key:'token') ;                                  CacheHelper.RemveData(key:'token') ;
+                              CacheHelper.RemveData(key:'token') ;
                               CacheHelper.RemveData(key:'department') ;
                               CacheHelper.RemveData(key:'id') ;
                               CacheHelper.RemveData(key:'idDoctor') ;
@@ -277,9 +276,9 @@ class LoginAndRegister extends StatelessWidget {
                         value: 'Page 2',
                         child:  TextButton(
                             onPressed:(){
-                              CacheHelper.RemveData(key:'token') ;                                  CacheHelper.RemveData(key:'token') ;
-                              CacheHelper.RemveData(key:'department') ;                                  CacheHelper.RemveData(key:'token') ;
-                              CacheHelper.RemveData(key:'id') ;                                  CacheHelper.RemveData(key:'token') ;
+                              CacheHelper.RemveData(key:'token') ;
+                              CacheHelper.RemveData(key:'department') ;
+                              CacheHelper.RemveData(key:'id') ;
                               CacheHelper.RemveData(key:'idDoctor') ;
 
                               navigateTo(context, RegisterPatientScreen());

@@ -206,16 +206,7 @@ emit(LoginDoctorScreenLoadingState());
     emit(ChangePasswordIconRegister());
   }
 
-  int selectedContainerIndex = -1;
-  List<String> containerValues = ["A+","A-","B+","B-","AB+","AB-","O+","O-","I don't no"];
 
-  void changeBloodType(index){
-    selectedContainerIndex = index ;
-    emit(BloodTypeChangeState());
-  }
-  void printsss(){
-    print(containerValues[selectedContainerIndex]);
-  }
 
 
 }

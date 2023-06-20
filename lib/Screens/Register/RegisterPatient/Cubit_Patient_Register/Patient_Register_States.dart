@@ -18,6 +18,27 @@ class PatientRegisterSuccessState extends RegisterPatientStates {
   PatientRegisterSuccessState(this.patientDataModel);
 }
 
-class PatientRegisterErrorState extends RegisterPatientStates {}
+class PatientRegisterErrorState extends RegisterPatientStates {
+
+  String? Error ;
+  PatientRegisterErrorState(this.Error);
+
+}
 
 class ChangePasswordIconRegister extends RegisterPatientStates {}
+
+class ImagePatientRegister extends RegisterPatientStates {}
+
+class AlertPatientRegister extends RegisterPatientStates {}
+
+class IsLastPageTruePatientRegister extends RegisterPatientStates {}
+
+class IsLastPageFalsePatientRegister extends RegisterPatientStates {}
+
+class SubmitPatientRegister extends RegisterPatientStates {}
+
+class BloodTypeChangeState extends RegisterPatientStates {}
+
+class BloodTypeIndexChangeState extends RegisterPatientStates {}
+
+class ChangeGenderTypeState extends RegisterPatientStates {}

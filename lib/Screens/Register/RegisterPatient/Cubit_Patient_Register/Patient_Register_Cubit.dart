@@ -1,14 +1,18 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:image_picker/image_picker.dart';
 import '../../../../Components/components.dart';
 import '../../../../Components/const.dart';
 import '../../../../Network/Endpoint/EndPoint.dart';
 import '../../../../Network/remote/dioHelper.dart';
 import '../../../../moudel/LoginModel/PatientDataMoudleing.dart';
+import '../../../LoginAndRegister/LoginAndRegister.dart';
+import '../RegisterPatientScreen1.dart';
+import '../RegisterPatientScreen2.dart';
+import '../RegisterPatientScreen4.dart';
 import 'Patient_Register_States.dart';
+import '../RegisterPatientScreen3.dart';
 
 class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
   Patient_RegisterCubit() : super(InitialPatientRegisterStates());
@@ -16,6 +20,59 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
   static Patient_RegisterCubit get(context) {
     return BlocProvider.of(context);
   }
+
+
+  List<Widget> RegisterScreens =
+  [
+    RegisterPatientScreen2(),
+    Registr3(),
+    Registr4(),
+
+
+  ];
+  var controller = PageController() ;
+
+  bool isLast = false ;
+
+
+  void submit( context ) {
+    Navigator.pushAndRemoveUntil(
+        context, MaterialPageRoute(builder: (context) => LoginAndRegister()), (
+        route) => false);
+    emit(SubmitPatientRegister());
+  }
+
+
+  void isLastPage(index){
+
+    if(index == RegisterScreens.length-1){
+
+        isLast = true ;
+     emit(IsLastPageTruePatientRegister());
+
+    }else{
+
+        isLast = false ;
+        emit(IsLastPageFalsePatientRegister());
+
+
+    };
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -36,7 +93,6 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
     checkBoxValue = !checkBoxValue;
     emit(ChangeCheckBoxColorState());
   }
-
 
 
   //
@@ -156,7 +212,7 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
         print(onError.toString());
       }
       toastShow(msg: "error leh msh 3aref ", state: toastStates.ERROR);
-      emit(PatientRegisterErrorState());
+      emit(PatientRegisterErrorState(onError.response?.data['message'].toString()));
     });
   }
   //
@@ -215,6 +271,95 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
 
 
 
+  XFile? image;
+
+
+
+  final ImagePicker picker = ImagePicker();
+
+
+  //we can upload image from camera or from gallery based on parameter
+  Future getImage(ImageSource media) async {
+    var img = await picker.pickImage(source: media);
+
+      image = img;
+      emit(ImagePatientRegister());
+
+  }
+
+  void myAlert(context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(child: Text('Please choose media \nto select', style: TextStyle(fontSize: 18), textAlign: TextAlign.center,)),
+              ],
+            ),
+            content: Container(
+              height: MediaQuery.of(context).size.height / 6,
+              child: Column(
+                children: [
+                  ElevatedButton(
+
+                    style:  ElevatedButton.styleFrom(
+
+                      backgroundColor: Colors.white,
+                    ),
+                    //if user click this button, user can upload image from gallery
+                    onPressed: () {
+                      Navigator.pop(context);
+                      getImage(ImageSource.gallery);
+                    },
+                    child: Container(
+                      height: 50,
+                      child: Row(
+                        children: [
+                          Icon(Icons.image),
+                          Text('From Gallery'),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  ElevatedButton(
+                    style:  ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                    ),
+                    //if user click this button. user can upload image from camera
+                    onPressed: () {
+                      Navigator.pop(context);
+                      getImage(ImageSource.camera);
+                    },
+                    child: Container(
+                      height: 50,
+                      child: Row(
+                        children: [
+                          Icon(Icons.camera),
+                          Text('From Camera'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+
+
+
+
+
+
+
+
   bool isPassword = true ;
   IconData showPassword = Icons.visibility_off_rounded ;
 
@@ -224,5 +369,73 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
 
     emit(ChangePasswordIconRegister());
   }
+
+
+
+
+
+
+
+
+  int selectedContainerIndex = -1;
+
+  List<String> containerValues = ["A+","A-","B+","B-","AB+","AB-","O+","O-"];
+
+
+  int indexs = -1;
+  Color enableColor = Colors.red;
+  Color disableColor = Colors.transparent;
+
+  void changeBloodType(index){
+    selectedContainerIndex = index ;
+    emit(BloodTypeChangeState());
+  }
+
+
+
+
+
+  void changeindexBloodType(int x){
+    indexs = x ;
+    emit(BloodTypeIndexChangeState());
+  }
+
+
+  void printsss(){
+    print(containerValues[selectedContainerIndex]);
+  }
+
+  void printsIndex(){
+    print(containerValues[indexs]);
+  }
+
+
+
+
+  String Gender = "" ;
+  List<String> GenderType = ["mail","femail"];
+  Color mark = Colors.blue;
+  Color notMark = Colors.transparent;
+
+  void changeGenderType(Z){
+    Gender = GenderType[Z];
+    emit(ChangeGenderTypeState());
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

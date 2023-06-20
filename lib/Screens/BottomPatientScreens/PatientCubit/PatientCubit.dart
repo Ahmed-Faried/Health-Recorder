@@ -22,8 +22,8 @@ class PatientCubit extends Cubit<PatientStates> {
   void getData_Patient()  {
 
     emit(Data_PatientFromID_LoadingState());
-      String id = CacheHelper.getData(key:'National_ID') ;
-    DioHelper.getData( urlMethod: "$GETALLDATAPATIENTFROMID$id"  ).then((value) {
+      String idP = CacheHelper.getData(key:'National_ID') ;
+    DioHelper.getData( urlMethod: "$GETALLDATAPATIENTFROMID$idP"  ).then((value) {
 
       patientDataModel = PatientDataModel.fromJson(value.data);
 
@@ -31,7 +31,7 @@ class PatientCubit extends Cubit<PatientStates> {
       emit(Data_PatientFromID_SuccessState());
 
     }).catchError((onError){
-      print("$GETALLDATAPATIENTFROMID$id");
+      print("$GETALLDATAPATIENTFROMID$idP");
 
       if (onError is DioError) {
         if (onError.response != null) {

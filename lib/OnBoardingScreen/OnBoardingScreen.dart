@@ -9,12 +9,11 @@ import '../Screens/LoginAndRegister/LoginAndRegister.dart';
 
 class BoardingModel{
 
-  late  String image;
-  late  String title1;
-  late  String title2;
-  late  String body;
-   late  Color color ;
-  BoardingModel({required this.color,required this.image,required this.title1,required this.title2,required this.body,});
+    String image;
+    String title1;
+    String title2;
+    String body;
+  BoardingModel({required this.image,required this.title1,required this.title2,required this.body,});
 }
 
 
@@ -55,7 +54,7 @@ class _onBoardingState extends State<onBoarding> {
       title1:'Health',
       title2:'Recorder',
       body:"The Application Allows Patients And Their Doctors To Register And Save The Patient's Overall Health Condition To More Easily Access It In A Later Time." ,
-      color : HexColor("#0160D6"),
+     // color : HexColor("#0160D6"),
     ),
     BoardingModel(
 
@@ -63,7 +62,7 @@ class _onBoardingState extends State<onBoarding> {
       title1: 'Well',
       title2: 'Organized',
       body: "Application Provide Easiest Way To Read And Well Organized Tables That Display The Different Medications The Patient Uses And Their Purpose." ,
-      color : HexColor("#0160D6"),//6365DB
+    //  color : HexColor("#0160D6"),//6365DB
 
     ),
     BoardingModel(
@@ -72,7 +71,7 @@ class _onBoardingState extends State<onBoarding> {
       title1: 'Special',
       title2: 'Code',
       body: "Patients Well Be Provided With A Special Code Can Shared With Their Doctors, So Doctors Will Be Able To Access And Modify The Patient's Health Records To Keep Them Up To Date." ,
-      color : HexColor("#0160D6"),//FF7C72
+     // color : HexColor("#0160D6"),//FF7C72
 
     ),
   ];
@@ -109,6 +108,89 @@ class _onBoardingState extends State<onBoarding> {
               },
             ),
           ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              TextButton(
+
+                  onPressed:(){
+
+                    submit();
+
+                  },
+                  style: ButtonStyle(
+                    backgroundColor:MaterialStateProperty.all( HexColor("#0160D6")),
+
+                  ), child: const Text('               Skip               ',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.white,
+                ),))
+            ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+
+            children: [
+
+              SmoothPageIndicator(
+                controller: controller,
+                count: 3,
+                effect:  WormEffect(
+                  spacing:  14.0,
+                  radius:  10,
+                  dotWidth:  16.0,
+                  dotHeight:  16.0,
+                  paintStyle:  PaintingStyle.fill,
+                  strokeWidth: .1,
+                  dotColor:  Colors.grey.shade300,
+                  activeDotColor:  HexColor("#0160D6"),
+
+                ),
+                onDotClicked: (index){
+
+                },
+
+              ),
+              SizedBox(
+                width: 13,
+              ),
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  color:  HexColor("#0160D6"),
+
+
+
+                ),
+                child: IconButton
+                  (
+                  onPressed: (){
+                    if(isLast){
+                      submit();
+                    }else{
+                      controller.nextPage(duration: const Duration(
+                        milliseconds: 1500,
+                      ), curve: Curves.fastLinearToSlowEaseIn);
+                    }
+                  },
+                  icon: const Icon(Icons.play_arrow , color: Colors.white, ) ,
+
+                ),
+              )
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
 
 
         ],
@@ -133,7 +215,7 @@ class _onBoardingState extends State<onBoarding> {
           ),
           child: Image(image: AssetImage(model.image), fit: BoxFit.fill,),
         ),
-         Spacer()     ,
+        Spacer()     ,
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -176,89 +258,7 @@ class _onBoardingState extends State<onBoarding> {
           ],
         ),
         Spacer(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            TextButton(
 
-                onPressed:(){
-
-                  submit();
-
-                        },
-                style: ButtonStyle(
-                  backgroundColor:MaterialStateProperty.all(model.color),
-
-                ), child: const Text('               Skip               ',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.w400,
-                color: Colors.white,
-              ),))
-          ],
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-
-          children: [
-
-            SmoothPageIndicator(
-              controller: controller,
-              count: 3,
-              effect:  WormEffect(
-                  spacing:  14.0,
-                  radius:  10,
-                  dotWidth:  16.0,
-                  dotHeight:  16.0,
-                  paintStyle:  PaintingStyle.fill,
-                  strokeWidth: .1,
-                  dotColor:  Colors.grey.shade300,
-                  activeDotColor: model.color,
-
-              ),
-              onDotClicked: (index){
-
-              },
-
-            ),
-            SizedBox(
-              width: 13,
-            ),
-            Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(30),
-                color: model.color,
-
-
-
-              ),
-              child: IconButton
-                (
-                onPressed: (){
-                  if(isLast){
-                    submit();
-                  }else{
-                  controller.nextPage(duration: const Duration(
-                    milliseconds: 1500,
-                  ), curve: Curves.fastLinearToSlowEaseIn);
-                  }
-                },
-                icon: const Icon(Icons.play_arrow , color: Colors.white, ) ,
-
-              ),
-            )
-          ],
-        ),
-        SizedBox(
-          height: 20,
-        ),
 
       ],
     ),

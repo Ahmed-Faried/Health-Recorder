@@ -38,9 +38,8 @@ class HomePagePatientScreen extends StatelessWidget {
               items:  const
               [
                 BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-                BottomNavigationBarItem(icon: Icon(Icons.person),   label:  'Account'),
                 BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner),   label:  'QrCode'),
-
+                BottomNavigationBarItem(icon: Icon(Icons.person),   label:  'Account'),
               ]
 
           ),
