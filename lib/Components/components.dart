@@ -639,10 +639,6 @@ Widget CardPatientDetialsPatient(
     );
 
 
-
-
-
-
 Widget EditProfileRow(context, String title, String hint, controller) => Row(
       children: [
         Container(
@@ -689,12 +685,6 @@ Widget EditProfileRow(context, String title, String hint, controller) => Row(
         ),
       ],
     );
-
-
-
-
-
-
 
 
 Widget RecordHistoryBodyShow(context, String text1, String text2,
@@ -1396,4 +1386,22 @@ void savedatafromshard(
   CacheHelper.saveData(
       key: idDoctor /*'idDoctor'*/,
       value: valueidDoctor);//state.doctorDataModel.data?.doctor.id
+}
+
+
+
+void RemoveCacheHelper (){
+
+  CacheHelper.RemveData(key:'token') ;
+  CacheHelper.RemveData(key:'department') ;
+  CacheHelper.RemveData(key:'id') ;
+  CacheHelper.RemveData(key:'idDoctor') ;
+
+}
+
+
+void SaveCacheHelper (){
+
+
+
 }

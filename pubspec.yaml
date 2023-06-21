@@ -41,7 +41,8 @@ dependencies:
   fluttertoast: ^8.2.1
   carousel_slider: ^4.2.1
   readmore: ^2.2.0
-#  barcode: ^2.2.4 be floos
+
+  #  barcode: ^2.2.4 be floos
   flutter_svg: ^2.0.5
   qr_flutter: ^4.0.0
   google_fonts: ^4.0.4

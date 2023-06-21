@@ -87,16 +87,28 @@ class AccountPatientScreen extends StatelessWidget {
                                     children: [
                                       ClipRRect(
                                         borderRadius: BorderRadius.circular(50),
-                                        child: const Image(
+                                        child:  Image(
                                           width: 100,
                                           height: 100,
                                           fit: BoxFit.cover,
-                                          image: AssetImage("assets/test.png"),
-                                          //NetworkImage(
-                                          //     'https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'
-                                          //  ),
+                                           image: //imagePatient == null
+                                          //     ? NetworkImage(
+                                          //   "https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop",
+                                          // )
+                                          //     :
+                                          NetworkImage(
+                                            "${patientDataModel?.data?.pationt?.image}",
+                                          ),
                                         ),
                                       ),
+                                      // CircleAvatar(
+                                      //   radius: 30.0,
+                                      //
+                                      //
+                                      //   backgroundImage: NetworkImage("${patientDataModel?.data?.pationt?.image}"),
+                                      //
+                                      // ),
+
                                     ],
                                   ),
                                   const SizedBox(

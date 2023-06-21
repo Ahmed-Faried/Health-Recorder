@@ -20,8 +20,8 @@ class PatientRegisterSuccessState extends RegisterPatientStates {
 
 class PatientRegisterErrorState extends RegisterPatientStates {
 
-  String? Error ;
-  PatientRegisterErrorState(this.Error);
+  String? Errors ;
+  PatientRegisterErrorState(this.Errors);
 
 }
 
@@ -42,3 +42,8 @@ class BloodTypeChangeState extends RegisterPatientStates {}
 class BloodTypeIndexChangeState extends RegisterPatientStates {}
 
 class ChangeGenderTypeState extends RegisterPatientStates {}
+
+class ChangeDateState extends RegisterPatientStates {}
+
+class ChangeFamilyGeneticState extends RegisterPatientStates {}
+

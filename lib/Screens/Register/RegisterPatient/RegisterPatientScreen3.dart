@@ -8,8 +8,8 @@ import 'Cubit_Patient_Register/Patient_Register_Cubit.dart';
 import 'Cubit_Patient_Register/Patient_Register_States.dart';
 import 'dart:io';
 
-class Registr3 extends StatelessWidget {
-  Registr3({Key? key}) : super(key: key);
+class RegisterPatientScreen3 extends StatelessWidget {
+  RegisterPatientScreen3({Key? key}) : super(key: key);
 
   var formKey2 = GlobalKey<FormState>();
 
@@ -43,7 +43,7 @@ class Registr3 extends StatelessWidget {
                 ),
               ), // Image top.png
               Form(
-                // key: formKey2,
+                key: formKey2,
                 child: Padding(
                   padding: const EdgeInsets.all(18.0), //Padding all Screen
                   child: SingleChildScrollView(
@@ -589,63 +589,32 @@ class Registr3 extends StatelessWidget {
                                     ),
                                     onTap: () {
                                       if (formKey2.currentState!.validate()) {
-                                        try {
-                                          Patient_RegisterCubit.get(context)
-                                              .PatientRegister(
-                                            fristName:
-                                            Patient_RegisterCubit.get(
-                                                context)
-                                                .firstNamePatientController
-                                                .text,
-                                            lastName: Patient_RegisterCubit.get(
-                                                context)
-                                                .lastNamePatientController
-                                                .text,
-                                            bloodType:
-                                            Patient_RegisterCubit.get(
-                                                context)
-                                                .bloodTypePatientController
-                                                .text,
-                                            gender: Patient_RegisterCubit.get(
-                                                context)
-                                                .genderPatientController
-                                                .text,
-                                            password: Patient_RegisterCubit.get(
-                                                context)
-                                                .passwordPatientController
-                                                .text,
-                                            email: Patient_RegisterCubit.get(
-                                                context)
-                                                .emailPatientController
-                                                .text,
-                                            number: Patient_RegisterCubit.get(
-                                                context)
-                                                .numberPatientController
-                                                .text,
-                                            National_ID:
-                                            Patient_RegisterCubit.get(
-                                                context)
-                                                .nationalIDPatientController
-                                                .text,
-                                            age: Patient_RegisterCubit.get(
-                                                context)
-                                                .agePatientController
-                                                .text,
-                                          );
-                                          // RegisterCubit.get(context).PatientRegister(
-                                          //   fristName: 'John',
-                                          //   lastName: 'Doe',
-                                          //   age: "30",
-                                          //   bloodType: 'A+',
-                                          //   gender: 'mail',
-                                          //   password: 'password',
-                                          //   email: 'johjjjoe@example.com',
-                                          //   number: '12345678900',
-                                          //   National_ID: '12345678974580',
+
+                                        Patient_RegisterCubit.get(context)
+                                            .controller
+                                            .nextPage(
+                                            duration: const Duration(
+                                              milliseconds: 1500,
+                                            ),
+                                            curve: Curves.fastLinearToSlowEaseIn);
+                                          // Patient_RegisterCubit.get(context).PatientRegister(
+                                          //   fristName:
+                                          //   Patient_RegisterCubit.get(
+                                          //       context).firstNamePatientController.text,
+                                          //   lastName: Patient_RegisterCubit.get(
+                                          //       context).lastNamePatientController.text,
+                                          //   bloodType: Patient_RegisterCubit.get(context).containerValues[Patient_RegisterCubit.get(context).selectedContainerIndex] ,
+                                          //   gender: Patient_RegisterCubit.get(context).Gender,
+                                          //   password: Patient_RegisterCubit.get(context).passwordPatientController.text,
+                                          //   email: Patient_RegisterCubit.get(context).emailPatientController.text,
+                                          //   number: Patient_RegisterCubit.get(context).numberPatientController.text,
+                                          //   National_ID:
+                                          //   Patient_RegisterCubit.get(context).nationalIDPatientController.text,
+                                          //   age: Patient_RegisterCubit.get(context).agePatientController.text,
+                                          //   context: context ,
                                           // );
-                                        } catch (e) {
-                                          print('An error occurred: $e');
-                                        }
+
+
                                       }
                                     },
                                   );
@@ -667,7 +636,30 @@ class Registr3 extends StatelessWidget {
           ),
         );
       },
-      listener: (context, state) {},
+      listener: (context, state) {
+
+        if (state is PatientRegisterSuccessState) {
+          if (state.patientDataModel.status == "success") {
+            toastShow(msg: "تم التسجيل  بنجاح", state: toastStates.SUCCESS);
+
+            Patient_RegisterCubit.get(context)
+                .controller
+                .nextPage(
+                duration: const Duration(
+                  milliseconds: 1500,
+                ),
+                curve: Curves.fastLinearToSlowEaseIn);
+
+          }
+        }
+        if (state is PatientRegisterErrorState) {
+          if (state.Errors != null) {
+            toastShow(msg: "${state.Errors}", state: toastStates.ERROR);
+          }
+        }
+
+
+      },
     );
   }
 }

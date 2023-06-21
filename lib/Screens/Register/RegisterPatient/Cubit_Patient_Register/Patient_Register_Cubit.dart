@@ -1,16 +1,21 @@
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import '../../../../Components/components.dart';
 import '../../../../Components/const.dart';
 import '../../../../Network/Endpoint/EndPoint.dart';
+import '../../../../Network/local/shared_preferences.dart';
 import '../../../../Network/remote/dioHelper.dart';
 import '../../../../moudel/LoginModel/PatientDataMoudleing.dart';
 import '../../../LoginAndRegister/LoginAndRegister.dart';
 import '../RegisterPatientScreen1.dart';
 import '../RegisterPatientScreen2.dart';
 import '../RegisterPatientScreen4.dart';
+import '../RegisterPatientScreen5.dart';
+import '../RegisterPatientScreen6.dart';
 import 'Patient_Register_States.dart';
 import '../RegisterPatientScreen3.dart';
 
@@ -25,8 +30,10 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
   List<Widget> RegisterScreens =
   [
     RegisterPatientScreen2(),
-    Registr3(),
-    Registr4(),
+    RegisterPatientScreen3(),
+    RegisterPatientScreen4(),
+    RegisterPatientScreen5(),
+    RegisterPatientScreen6(),
 
 
   ];
@@ -59,20 +66,6 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
     };
 
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -174,6 +167,7 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
     required  email,
     required  number,
     required  National_ID,
+    context
   }) {
     emit(PatientRegisterLoadingState());
 
@@ -195,6 +189,24 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
 
       print(patientDataModel?.status);
 
+      CacheHelper.saveData(
+          key: 'token', value: patientDataModel?.token);
+
+      CacheHelper.saveData(
+          key: 'National_ID',
+          value: patientDataModel?.data?.pationt?.nationalId);
+      CacheHelper.saveData(
+          key: 'id', value: patientDataModel?.data?.pationt!.id);
+
+      CacheHelper.saveData(
+          key: 'imagePatient', value: patientDataModel?.data?.pationt?.image);
+
+      print(idPatient);
+      print(imagePatient);
+      print(patientDataModel?.data?.pationt?.image);
+      print(token);
+
+
 
       emit(PatientRegisterSuccessState(patientDataModel!));
     }).catchError((onError) {
@@ -215,60 +227,6 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
       emit(PatientRegisterErrorState(onError.response?.data['message'].toString()));
     });
   }
-  //
-  //  PatientRegister({
-  //   required  firstName,
-  //   required  lastName,
-  //   required  age,
-  //   required  bloodType,
-  //   required  gender,
-  //   required  password,
-  //   required  email,
-  //   required  number,
-  //   required  National_ID,
-  // }) {
-  //   emit(PatientRegisterLoadingState());
-  //
-  //   DioHelper.postData(
-  //       path: RegisterPatientApi,
-  //       data: {
-  //         'firstName': firstName,
-  //         'lastName': lastName,
-  //         'age': age,
-  //         'bloodType': bloodType,
-  //         'gender': gender,
-  //         'email': email,
-  //         'password': password,
-  //         'phoneNumber': number,
-  //         'National_ID': National_ID
-  //       }).then((value) async {
-  //     toastShow(msg: "tamam Patient", state: toastStates.SUCCESS);
-  //
-  //     patientDataModel = PatientDataModel.fromJson(value.data);
-  //     print(patientDataModel?.status);
-  //   emit(PatientRegisterSuccessState());
-  //   }).catchError((onError) {
-  //     toastShow(msg: "خطأ في التسجيل", state: toastStates.ERROR);
-  //     print(
-  //               "${firstNamePatientController.text}\n"
-  //               "${lastNamePatientController.text} \n"
-  //               "${agePatientController.text}\n"
-  //               "${bloodTypePatientController.text}\n"
-  //               "${genderPatientController.text}\n"
-  //               "${emailPatientController.text}\n"
-  //               "${passwordPatientController.text}\n"
-  //               "${numberPatientController.text}\n"
-  //               "${nationalIDPatientController.text}\n"
-  //
-  //           );
-  //
-  //     print(onError);
-  //     emit(PatientRegisterErrorState());
-  //
-  //   });
-  // }
-  //
-
 
 
   XFile? image;
@@ -419,6 +377,7 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
 
   void changeGenderType(Z){
     Gender = GenderType[Z];
+    print(Gender);
     emit(ChangeGenderTypeState());
   }
 
@@ -428,7 +387,31 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
 
 
 
+  var controllerssss = TextEditingController();
 
+  String Date = "Date" ;
+
+  void DateChange (X){
+    Date = DateFormat('MMM d, y').format(X!);
+    if (kDebugMode) {
+      print( Date =
+          DateFormat.yMMMd().format(X));
+    }
+    emit(ChangeDateState());
+  }
+
+
+  int familyGenetic = 0 ;
+  List<String> familyGeneticType = ["Yes","No"];
+
+  void familyGeneticDisease (X){
+
+    familyGenetic = X ;
+
+    print(familyGeneticType[familyGenetic]) ;
+
+    emit(ChangeFamilyGeneticState());
+  }
 
 
 

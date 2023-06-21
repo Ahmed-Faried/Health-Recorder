@@ -17,6 +17,7 @@ import 'Screens/Login/Cubit/CubitLoginScreen.dart';
 import 'Screens/LoginAndRegister/LoginAndRegister.dart';
 import 'Screens/Register/RegisterPatient/Cubit_Patient_Register/Patient_Register_Cubit.dart';
 import 'Screens/Register/RegisterPatient/RegisterPatientScreen1.dart';
+import 'Screens/Register/RegisterPatient/RegisterPatientScreen4.dart';
 import 'Screens/TEST/test.dart';
 import 'bloc/bloc_observer.dart';
 void main()async {
@@ -35,6 +36,8 @@ void main()async {
        isdark      = CacheHelper.getData(key:'isDark') ;
        idDoctor    = CacheHelper.getData(key:'idDoctor') ;
        National_ID = CacheHelper.getData(key:'National_ID') ;
+       imagePatient = CacheHelper.getData(key:'imagePatient') ;
+       imageDoctor = CacheHelper.getData(key:'imageDoctor') ;
 
 
 
@@ -176,7 +179,7 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.dark,
         home:  AnimatedSplashScreen(
           splash: Image.asset('assets/Logo.png'),
-          nextScreen: RegisterPatientScreen(), //startWidget,
+          nextScreen:RegisterPatientScreen(), //startWidget,
           splashTransition: SplashTransition.slideTransition,
           backgroundColor:  Colors.white, //HexColor('5DCDC6'),
           splashIconSize: 100,

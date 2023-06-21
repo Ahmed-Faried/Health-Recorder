@@ -7,6 +7,9 @@ String? token = '';
 String? department = '';
 String? idPatient;
 String? National_ID;
+String? imagePatient ;
+String? imageDoctor;
+
 
 String? idDoctor;
 bool?  isdark;
