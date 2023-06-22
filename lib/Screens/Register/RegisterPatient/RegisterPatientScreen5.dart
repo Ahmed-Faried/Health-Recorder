@@ -112,7 +112,7 @@ class RegisterPatientScreen5 extends StatelessWidget {
                         height: 10,
                       ),
                       FieldFromRegistr(
-                        controller: Patient_RegisterCubit.get(context).controllerssss,
+                        controller: Patient_RegisterCubit.get(context).surgeryController,
                         type: TextInputType.text,
                         onSubmit: () {},
                         onChanged: () {},
@@ -218,7 +218,7 @@ class RegisterPatientScreen5 extends StatelessWidget {
                         },
                       ),
                       const SizedBox(
-                        height: 150,
+                        height: 240,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -231,11 +231,16 @@ class RegisterPatientScreen5 extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(35),
                                 color: HexColor("#68DED7"),
                               ),
-                              child: Center(child: const Text("Skip")) ,
+                              child:Center(child: Icon(Icons.arrow_back , color:  Colors.white,)) ,
                             ),
                             onTap: () {
-                              navigateAndFinish(context, HomePagePatientScreen());
-                            },
+                              Patient_RegisterCubit.get(context)
+                                  .controller
+                                  .previousPage(
+                                  duration: const Duration(
+                                    milliseconds: 1500,
+                                  ),
+                                  curve: Curves.fastLinearToSlowEaseIn);                            },
                           ),
                           Spacer(),
                           ConditionalBuilder(

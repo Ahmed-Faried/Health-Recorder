@@ -40,7 +40,7 @@ class RegisterPatientScreen2 extends StatelessWidget {
               ), // Image bot-L.png
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: 100,
+                height: 80,
                 child: const Image(
                   image: AssetImage('assets/top.png'),
                   fit: BoxFit.fill,
@@ -57,7 +57,7 @@ class RegisterPatientScreen2 extends StatelessWidget {
                       child: Column(
                         children: [
                           const SizedBox(
-                            height: 55,
+                            height: 45,
                           ),
                           Column(
                             children: [
@@ -325,7 +325,7 @@ class RegisterPatientScreen2 extends StatelessWidget {
                             prefix: Icons.phone_android_rounded,
                           ),
                           const SizedBox(
-                            height: 30,
+                            height: 20,
                           ),
                           // Blood type 2 way
                           // Padding(
@@ -552,7 +552,7 @@ class RegisterPatientScreen2 extends StatelessWidget {
                                       if (formKey1.currentState!.validate()){
                                         Patient_RegisterCubit.get(context).controller.nextPage(
                                             duration: const Duration(
-                                          milliseconds: 1500,
+                                          milliseconds: 500,
                                         ), curve: Curves.decelerate);
                                       }
 

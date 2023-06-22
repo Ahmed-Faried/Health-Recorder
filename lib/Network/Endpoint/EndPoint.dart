@@ -10,6 +10,10 @@ const GETDATAPATIENT              =  'v1/pationts/login';
 const RegisterPatientApi          =  'v1/pationts/signup';
 const GETALLDATAPATIENTFROMID     =  'v1/pationts/';
 
+const UpdateRegisterPatientHealth     =  'v1/update/';
+
+
+
 //
 // {
 // "_id": "6457c4df54bcd8002dfa8271",

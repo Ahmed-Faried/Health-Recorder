@@ -22,20 +22,20 @@ class RegisterPatientScreen3 extends StatelessWidget {
           body: Stack(
             fit: StackFit.loose,
             children: <Widget>[
-              Container(
-                color: Colors.white,
-                alignment: Alignment.bottomLeft,
-                child: const Image(
-                  image: AssetImage('assets/bot-L.png'),
-                  alignment: Alignment.bottomLeft,
-                  width: 200,
-                  height: 350,
-                  fit: BoxFit.contain,
-                ),
-              ), // Image bot-L.png
+              // Container(
+              //   color: Colors.white,
+              //   alignment: Alignment.bottomLeft,
+              //   child: const Image(
+              //     image: AssetImage('assets/bot-L.png'),
+              //     alignment: Alignment.bottomLeft,
+              //     width: 50,
+              //     height: 100,
+              //     fit: BoxFit.contain,
+              //   ),
+              // ), // Image bot-L.png
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                height: 100,
+                height: 80,
                 child: const Image(
                   image: AssetImage('assets/top.png'),
                   fit: BoxFit.fill,
@@ -590,29 +590,25 @@ class RegisterPatientScreen3 extends StatelessWidget {
                                     onTap: () {
                                       if (formKey2.currentState!.validate()) {
 
-                                        Patient_RegisterCubit.get(context)
-                                            .controller
-                                            .nextPage(
-                                            duration: const Duration(
-                                              milliseconds: 1500,
-                                            ),
-                                            curve: Curves.fastLinearToSlowEaseIn);
-                                          // Patient_RegisterCubit.get(context).PatientRegister(
-                                          //   fristName:
-                                          //   Patient_RegisterCubit.get(
-                                          //       context).firstNamePatientController.text,
-                                          //   lastName: Patient_RegisterCubit.get(
-                                          //       context).lastNamePatientController.text,
-                                          //   bloodType: Patient_RegisterCubit.get(context).containerValues[Patient_RegisterCubit.get(context).selectedContainerIndex] ,
-                                          //   gender: Patient_RegisterCubit.get(context).Gender,
-                                          //   password: Patient_RegisterCubit.get(context).passwordPatientController.text,
-                                          //   email: Patient_RegisterCubit.get(context).emailPatientController.text,
-                                          //   number: Patient_RegisterCubit.get(context).numberPatientController.text,
-                                          //   National_ID:
-                                          //   Patient_RegisterCubit.get(context).nationalIDPatientController.text,
-                                          //   age: Patient_RegisterCubit.get(context).agePatientController.text,
-                                          //   context: context ,
-                                          // );
+                                        // Patient_RegisterCubit.get(context)
+                                        //     .controller
+                                        //     .nextPage(
+                                        //     duration: const Duration(
+                                        //       milliseconds: 1500,
+                                        //     ),
+                                        //     curve: Curves.fastLinearToSlowEaseIn);
+                                            Patient_RegisterCubit.get(context).PatientRegister(
+                                            fristName: Patient_RegisterCubit.get(context).firstNamePatientController.text,
+                                            lastName: Patient_RegisterCubit.get(context).lastNamePatientController.text,
+                                            bloodType: Patient_RegisterCubit.get(context).containerValues[Patient_RegisterCubit.get(context).selectedContainerIndex] ,
+                                            gender: Patient_RegisterCubit.get(context).Gender,
+                                            password: Patient_RegisterCubit.get(context).passwordPatientController.text,
+                                            email: Patient_RegisterCubit.get(context).emailPatientController.text,
+                                            number: Patient_RegisterCubit.get(context).numberPatientController.text,
+                                            National_ID: Patient_RegisterCubit.get(context).nationalIDPatientController.text,
+                                            age: Patient_RegisterCubit.get(context).agePatientController.text,
+                                            context: context ,
+                                          );
 
 
                                       }

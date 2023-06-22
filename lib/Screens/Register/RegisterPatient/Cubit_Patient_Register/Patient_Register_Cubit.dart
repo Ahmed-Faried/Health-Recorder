@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:shop_app/Screens/BottomPatientScreens/HomePagePatient/HomePagePatientScreen.dart';
 import '../../../../Components/components.dart';
 import '../../../../Components/const.dart';
 import '../../../../Network/Endpoint/EndPoint.dart';
@@ -68,7 +69,7 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
   }
 
 
-
+    // ** Page 2 - 3 ** //
   var firstNamePatientController = TextEditingController();
   var lastNamePatientController  = TextEditingController();
   var passwordPatientController  = TextEditingController();
@@ -78,6 +79,29 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
   var numberPatientController     = TextEditingController();
   var genderPatientController     = TextEditingController();
   var bloodTypePatientController  = TextEditingController();
+
+
+
+
+  // ** Page 4 - 5 ** //
+  //  chronic String test 1
+  var chronicDiseaseMedicineController  = TextEditingController();
+  var healthProblemController = TextEditingController();
+  var healthProblemMedicineController  = TextEditingController();
+  var surgeryController = TextEditingController();
+    //Date test 6
+  var geneticDiseaseController  = TextEditingController();
+  var geneticDiseaseMedicineController  = TextEditingController();
+
+
+
+  //not send
+  var relativeRelationController  = TextEditingController();
+
+
+
+
+
 
 
   bool checkBoxValue = false;
@@ -191,15 +215,14 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
 
       CacheHelper.saveData(
           key: 'token', value: patientDataModel?.token);
-
       CacheHelper.saveData(
           key: 'National_ID',
           value: patientDataModel?.data?.pationt?.nationalId);
       CacheHelper.saveData(
           key: 'id', value: patientDataModel?.data?.pationt!.id);
-
       CacheHelper.saveData(
           key: 'imagePatient', value: patientDataModel?.data?.pationt?.image);
+
 
       print(idPatient);
       print(imagePatient);
@@ -227,6 +250,85 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
       emit(PatientRegisterErrorState(onError.response?.data['message'].toString()));
     });
   }
+
+
+  //** update patient **//
+
+  PatientRegisterHealthState({
+    test1,
+    test2,
+    test3,
+    test4,
+    test5,
+    test6,
+    test7,
+    test8,
+    context
+
+  }) {
+    emit(PatientRegisterHealthLoadingState());
+    var NID_PAtient  =  CacheHelper.getData(key:'National_ID')   ;
+    DioHelper.update(
+        path: "$UpdateRegisterPatientHealth$NID_PAtient",
+        data: {
+"chronic_Diseases": [
+    {
+      "name": test1,
+      "medicen": test2 // تحديث حقل medicen للمرض الأول
+    }
+],
+"Health_problems": [
+            {
+              "name": test3,
+              "medicen": test4
+            },
+],
+"Surgical_operations": [
+          {
+            "name": test5,
+            "date": test6
+          },
+],
+"Hereditary_diseases": [
+            {
+              "name": test7,
+              "medicen": test8
+            }
+],
+        }
+    ).then((value) async {
+
+    print("tamam");
+
+    navigateAndFinish(context, HomePagePatientScreen());
+
+
+      emit(PatientRegisterHealthSuccessState());
+    }).catchError((onError) {
+      if (onError is DioError) {
+        if (onError.response != null) {
+          // يمكن الوصول إلى البياناتالتي تم إرجاعها من الخادم باستخدام onError.response.data
+          print(onError.response?.data);
+          print(onError.toString());
+          print(onError.type.name);
+
+        } else {
+          print(onError.message);
+        }
+      } else {
+        print(onError.toString());
+      }
+      toastShow(msg: "error PatientRegisterHealthErrorState ", state: toastStates.ERROR);
+      emit(PatientRegisterHealthErrorState(onError.response?.data['message'].toString()));
+    });
+  }
+
+
+
+
+
+
+
 
 
   XFile? image;
@@ -387,7 +489,6 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
 
 
 
-  var controllerssss = TextEditingController();
 
   String Date = "Date" ;
 
@@ -414,6 +515,16 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
   }
 
 
+  String chronicDiseaseValue = "I Don't Know" ;
+
+  void ChronicDiseaseValue (X){
+
+    chronicDiseaseValue = X ;
+
+    print(chronicDiseaseValue) ;
+
+    emit(ChronicValueState());
+  }
 
 
 

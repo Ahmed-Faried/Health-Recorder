@@ -152,7 +152,7 @@ class RegisterPatientScreen6 extends StatelessWidget {
                         height: 25,
                       ),
                       FieldFromRegistr(
-                        controller: Patient_RegisterCubit.get(context).controllerssss,
+                        controller: Patient_RegisterCubit.get(context).relativeRelationController,
                         type: TextInputType.text,
                         onSubmit: () {},
                         onChanged: () {},
@@ -173,7 +173,7 @@ class RegisterPatientScreen6 extends StatelessWidget {
                         height: 25,
                       ),
                       FieldFromRegistr(
-                      controller: Patient_RegisterCubit.get(context).controllerssss,
+                      controller: Patient_RegisterCubit.get(context).geneticDiseaseController,
                       type: TextInputType.text,
                       onSubmit: () {},
                       onChanged: () {},
@@ -194,7 +194,7 @@ class RegisterPatientScreen6 extends StatelessWidget {
                         height: 25,
                       ),
                       FieldFromRegistr(
-                      controller: Patient_RegisterCubit.get(context).controllerssss,
+                      controller: Patient_RegisterCubit.get(context).geneticDiseaseMedicineController,
                       type: TextInputType.text,
                       onSubmit: () {},
                       onChanged: () {},
@@ -228,10 +228,16 @@ class RegisterPatientScreen6 extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(35),
                                 color: HexColor("#68DED7"),
                               ),
-                              child: Center(child: const Text("Skip")) ,
+                              child:Center(child: Icon(Icons.arrow_back , color:  Colors.white,)) ,
                             ),
                             onTap: () {
-
+                              Patient_RegisterCubit.get(context)
+                                  .controller
+                                  .previousPage(
+                                  duration: const Duration(
+                                    milliseconds: 1500,
+                                  ),
+                                  curve: Curves.fastLinearToSlowEaseIn);
                             },
                           ),
                           Spacer(),
@@ -253,7 +259,17 @@ class RegisterPatientScreen6 extends StatelessWidget {
                                   ),
                                 ),
                                 onTap: () {
-
+                                  Patient_RegisterCubit.get(context).PatientRegisterHealthState(
+                                    test1: Patient_RegisterCubit.get(context).ChronicDiseaseValue,
+                                    test2: Patient_RegisterCubit.get(context).chronicDiseaseMedicineController.text,
+                                    test3: Patient_RegisterCubit.get(context).healthProblemController.text,
+                                    test4: Patient_RegisterCubit.get(context).healthProblemMedicineController.text,
+                                    test5: Patient_RegisterCubit.get(context).surgeryController.text,
+                                    test6: Patient_RegisterCubit.get(context).Date,
+                                    test7: Patient_RegisterCubit.get(context).geneticDiseaseController.text,
+                                    test8: Patient_RegisterCubit.get(context).geneticDiseaseMedicineController.text,
+                                    context:context
+                                  );
                                 },
                               );
                             },

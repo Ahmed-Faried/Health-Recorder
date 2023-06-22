@@ -179,7 +179,7 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.dark,
         home:  AnimatedSplashScreen(
           splash: Image.asset('assets/Logo.png'),
-          nextScreen:RegisterPatientScreen(), //startWidget,
+          nextScreen:startWidget,
           splashTransition: SplashTransition.slideTransition,
           backgroundColor:  Colors.white, //HexColor('5DCDC6'),
           splashIconSize: 100,

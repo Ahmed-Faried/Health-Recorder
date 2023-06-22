@@ -19,7 +19,6 @@ class RegisterPatientScreen4 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-     var controller = TextEditingController();
 
      return BlocConsumer<Patient_RegisterCubit, RegisterPatientStates>(
        listener: (context ,state ) {},
@@ -35,14 +34,14 @@ class RegisterPatientScreen4 extends StatelessWidget {
                child: const Image(
                  image: AssetImage('assets/bot-L1.png'),
                  alignment: Alignment.bottomLeft,
-                 width: 100,
-                 height: 300,
+                 width: 50,
+                 height: 100,
                  fit: BoxFit.contain,
                ),
              ), // Image bot-L.png
              SizedBox(
                width: MediaQuery.of(context).size.width,
-               height: 90,
+               height: 70,
                child: const Image(
                  image: AssetImage('assets/top.png'),
                  fit: BoxFit.fill,
@@ -132,14 +131,65 @@ class RegisterPatientScreen4 extends StatelessWidget {
                              [
                                Icon(Icons.ac_unit_rounded),
                                SizedBox(width: 5,),
-                               Text("Chronic disease"),
-                               Spacer(),
-                               IconButton(
-                                 icon :Icon(Icons.arrow_drop_down),
-                                 onPressed: () {
+                                DecoratedBox(
+                             decoration: BoxDecoration(
+                               // color:Colors.lightBlue, //background color of dropdown button
+                               // border: Border.all(color: Colors.black38, width:3), //border of dropdown button
+                               // borderRadius: BorderRadius.circular(20), //border raiuds of dropdown button
+                             ),
+                             child:   DropdownButton(
 
-                                 }
-                                 ,),
+                               padding:EdgeInsets.symmetric(horizontal:  16.0) ,
+                               underline: Container(),
+                               icon: Icon(Icons.arrow_drop_down),
+                               style: TextStyle(color: Colors.black),
+                               value: Patient_RegisterCubit.get(context).chronicDiseaseValue,
+                                 menuMaxHeight : 200 ,
+
+                               items: [ //add items in the dropdown
+                                 DropdownMenuItem(
+                                     child: Container(
+                                         child: Text("I Don't Know")),
+                                     value: "I Don't Know"
+                                 ),
+                                 DropdownMenuItem(
+                                   child: Text("1"),
+                                   value: "1",
+                                 ),
+                                 DropdownMenuItem(
+                                   child: Text("2"),
+                                   value: "2",
+                                 ),
+                                 DropdownMenuItem(
+                                   child: Text("3"),
+                                   value: "3",
+                                 ),
+                                 DropdownMenuItem(
+                                   child: Text("4"),
+                                   value: "4",
+                                 ),
+                                 DropdownMenuItem(
+                                   child: Text("5"),
+                                   value: "5",
+                                 ),
+                                 DropdownMenuItem(
+                                   child: Text("6"),
+                                   value: "6",
+                                 ),
+                               ],
+                               onChanged: (value){ //get value when changed
+                                 Patient_RegisterCubit.get(context).ChronicDiseaseValue(value);
+                               },
+                             ),
+                           )
+                               // Text("Chronic disease"),
+                               // Spacer(),
+                               // IconButton(
+                               //   icon :Icon(Icons.arrow_drop_down),
+                               //   onPressed: () {
+                               //
+                               //   }
+                               //   ,),
                              ],
                            ),
                          ),
@@ -148,7 +198,7 @@ class RegisterPatientScreen4 extends StatelessWidget {
                          height: 35,
                        ),
                        FieldFromRegistr(
-                         controller: controller,
+                         controller: Patient_RegisterCubit.get(context).chronicDiseaseMedicineController,
                          type: TextInputType.text,
                          onSubmit: () {},
                          onChanged: () {},
@@ -180,7 +230,7 @@ class RegisterPatientScreen4 extends StatelessWidget {
                          height: 10,
                        ),
                        FieldFromRegistr(
-                         controller: controller,
+                         controller: Patient_RegisterCubit.get(context).healthProblemController,
                          type: TextInputType.text,
                          onSubmit: () {},
                          onChanged: () {},
@@ -189,7 +239,7 @@ class RegisterPatientScreen4 extends StatelessWidget {
                          validator: (vaule) {
                            if (vaule!.isEmpty) {
                              toastShow(
-                                 msg: 'Regular medicine isEmpty',
+                                 msg: 'Health Problem isEmpty',
                                  state: toastStates.WARNING);
                              return "*" ;
                            }
@@ -201,7 +251,7 @@ class RegisterPatientScreen4 extends StatelessWidget {
                          height: 20,
                        ),
                        FieldFromRegistr(
-                       controller: controller,
+                       controller: Patient_RegisterCubit.get(context).healthProblemMedicineController,
                        type: TextInputType.text,
                        onSubmit: () {},
                        onChanged: () {},
@@ -210,7 +260,7 @@ class RegisterPatientScreen4 extends StatelessWidget {
                        validator: (vaule) {
                          if (vaule!.isEmpty) {
                            toastShow(
-                               msg: 'Regular medicine isEmpty',
+                               msg: 'Regular medicine Health Problem isEmpty',
                                state: toastStates.WARNING);
                            return "*" ;
                          }
@@ -232,9 +282,16 @@ class RegisterPatientScreen4 extends StatelessWidget {
                                  borderRadius: BorderRadius.circular(35),
                                  color: HexColor("#68DED7"),
                                ),
-                               child: Center(child: const Text("Skip")) ,
+                               child: Center(child: Icon(Icons.arrow_back , color:  Colors.white,)) ,
                              ),
                              onTap: () {
+                               Patient_RegisterCubit.get(context)
+                                   .controller
+                                   .previousPage(
+                                   duration: const Duration(
+                                     milliseconds: 1500,
+                                   ),
+                                   curve: Curves.fastLinearToSlowEaseIn);
                              },
                            ),
                            Spacer(),
@@ -256,6 +313,7 @@ class RegisterPatientScreen4 extends StatelessWidget {
                                    ),
                                  ),
                                  onTap: () {
+
                                    Patient_RegisterCubit.get(context)
                                        .controller
                                        .nextPage(

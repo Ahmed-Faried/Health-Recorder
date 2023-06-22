@@ -47,3 +47,15 @@ class ChangeDateState extends RegisterPatientStates {}
 
 class ChangeFamilyGeneticState extends RegisterPatientStates {}
 
+class ChronicValueState extends RegisterPatientStates {}
+
+class PatientRegisterHealthLoadingState extends RegisterPatientStates {}
+
+class PatientRegisterHealthSuccessState extends RegisterPatientStates {}
+
+class PatientRegisterHealthErrorState extends RegisterPatientStates {
+
+  String? Errors ;
+  PatientRegisterHealthErrorState(this.Errors);
+
+}
