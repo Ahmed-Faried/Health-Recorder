@@ -13,6 +13,8 @@ import 'package:shop_app/Screens/LoginAndRegister/LoginAndRegister.dart';
 import '../../../Components/const.dart';
 import '../../../Network/local/shared_preferences.dart';
 import '../../../moudel/LoginModel/DoctorDataMoudleing.dart';
+import '../../../moudel/LoginModel/PatientDataMoudleing.dart';
+import '../../PatientDetails/PatientDetailsScreen.dart';
 
 
 class HomeDoctorScreen extends StatelessWidget {
@@ -25,7 +27,7 @@ class HomeDoctorScreen extends StatelessWidget {
 
     return BlocProvider(
 
-      create: (BuildContext context) => DoctorCubit()..getData_Doctor(idDoctor),
+      create: (BuildContext context) => DoctorCubit()..getData_Doctor(idDoctor)..getAllPatientConnected(doctorDataModel?.data!.doctor.pId),
       child: BlocConsumer<DoctorCubit, DoctorStates>(
         listener: (context, state) {},
         builder: (context, state) {
@@ -33,7 +35,7 @@ class HomeDoctorScreen extends StatelessWidget {
             condition:doctorDataModel != null,
             builder: (BuildContext context) {
 
-             return ProfiledoctorScreen(doctorDataModel,context);
+             return ProfiledoctorScreen(doctorDataModel,context ,DataPatientID! );
             },
             fallback: (BuildContext context) {
               return Center(child: CircularProgressIndicator());
@@ -45,7 +47,7 @@ class HomeDoctorScreen extends StatelessWidget {
   }
 }
 
-Widget ProfiledoctorScreen(DoctorDataModel? model ,   context) => Scaffold(
+Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataModel> modelPatient ) => Scaffold(
   backgroundColor: Colors.white,
   body: Padding(
     padding: const EdgeInsets.only(top: 14.0, left: 14, right: 14),
@@ -81,7 +83,7 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context) => Scaffold(
                   Row(
                     children:  [
                       Text(
-                        "${model?.data?.doctor.lastName}",
+                        "${model?.data?.doctor.firstName}",
                         style: TextStyle(
                             fontSize: 20,
                             color: Colors.black,
@@ -94,7 +96,6 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context) => Scaffold(
             ),
             IconButton(
                 onPressed: () {
-
                   showDialog(
                     context: context,
                     builder: (BuildContext context) {
@@ -125,11 +126,11 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context) => Scaffold(
                               Spacer(),
                               TextButton(
                                 onPressed: () {
-                                  CacheHelper.RemveData(key:'token') ;                                  CacheHelper.RemveData(key:'token') ;
-                                  CacheHelper.RemveData(key:'department') ;                                  CacheHelper.RemveData(key:'token') ;
-                                  CacheHelper.RemveData(key:'id') ;                                  CacheHelper.RemveData(key:'token') ;
-                                  CacheHelper.RemveData(key:'idDoctor') ;                                  CacheHelper.RemveData(key:'token') ;
-
+                                  CacheHelper.RemveData(key:'token') ;
+                                  CacheHelper.RemveData(key:'department') ;
+                                  CacheHelper.RemveData(key:'id') ;
+                                  CacheHelper.RemveData(key:'idDoctor') ;
+                                  RemoveCacheHelper();
                                   navigateAndFinish(context, LoginAndRegister());
                                 },
                                   child: Text('Logout'),
@@ -196,9 +197,9 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context) => Scaffold(
             ],
           ),
         ),
-        // const SizedBox(
-        //   height: 10,
-        // ),
+        const SizedBox(
+          height: 10,
+        ),
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.start,
         //   children: const [
@@ -214,7 +215,9 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context) => Scaffold(
         //     ),
         //   ],
         // ),
-        // // Enter patient code textFromFiled
+
+
+        // Enter patient code textFromFiled
         // Container(
         //   width: double.infinity,
         //   height: 50,
@@ -262,136 +265,136 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context) => Scaffold(
         // const SizedBox(
         //   height: 8,
         // ),
-        // // Expanded(
-        // //   child: ListView.separated(
-        // //     itemBuilder: (BuildContext context, int index) {
-        // //       return InkWell(
-        // //         child: Padding(
-        // //           padding: const EdgeInsets.all(1),
-        // //           child: Container(
-        // //             decoration: BoxDecoration(
-        // //               color: Colors.white,
-        // //               borderRadius: BorderRadius.circular(15),
-        // //               boxShadow: [
-        // //                 BoxShadow(
-        // //                     color: Colors.grey.shade400,
-        // //                     blurRadius: 2,
-        // //                     spreadRadius: 1,
-        // //                     offset: Offset(0, .7),
-        // //                     blurStyle: BlurStyle.inner),
-        // //               ],
-        // //             ),
-        // //             child: Padding(
-        // //               padding: const EdgeInsets.symmetric( horizontal:  14.0 , vertical: 5),
-        // //               child: Row(
-        // //                 crossAxisAlignment: CrossAxisAlignment.center,
-        // //                 children: [
-        // //                   Container(
-        // //                     width: 65,
-        // //                     height: 65,
-        // //                     decoration: BoxDecoration(
-        // //                         color: Colors.orangeAccent,
-        // //                         borderRadius:
-        // //                         BorderRadius.circular(50),
-        // //                         image: DecorationImage(
-        // //                           image: NetworkImage(
-        // //                               'https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'),
-        // //                         )),
-        // //                   ),
-        // //                   SizedBox(
-        // //                     width: 10,
-        // //                   ),
-        // //                   Expanded(
-        // //                     child: Container(
-        // //                       child: Column(
-        // //                         mainAxisSize: MainAxisSize.min,
-        // //                         mainAxisAlignment:
-        // //                         MainAxisAlignment.start,
-        // //                         crossAxisAlignment:
-        // //                         CrossAxisAlignment.start,
-        // //                         children: [
-        // //                           Row(
-        // //                             children:  [
-        // //                               Text(
-        // //                                 "${model.data?.lastName}   ",/*${model.data?.pationts[index].lastName} */
-        // //                                 style: const TextStyle(
-        // //                                     fontSize: 18,
-        // //                                     color: Colors.black,
-        // //                                     fontWeight:
-        // //                                     FontWeight.bold),
-        // //                                 maxLines: 1,
-        // //                                 overflow:
-        // //                                 TextOverflow.ellipsis,
-        // //                               ),
-        // //                             ],
-        // //                           ),
-        // //                           SizedBox(
-        // //                             height: 6,
-        // //                           ),
-        // //                           Container(
-        // //                             height: 1,
-        // //                             width: double.infinity,
-        // //                             color: Colors.grey,
-        // //                           ),
-        // //                           SizedBox(
-        // //                             height: 6,
-        // //                           ),
-        // //                           Row(
-        // //                             children:  [
-        // //                               const Text(
-        // //                                 'Phone number',
-        // //                                 style: TextStyle(
-        // //                                     color: Colors.grey,
-        // //                                     fontWeight:
-        // //                                     FontWeight.w400),
-        // //                               ),
-        // //                               Spacer(),
-        // //                               Text(
-        // //                                 '${model.data?.phoneNumber}',
-        // //                               ),
-        // //                             ],
-        // //                           ),
-        // //                           const SizedBox(
-        // //                             height: 8,
-        // //                           ),
-        // //                           Row(
-        // //                             children:  [
-        // //                               const Text(
-        // //                                 'Patient code',
-        // //                                 style: TextStyle(
-        // //                                     color: Colors.grey,
-        // //                                     fontWeight:
-        // //                                     FontWeight.w400),
-        // //                               ),
-        // //                               Spacer(),
-        // //                               Text(
-        // //                                 '${model.data?.age}',
-        // //                               ),
-        // //                             ],
-        // //                           ),
-        // //                         ],
-        // //                       ),
-        // //                     ),
-        // //                   )
-        // //                 ],
-        // //               ),
-        // //             ),
-        // //           ),
-        // //         ),
-        // //         onTap: (){
-        // //           HomeCubit.get(context).getPatientFormId(id:model.data?.id);
-        // //           navigateTo(context, PatientDetails());
-        // //         },
-        // //       );
-        // //     },
-        // //     separatorBuilder: (BuildContext context, int index) {
-        // //       return SizedBox(
-        // //         height: 15,
-        // //       );
-        // //     },
-        // //     itemCount: 2,
-        // //   ),
-        // // ),
+        Expanded(
+          child: ListView.separated(
+            itemBuilder: (BuildContext context, int index) {
+              return InkWell(
+                child: Padding(
+                  padding: const EdgeInsets.all(1),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15),
+                      boxShadow: [
+                        BoxShadow(
+                            color: Colors.grey.shade400,
+                            blurRadius: 2,
+                            spreadRadius: 1,
+                            offset: Offset(0, .7),
+                            blurStyle: BlurStyle.inner),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric( horizontal:  14.0 , vertical: 5),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 65,
+                            height: 65,
+                            decoration: BoxDecoration(
+                                color: Colors.orangeAccent,
+                                borderRadius:
+                                BorderRadius.circular(50),
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                      'https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'),
+                                )),
+                          ),
+                          SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: Container(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment:
+                                MainAxisAlignment.start,
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    children:  [
+                                      Text(
+                                        "${modelPatient[index].data?.pationt?.fristName}   ",/*${model.data?.pationts[index].lastName} */
+                                        style: const TextStyle(
+                                            fontSize: 18,
+                                            color: Colors.black,
+                                            fontWeight:
+                                            FontWeight.bold),
+                                        maxLines: 1,
+                                        overflow:
+                                        TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 6,
+                                  ),
+                                  Container(
+                                    height: 1,
+                                    width: double.infinity,
+                                    color: Colors.grey,
+                                  ),
+                                  SizedBox(
+                                    height: 6,
+                                  ),
+                                  Row(
+                                    children:  [
+                                      const Text(
+                                        'Phone number',
+                                        style: TextStyle(
+                                            color: Colors.grey,
+                                            fontWeight:
+                                            FontWeight.w400),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        '${modelPatient[index].data?.pationt?.phoneNumber}',
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 8,
+                                  ),
+                                  Row(
+                                    children:  [
+                                      const Text(
+                                        'Patient code',
+                                        style: TextStyle(
+                                            color: Colors.grey,
+                                            fontWeight:
+                                            FontWeight.w400),
+                                      ),
+                                      Spacer(),
+                                      Text(
+                                        '${modelPatient[index].data?.pationt?.nationalId}',
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                onTap: (){
+                  DoctorCubit.get(context).getData_Patient(id:modelPatient[index].data?.pationt?.nationalId);
+                  navigateTo(context, PatientDetails());
+                },
+              );
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return SizedBox(
+                height: 15,
+              );
+            },
+            itemCount:  model?.data?.doctor.pId.length ?? 0 ,
+          ),
+        ),
       ],
     ),
   ),

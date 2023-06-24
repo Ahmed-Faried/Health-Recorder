@@ -6,6 +6,7 @@ import 'package:shop_app/Network/remote/dioHelper.dart';
 import 'package:shop_app/moudel/LoginModel/DoctorDataMoudleing.dart';
 import '../../../Components/const.dart';
 import '../../../Network/Endpoint/EndPoint.dart';
+import '../../../Network/local/shared_preferences.dart';
 import '../../../moudel/LoginModel/PatientDataMoudleing.dart';
 import 'StatesLoginScreen.dart';
 
@@ -43,6 +44,14 @@ emit(LoginDoctorScreenLoadingState());
 
 
           doctorDataModel = DoctorDataModel.fromJson(value.data);
+          CacheHelper.saveData(
+              key: 'idDoctor', value: doctorDataModel?.data?.doctor.id);
+          CacheHelper.saveData(
+              key: 'department',
+              value: doctorDataModel?.data?.doctor.department);
+          CacheHelper.saveData(
+              key: 'token', value: doctorDataModel?.token);
+
           try {
             doctorDataModel = DoctorDataModel.fromJson(value.data);
           } catch (e) {
@@ -59,6 +68,19 @@ emit(LoginDoctorScreenLoadingState());
           emit(LoginDoctorScreenSuccessState(doctorDataModel!));
     }).catchError((onError){
       print(onError.toString());
+      if (onError is DioError) {
+        if (onError.response != null) {
+          // يمكن الوصول إلى البياناتالتي تم إرجاعها من الخادم باستخدام onError.response.data
+          print(onError.response?.data);
+          print(onError.toString());
+          print(onError.type.name);
+
+        } else {
+          print(onError.message);
+        }
+      } else {
+        print(onError.toString());
+      }
       print("eslam errrrrrrrrror eslam server eslam or net ");
       emit(LoginDoctorScreenErrorState(onError.toString()));
     });

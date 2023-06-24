@@ -24,17 +24,11 @@ class LoginDoctorScreen extends StatelessWidget {
           if (state.doctorDataModel.status == "success") {
             toastShow(msg: "تم تسجيل الدخول بنجاح", state: toastStates.SUCCESS);
 
-            CacheHelper.saveData(
-                key: 'idDoctor', value: state.doctorDataModel.data?.doctor.id);
-            CacheHelper.saveData(
-                key: 'department',
-                value: state.doctorDataModel.data?.doctor.department);
-            CacheHelper.saveData(
-                    key: 'token', value: state.doctorDataModel.token)
-                .then((value) {
+
               navigateAndFinish(context, HomePageDoctorScreen());
-            });
-          } else {
+
+          }
+          else {
             toastShow(msg: "خطا في تسجيل الدخول ", state: toastStates.ERROR);
           }
         }

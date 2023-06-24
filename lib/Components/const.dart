@@ -2,6 +2,7 @@
 
 import '../moudel/LoginModel/DoctorDataMoudleing.dart';
 import '../moudel/LoginModel/PatientDataMoudleing.dart';
+import '../moudel/Mashro3tany/PatientModel/PatientIDMoudleing.dart';
 
 String? token = '';
 String? department = '';
@@ -15,4 +16,7 @@ String? idDoctor;
 bool?  isdark;
 
  DoctorDataModel? doctorDataModel;
- PatientDataModel? patientDataModel;
+PatientDataModel? patientDataModel;
+PatientDataModel? patientDataModelFromNid;
+
+List<PatientDataModel> DataPatientID = [] ;

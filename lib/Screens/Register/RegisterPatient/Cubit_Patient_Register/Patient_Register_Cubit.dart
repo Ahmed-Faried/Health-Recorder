@@ -247,7 +247,7 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
         print(onError.toString());
       }
       toastShow(msg: "error leh msh 3aref ", state: toastStates.ERROR);
-      emit(PatientRegisterErrorState(onError.response?.data['message'].toString()));
+      emit(PatientRegisterErrorState(onError.response?.data.toString()));//['message']
     });
   }
 

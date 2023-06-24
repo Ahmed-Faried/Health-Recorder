@@ -20,12 +20,22 @@ class RegisterPatientScreen6 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    var controller = TextEditingController();
-
-    var dateController =  TextEditingController();
 
     return BlocConsumer<Patient_RegisterCubit, RegisterPatientStates>(
-      listener: (context ,state ) {},
+      listener: (context ,state ) {
+
+        if (state is PatientRegisterHealthSuccessState) {
+
+            toastShow(msg: "تم التسجيل  بنجاح", state: toastStates.SUCCESS);
+
+
+        }
+        if (state is PatientRegisterHealthErrorState) {
+          if (state.Errors != null) {
+            toastShow(msg: "${state.Errors}", state: toastStates.ERROR);
+          }
+        }
+      },
 
       builder: (context ,state ) { return Scaffold(
         backgroundColor: Colors.white70,
@@ -260,12 +270,13 @@ class RegisterPatientScreen6 extends StatelessWidget {
                                 ),
                                 onTap: () {
                                   Patient_RegisterCubit.get(context).PatientRegisterHealthState(
-                                    test1: Patient_RegisterCubit.get(context).ChronicDiseaseValue,
+                                    test1: Patient_RegisterCubit.get(context).chronicDiseaseValue,
                                     test2: Patient_RegisterCubit.get(context).chronicDiseaseMedicineController.text,
                                     test3: Patient_RegisterCubit.get(context).healthProblemController.text,
                                     test4: Patient_RegisterCubit.get(context).healthProblemMedicineController.text,
                                     test5: Patient_RegisterCubit.get(context).surgeryController.text,
                                     test6: Patient_RegisterCubit.get(context).Date,
+                                      // test6: "01/02/2020",
                                     test7: Patient_RegisterCubit.get(context).geneticDiseaseController.text,
                                     test8: Patient_RegisterCubit.get(context).geneticDiseaseMedicineController.text,
                                     context:context

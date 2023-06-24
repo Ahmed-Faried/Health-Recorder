@@ -12,6 +12,7 @@ const GETALLDATAPATIENTFROMID     =  'v1/pationts/';
 
 const UpdateRegisterPatientHealth     =  'v1/update/';
 
+const GetPatientFromNID     =  'v1/pationts/';
 
 
 //
