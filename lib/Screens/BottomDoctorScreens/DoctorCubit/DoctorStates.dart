@@ -8,8 +8,6 @@ class Data_DoctorFromID_ErrorState extends DoctorStates {}
 
 class Data_DoctorFromID_LoadingState extends DoctorStates {}
 
-
-
 class Data_Patient_SuccessState extends DoctorStates {}
 
 class Data_Patient_ErrorState extends DoctorStates {}

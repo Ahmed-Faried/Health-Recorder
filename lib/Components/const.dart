@@ -10,13 +10,28 @@ String? idPatient;
 String? National_ID;
 String? imagePatient ;
 String? imageDoctor;
-
-
 String? idDoctor;
 bool?  isdark;
 
- DoctorDataModel? doctorDataModel;
+DoctorDataModel? doctorDataModel;
 PatientDataModel? patientDataModel;
 PatientDataModel? patientDataModelFromNid;
 
-List<PatientDataModel> DataPatientID = [] ;
+List<dynamic> ss = []  ;
+List<PatientDataModel> DataPatientID =[]  ;
+
+ deleteAllData(){
+
+ doctorDataModel = null ;
+ patientDataModel = null ;
+ patientDataModelFromNid = null ;
+ ss = [] ;
+ DataPatientID =[]  ;
+ print(doctorDataModel?.data?.doctor.pId);
+ print(patientDataModel);
+ print(patientDataModelFromNid);
+ print(ss);
+ print(DataPatientID);
+ return doctorDataModel ;
+
+}

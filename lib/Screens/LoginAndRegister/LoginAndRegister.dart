@@ -142,10 +142,8 @@ class LoginAndRegister extends StatelessWidget {
                         value: 'Page 1',
                         child:  TextButton(
                             onPressed:(){
-                              CacheHelper.RemveData(key:'token') ;                                  CacheHelper.RemveData(key:'token') ;
-                              CacheHelper.RemveData(key:'department') ;                                  CacheHelper.RemveData(key:'token') ;
-                              CacheHelper.RemveData(key:'id') ;
-                              CacheHelper.RemveData(key:'idDoctor') ;
+                              RemoveCacheHelper();
+
                               navigateTo(context, LoginDoctorScreen());
                             },
                             style: ButtonStyle(
@@ -169,10 +167,7 @@ class LoginAndRegister extends StatelessWidget {
                         value: 'Page 2',
                         child:  TextButton(
                             onPressed:(){
-                              CacheHelper.RemveData(key:'token') ;                                  CacheHelper.RemveData(key:'token') ;
-                              CacheHelper.RemveData(key:'department') ;
-                              CacheHelper.RemveData(key:'id') ;                                  CacheHelper.RemveData(key:'token') ;
-                              CacheHelper.RemveData(key:'idDoctor') ;
+                              RemoveCacheHelper();
 
                               navigateTo(context, LoginPatientScreen());
                             },

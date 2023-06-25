@@ -21,7 +21,7 @@ class AccountDoctorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => DoctorCubit()..getData_Doctor(idDoctor),
+      create: (BuildContext context) => DoctorCubit()..getData_Doctor(),
       child: BlocConsumer<DoctorCubit, DoctorStates>(
         listener: (context, state) {
           if (state is DarkMode) {
@@ -228,9 +228,8 @@ class AccountDoctorScreen extends StatelessWidget {
                     TextButton(
                       onPressed: () {
                         // تنفيذ عملية تسجيل الخروج
-                        CacheHelper.RemveData(key:'token') ;
-                        CacheHelper.RemveData(key:'department') ;
-                        CacheHelper.RemveData(key:'idDoctor') ;
+                        RemoveCacheHelper();
+                        deleteAllData();
 
                         navigateAndFinish(context, LoginAndRegister());                              },
                       child: Text('موافق'),

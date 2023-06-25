@@ -23,7 +23,7 @@ class Data {
 }
 
 class Doctor {
-  List<dynamic> pId = [];
+  List<dynamic>? pId = [];
   // List<dynamic> X_Ray = [];
 
   late String id;

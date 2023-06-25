@@ -24,18 +24,17 @@ class HomeDoctorScreen extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-
     return BlocProvider(
 
-      create: (BuildContext context) => DoctorCubit()..getData_Doctor(idDoctor)..getAllPatientConnected(doctorDataModel?.data!.doctor.pId),
+      create: (BuildContext context) => DoctorCubit()..getData_Doctor(),
       child: BlocConsumer<DoctorCubit, DoctorStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+        },
         builder: (context, state) {
           return ConditionalBuilder(
-            condition:doctorDataModel != null,
+            condition: doctorDataModel != null,
             builder: (BuildContext context) {
-
-             return ProfiledoctorScreen(doctorDataModel,context ,DataPatientID! );
+             return ProfiledoctorScreen(doctorDataModel,context ,DataPatientID );
             },
             fallback: (BuildContext context) {
               return Center(child: CircularProgressIndicator());
@@ -47,7 +46,7 @@ class HomeDoctorScreen extends StatelessWidget {
   }
 }
 
-Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataModel> modelPatient ) => Scaffold(
+Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataModel>? modelPatient ) => Scaffold(
   backgroundColor: Colors.white,
   body: Padding(
     padding: const EdgeInsets.only(top: 14.0, left: 14, right: 14),
@@ -72,7 +71,7 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
               child: Column(
                 children: [
                   Row(
-                    children: const [
+                    children:  [
                       Text(
                         "Good Morning",
                         style: TextStyle(
@@ -126,11 +125,11 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
                               Spacer(),
                               TextButton(
                                 onPressed: () {
-                                  CacheHelper.RemveData(key:'token') ;
-                                  CacheHelper.RemveData(key:'department') ;
-                                  CacheHelper.RemveData(key:'id') ;
-                                  CacheHelper.RemveData(key:'idDoctor') ;
+
+                                  deleteAllData();
                                   RemoveCacheHelper();
+
+
                                   navigateAndFinish(context, LoginAndRegister());
                                 },
                                   child: Text('Logout'),
@@ -266,133 +265,138 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
         //   height: 8,
         // ),
         Expanded(
-          child: ListView.separated(
-            itemBuilder: (BuildContext context, int index) {
-              return InkWell(
-                child: Padding(
-                  padding: const EdgeInsets.all(1),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15),
-                      boxShadow: [
-                        BoxShadow(
-                            color: Colors.grey.shade400,
-                            blurRadius: 2,
-                            spreadRadius: 1,
-                            offset: Offset(0, .7),
-                            blurStyle: BlurStyle.inner),
-                      ],
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric( horizontal:  14.0 , vertical: 5),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            width: 65,
-                            height: 65,
-                            decoration: BoxDecoration(
-                                color: Colors.orangeAccent,
-                                borderRadius:
-                                BorderRadius.circular(50),
-                                image: DecorationImage(
-                                  image: NetworkImage(
-                                      'https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'),
-                                )),
-                          ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            child: Container(
-                              child: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                mainAxisAlignment:
-                                MainAxisAlignment.start,
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children:  [
-                                      Text(
-                                        "${modelPatient[index].data?.pationt?.fristName}   ",/*${model.data?.pationts[index].lastName} */
-                                        style: const TextStyle(
-                                            fontSize: 18,
-                                            color: Colors.black,
-                                            fontWeight:
-                                            FontWeight.bold),
-                                        maxLines: 1,
-                                        overflow:
-                                        TextOverflow.ellipsis,
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 6,
-                                  ),
-                                  Container(
-                                    height: 1,
-                                    width: double.infinity,
-                                    color: Colors.grey,
-                                  ),
-                                  SizedBox(
-                                    height: 6,
-                                  ),
-                                  Row(
-                                    children:  [
-                                      const Text(
-                                        'Phone number',
-                                        style: TextStyle(
-                                            color: Colors.grey,
-                                            fontWeight:
-                                            FontWeight.w400),
-                                      ),
-                                      Spacer(),
-                                      Text(
-                                        '${modelPatient[index].data?.pationt?.phoneNumber}',
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(
-                                    height: 8,
-                                  ),
-                                  Row(
-                                    children:  [
-                                      const Text(
-                                        'Patient code',
-                                        style: TextStyle(
-                                            color: Colors.grey,
-                                            fontWeight:
-                                            FontWeight.w400),
-                                      ),
-                                      Spacer(),
-                                      Text(
-                                        '${modelPatient[index].data?.pationt?.nationalId}',
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          )
+          child: ConditionalBuilder(
+            condition: ss.isNotEmpty,
+            builder: (BuildContext context) { return ListView.separated(
+              itemBuilder: (BuildContext context, int index) {
+                return InkWell(
+                  child: Padding(
+                    padding: const EdgeInsets.all(1),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                        boxShadow: [
+                          BoxShadow(
+                              color: Colors.grey.shade400,
+                              blurRadius: 2,
+                              spreadRadius: 1,
+                              offset: Offset(0, .7),
+                              blurStyle: BlurStyle.inner),
                         ],
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric( horizontal:  14.0 , vertical: 5),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 65,
+                              height: 65,
+                              decoration: BoxDecoration(
+                                  color: Colors.orangeAccent,
+                                  borderRadius:
+                                  BorderRadius.circular(50),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                        'https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'),
+                                  )),
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            Expanded(
+                              child: Container(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children:  [
+                                        Text(
+                                          "${modelPatient?[index].data?.pationt?.fristName}   ",/*${model.data?.pationts[index].lastName} */
+                                          style: const TextStyle(
+                                              fontSize: 18,
+                                              color: Colors.black,
+                                              fontWeight:
+                                              FontWeight.bold),
+                                          maxLines: 1,
+                                          overflow:
+                                          TextOverflow.ellipsis,
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: 6,
+                                    ),
+                                    Container(
+                                      height: 1,
+                                      width: double.infinity,
+                                      color: Colors.grey,
+                                    ),
+                                    SizedBox(
+                                      height: 6,
+                                    ),
+                                    Row(
+                                      children:  [
+                                        const Text(
+                                          'Phone number',
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontWeight:
+                                              FontWeight.w400),
+                                        ),
+                                        Spacer(),
+                                        Text(
+                                          '${modelPatient?[index].data?.pationt?.phoneNumber}',
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(
+                                      height: 8,
+                                    ),
+                                    Row(
+                                      children:  [
+                                        const Text(
+                                          'Patient code',
+                                          style: TextStyle(
+                                              color: Colors.grey,
+                                              fontWeight:
+                                              FontWeight.w400),
+                                        ),
+                                        Spacer(),
+                                        Text(
+                                          '${modelPatient?[index].data?.pationt?.nationalId}',
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                onTap: (){
-                  DoctorCubit.get(context).getData_Patient(id:modelPatient[index].data?.pationt?.nationalId);
-                  navigateTo(context, PatientDetails());
-                },
-              );
-            },
-            separatorBuilder: (BuildContext context, int index) {
-              return SizedBox(
-                height: 15,
-              );
-            },
-            itemCount:  model?.data?.doctor.pId.length ?? 0 ,
+                  onTap: (){
+                    DoctorCubit.get(context).getData_Patient(id:modelPatient?[index].data?.pationt?.nationalId);
+                    navigateTo(context, PatientDetails());
+                  },
+                );
+              },
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(
+                  height: 15,
+                );
+              },
+              itemCount:  modelPatient?.length ?? 0 ,
+            );  },
+            fallback: (BuildContext context) { return Center(child: Container(child: Text("No Patient Add")));  },
+
           ),
         ),
       ],

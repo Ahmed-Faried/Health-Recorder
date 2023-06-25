@@ -44,6 +44,7 @@ emit(LoginDoctorScreenLoadingState());
 
 
           doctorDataModel = DoctorDataModel.fromJson(value.data);
+
           CacheHelper.saveData(
               key: 'idDoctor', value: doctorDataModel?.data?.doctor.id);
           CacheHelper.saveData(
@@ -52,16 +53,6 @@ emit(LoginDoctorScreenLoadingState());
           CacheHelper.saveData(
               key: 'token', value: doctorDataModel?.token);
 
-          try {
-            doctorDataModel = DoctorDataModel.fromJson(value.data);
-          } catch (e) {
-            print('Error parsing data: $e');
-          }
-          if (doctorDataModel == null) {
-            print('Data conversion error');
-          } else {
-            print('Data conversion successful');
-          }
           print(doctorDataModel?.data?.doctor.department);
           print(doctorDataModel?.data?.doctor.id);
 

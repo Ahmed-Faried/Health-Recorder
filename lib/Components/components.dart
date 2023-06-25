@@ -1396,7 +1396,9 @@ void RemoveCacheHelper (){
   CacheHelper.RemveData(key:'department') ;
   CacheHelper.RemveData(key:'id') ;
   CacheHelper.RemveData(key:'idDoctor') ;
-
+  CacheHelper.RemveData(key:'National_ID') ;
+  CacheHelper.RemveData(key:'imagePatient') ;
+  CacheHelper.RemveData(key:'imageDoctor') ;
 }
 
 

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../Components/const.dart';
 import '../../../Network/Endpoint/EndPoint.dart';
+import '../../../Network/local/shared_preferences.dart';
 import '../../../Network/remote/dioHelper.dart';
 import '../../../moudel/LoginModel/DoctorDataMoudleing.dart';
 import '../../../moudel/LoginModel/PatientDataMoudleing.dart';
@@ -18,23 +19,19 @@ class DoctorCubit extends Cubit<DoctorStates> {
   }
 
 
-  void getData_Doctor(id) {
+   getData_Doctor() {
     emit(Data_DoctorFromID_LoadingState());
-
-    DioHelper.getData(urlMethod: "$GETALLDATADOCTORFROMID$id").then((value) {
+     var id = CacheHelper.getData(key:'idDoctor') ;
+    DioHelper.getData(urlMethod: "$GETALLDATADOCTORFROMID$id").then((value) async {
       doctorDataModel = DoctorDataModel.fromJson(value.data);
-      try {
-        doctorDataModel = DoctorDataModel.fromJson(value.data);
+     ss.addAll(doctorDataModel?.data?.doctor.pId as Iterable);
+      getAllPatientConnected(ss);
 
-        getAllPatientConnected(doctorDataModel?.data?.doctor.pId);
-      } catch (e) {
-        print('Error id idi id id id d data: $e');
-      }
-      if (doctorDataModel == null) {
-        print('Data conversion error null id id id id id ');
-      } else {
-        print('Data id id id id id id di successful');
-      }
+      print(ss);
+
+
+
+
       print(" Data El Doctor Gat tany ya 3alee ");
       emit(Data_DoctorFromID_SuccessState());
     }).catchError((onError) {
@@ -58,16 +55,19 @@ class DoctorCubit extends Cubit<DoctorStates> {
 
 
 
-  void getPatientFormNID({
 
-          Nid ,}) {
+   getPatientFormNID({
+
+    Nid ,}) {
 
     emit(Data_PatientFromNID_LoadingState());
     DioHelper.getData(
-         urlMethod: "$GetPatientFromNID$Nid",
-      ).then((value)  {
+      urlMethod: "$GetPatientFromNID$Nid",
+    ).then((value)  {
 
-      DataPatientID?.add(PatientDataModel.fromJson(value.data));
+      DataPatientID.add(PatientDataModel.fromJson(value.data) );
+      print("DataPatientID = " );
+      print(DataPatientID);
 
       emit(Data_PatientFromNID_SuccessState());
     }).catchError((onError){
@@ -93,15 +93,25 @@ class DoctorCubit extends Cubit<DoctorStates> {
 
 
 
+ getAllPatientConnected (List<dynamic> X) async {
 
-void getAllPatientConnected (List? X){
+  for(int  i = 0 ; i < X.length  ; i++   ){
 
-  for(int  i = 0 ; i > X!.length-1 ; i++   ){
-    getPatientFormNID(Nid: X?[i]);
+
+
+  await getPatientFormNID(Nid: X[i]);
+  print("getAllPatientConnected  X[i] = ""${X[i]}");
+  // print(DataPatientID[i] );
+
   }
+  print("ba3ed el for  $DataPatientID");
+
+  return DataPatientID ;
 
 }
 
+
+////////////////////
     getData_Patient({id})  {
 
     emit(Data_Patient_LoadingState());
@@ -131,6 +141,8 @@ void getAllPatientConnected (List? X){
       print(onError.toString());
       emit(Data_Patient_ErrorState());
     });
+
+
   }
 
 
