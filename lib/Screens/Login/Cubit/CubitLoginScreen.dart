@@ -73,7 +73,7 @@ emit(LoginDoctorScreenLoadingState());
         print(onError.toString());
       }
       print("eslam errrrrrrrrror eslam server eslam or net ");
-      emit(LoginDoctorScreenErrorState(onError.toString()));
+      emit(LoginDoctorScreenErrorState(onError.response!.data['message'].toString()));
     });
  }
 

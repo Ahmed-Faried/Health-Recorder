@@ -49,11 +49,13 @@ class RegisterDrScreen extends StatelessWidget {
 
             }
 
-            else{
-              toastShow(
-                  msg: "خطا في تسجيل الدخول ",
-                  state: toastStates.ERROR);
-            }
+
+
+          }
+          if (state is DoctorRegisterErrorState){
+            toastShow(
+                msg: state.error,
+                state: toastStates.ERROR);
 
           }
         },

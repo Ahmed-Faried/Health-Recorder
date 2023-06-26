@@ -104,7 +104,40 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
 
         debugShowCheckedModeBanner: false,
-        theme:     ThemeData(
+        theme: ThemeData(
+          // fontFamily:'MontaguSlab',
+          scaffoldBackgroundColor: Colors.white,
+          useMaterial3 : true,
+          primarySwatch: Colors.deepOrange,
+          appBarTheme: const AppBarTheme(
+              color: Colors.white,
+              centerTitle : true,
+              elevation: 0,
+              titleSpacing: 18,
+              shadowColor: Colors.grey,
+              scrolledUnderElevation: 0,
+              iconTheme: IconThemeData(
+                  color: Colors.deepOrange
+              )
+          ),
+          floatingActionButtonTheme: const FloatingActionButtonThemeData(
+              foregroundColor: Colors.red,
+              elevation: 0
+          ),
+          bottomNavigationBarTheme:  BottomNavigationBarThemeData(
+              backgroundColor: Colors.white,
+              elevation: 5,
+              selectedItemColor: HexColor("5DCDC6"),
+              unselectedItemColor: Colors.grey
+          ),
+          scrollbarTheme: ScrollbarThemeData(),
+          textTheme:  const TextTheme(
+            bodyLarge:TextStyle(fontSize: 16,color: Colors.white ),//title Articles
+            titleMedium:TextStyle(fontSize: 14,color: Colors.white ),// discretion Articles
+            titleLarge: TextStyle(fontSize: 18 ,color: Colors.white ),//title AppBar
+          ),
+        ),
+        darkTheme: ThemeData(
 
 
           scaffoldBackgroundColor: Colors.white,
@@ -143,40 +176,7 @@ class MyApp extends StatelessWidget {
             titleLarge: TextStyle(fontSize: 18 ,color: Colors.black ),//title AppBar
           ),
         ),
-        darkTheme: ThemeData(
-              // fontFamily:'MontaguSlab',
-          scaffoldBackgroundColor: Colors.white,
-          useMaterial3 : true,
-          primarySwatch: Colors.deepOrange,
-          appBarTheme: const AppBarTheme(
-              color: Colors.white,
-              centerTitle : true,
-              elevation: 0,
-              titleSpacing: 18,
-              shadowColor: Colors.grey,
-              scrolledUnderElevation: 0,
-              iconTheme: IconThemeData(
-                  color: Colors.deepOrange
-              )
-          ),
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(
-              foregroundColor: Colors.red,
-              elevation: 0
-          ),
-          bottomNavigationBarTheme:  BottomNavigationBarThemeData(
-              backgroundColor: Colors.white,
-              elevation: 5,
-              selectedItemColor: HexColor("5DCDC6"),
-              unselectedItemColor: Colors.grey
-          ),
-          scrollbarTheme: ScrollbarThemeData(),
-          textTheme:  const TextTheme(
-            bodyLarge:TextStyle(fontSize: 16,color: Colors.white ),//title Articles
-            titleMedium:TextStyle(fontSize: 14,color: Colors.white ),// discretion Articles
-            titleLarge: TextStyle(fontSize: 18 ,color: Colors.white ),//title AppBar
-          ),
-        ),
-        themeMode: ThemeMode.dark,
+        themeMode: ThemeMode.light,
         home:  AnimatedSplashScreen(
           splash: Image.asset('assets/Logo.png'),
           nextScreen:startWidget,

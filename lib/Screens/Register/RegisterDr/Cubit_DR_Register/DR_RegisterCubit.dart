@@ -71,7 +71,6 @@ class DR_Cubit_Register extends Cubit<RegisterDR_States> {
 
         print(doctorDataModel?.status);
 
-        toastShow(msg: "tamam Doctor", state: toastStates.SUCCESS);
 
 
         emit(DoctorRegisterSuccessState(doctorDataModel!));
@@ -90,9 +89,8 @@ class DR_Cubit_Register extends Cubit<RegisterDR_States> {
       } else {
         print(onError.toString());
       }
-      toastShow(msg: "no Filed Dr empty", state: toastStates.ERROR);
 
-      emit(DoctorRegisterErrorState());
+      emit(DoctorRegisterErrorState(onError.response?.data['message'].toString()));
 
       print(onError.toString());
       print("eslam errrrrrrrrror eslam server eslam or net ");

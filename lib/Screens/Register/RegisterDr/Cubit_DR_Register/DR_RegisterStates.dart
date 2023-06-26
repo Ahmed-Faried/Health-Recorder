@@ -16,6 +16,12 @@ class DoctorRegisterSuccessState extends RegisterDR_States {
   DoctorRegisterSuccessState(this.doctorDataModel);
 }
 
-class DoctorRegisterErrorState extends RegisterDR_States {}
+class DoctorRegisterErrorState extends RegisterDR_States {
+
+
+  final String? error ;
+
+  DoctorRegisterErrorState(this.error);
+}
 
 class ChangePasswordIconRegister extends RegisterDR_States {}

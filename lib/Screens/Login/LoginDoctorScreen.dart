@@ -34,6 +34,10 @@ class LoginDoctorScreen extends StatelessWidget {
             toastShow(msg: "خطا في تسجيل الدخول ", state: toastStates.ERROR);
           }
         }
+        if(state is LoginDoctorScreenErrorState) {
+          toastShow(msg: state.error, state: toastStates.ERROR);
+
+        }
       },
       builder: (BuildContext context, state) {
         return Scaffold(

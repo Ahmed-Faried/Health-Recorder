@@ -36,6 +36,8 @@ class Doctor {
   late String address;
   late String password;
   late String phoneNumber;
+  String? image ;
+
 
   Doctor.fromJson(Map<String, dynamic> json) {
     pId = List<dynamic>.from(json["pId"].map((x) => x));
@@ -44,6 +46,7 @@ class Doctor {
     id = json["_id"];
     firstName = json["firstName"];
     lastName = json["lastName"];
+
     // age = json["age"];
     // gender = json["gender"];
     department = json["department"];
@@ -51,6 +54,8 @@ class Doctor {
     address = json["address"];
     password = json["password"];
     phoneNumber = json["phoneNumber"];
+    image = json["image"];
+
 
   }
 }

@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -33,7 +34,10 @@ class AccountDoctorScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return Scaffold(
-            body: bodyAccountDoctorScreen(context , doctorDataModel ),
+            body: ConditionalBuilder(condition: doctorDataModel != null,
+            builder: (BuildContext context) { return bodyAccountDoctorScreen(context , doctorDataModel ); },
+            fallback: (BuildContext context) { return Center(child: CircularProgressIndicator());  },
+          ),
           );
         },
       ),
@@ -77,14 +81,14 @@ class AccountDoctorScreen extends StatelessWidget {
                       children: [
                         ClipRRect(
                           borderRadius: BorderRadius.circular(50),
-                          child: const Image(
+                          child:  Image(
                             width: 100,
                             height: 100,
                             fit: BoxFit.cover,
-                            image: AssetImage("assets/test.png"),
-                            //NetworkImage(
-                            //     'https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'
-                            //  ),
+                            image: NetworkImage(
+                                "${modele?.data?.doctor.image}"
+                             ),
+
                           ),
                         ),
                       ],
