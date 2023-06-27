@@ -13,6 +13,7 @@ import 'Components/const.dart';
 import 'Network/local/shared_preferences.dart';
 import 'Network/remote/dioHelper.dart';
 import 'OnBoardingScreen/OnBoardingScreen.dart';
+import 'Screens/ForgetPassword/Patient/ForgetPasswordPatient.dart';
 import 'Screens/Login/Cubit/CubitLoginScreen.dart';
 import 'Screens/LoginAndRegister/LoginAndRegister.dart';
 import 'Screens/Register/RegisterPatient/Cubit_Patient_Register/Patient_Register_Cubit.dart';
@@ -221,7 +222,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
-          nextScreen:startWidget,
+          nextScreen: ForgetPasswordPatient(),//startWidget,
           splashTransition: SplashTransition.slideTransition,
           backgroundColor:  Colors.white, //HexColor('5DCDC6'),
           splashIconSize: 100,
