@@ -24,6 +24,15 @@ class DoctorCubit extends Cubit<DoctorStates> {
      var id = CacheHelper.getData(key:'idDoctor') ;
     DioHelper.getData(urlMethod: "$GETALLDATADOCTORFROMID$id").then((value) async {
       doctorDataModel = DoctorDataModel.fromJson(value.data);
+      CacheHelper.saveData(
+          key: 'idDoctor', value: doctorDataModel?.data?.doctor.id);
+      CacheHelper.saveData(
+          key: 'department',
+          value: doctorDataModel?.data?.doctor.department);
+      CacheHelper.saveData(
+          key: 'token', value: doctorDataModel?.token);
+
+
      ss.addAll(doctorDataModel?.data?.doctor.pId as Iterable);
       getAllPatientConnected(ss);
 

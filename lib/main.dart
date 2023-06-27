@@ -61,9 +61,7 @@ void main()async {
 
     if(token == null){
       widget = LoginAndRegister();
-    }
-
-    else{
+    } else{
       if(department == null ){
         widget = HomePagePatientScreen();
       }else{
@@ -178,12 +176,56 @@ class MyApp extends StatelessWidget {
         ),
         themeMode: ThemeMode.light,
         home:  AnimatedSplashScreen(
-          splash: Image.asset('assets/Logo.png'),
+          splash: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Row(
+              children: [
+                Image.asset('assets/logo3.png' ,),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+
+                    SizedBox(height: 5,),
+                    Row(
+                      children: [
+                        Text("H" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("37FFF2")),),
+                        Text("e" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("38F9ED")),),
+                        Text("a" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("38F9EC")),),
+                        Text("l" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("39F5E9")),),
+                        Text("t" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("3CE2D8")),),
+                        Text("h" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("3CE2D8")),),
+                        Text(" R" ,style: TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("3DDED3")),),
+                        Text("e" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("3ED6CC")),),
+                        Text("c" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("3ED6CD")),),
+                        Text("o" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("41C6BD")),),
+                        Text("r" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("42BFB7")),),
+                        Text("d" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("44B6AF")),),
+                        Text("e" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("44B5AE")),),
+                        Text("r" ,style:  TextStyle(fontSize: 25 , fontWeight: FontWeight.bold,color: HexColor("44B5AE")),),
+                      ],
+                    ),
+                    Container(
+                      width: 215,
+                      height: 1,
+                      color: HexColor("#3AEDE2"),
+                    ),
+                    Text("YOUR HEALTH IS OUR MISSION", style:  TextStyle(fontSize: 13 ,color: Colors.black)),
+                    Container(
+                      width: 215,
+                      height: 1,
+                      color: HexColor("#3AEDE2"),
+                    ),
+
+                  ],
+                )
+              ],
+            ),
+          ),
           nextScreen:startWidget,
           splashTransition: SplashTransition.slideTransition,
           backgroundColor:  Colors.white, //HexColor('5DCDC6'),
           splashIconSize: 100,
-            duration: 5000,
+            duration: 10000,
         ) // startWidget ,
 
       ),

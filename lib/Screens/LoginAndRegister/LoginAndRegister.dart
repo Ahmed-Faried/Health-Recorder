@@ -65,15 +65,15 @@ class LoginAndRegister extends StatelessWidget {
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
 
-                        decoration:  const BoxDecoration(
-                          boxShadow:
-                          [
-                            BoxShadow(
-                                color: Colors.blueGrey,
-                                blurRadius: 2,
-                                spreadRadius:2,
-                            ),
-                          ]
+                        decoration:   BoxDecoration(
+                            boxShadow:  [
+                              BoxShadow(
+                                color: Colors.grey,
+                                blurRadius: 5,
+                                spreadRadius: 1,
+                                offset: Offset(2, 2),
+                              ),
+                            ] ,
                         ),
                         child: const Image(
                           width: 150,
@@ -88,7 +88,10 @@ class LoginAndRegister extends StatelessWidget {
                     ),
 
                   ],
-               ), // Image Logo.png
+               ),
+                // Image Logo.png
+                const SizedBox(height: 20),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -109,7 +112,7 @@ class LoginAndRegister extends StatelessWidget {
                     ),)
                   ],
                 ), // Text Recorder
-                const SizedBox(height: 30,),
+                const SizedBox(height: 60,),
                 Padding(
                   padding: const EdgeInsets.only(left: 22.0),
                   child: DropdownButton(
