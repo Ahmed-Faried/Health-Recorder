@@ -20,6 +20,7 @@ import 'Screens/Register/RegisterPatient/Cubit_Patient_Register/Patient_Register
 import 'Screens/Register/RegisterPatient/RegisterPatientScreen1.dart';
 import 'Screens/Register/RegisterPatient/RegisterPatientScreen4.dart';
 import 'Screens/TEST/test.dart';
+import 'Screens/X-ray Patient/X-rayScreen.dart';
 import 'bloc/bloc_observer.dart';
 void main()async {
 
@@ -222,7 +223,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
-          nextScreen: ForgetPasswordPatient(),//startWidget,
+          nextScreen: X_rayPatient(),//ForgetPasswordPatient(),//startWidget,
           splashTransition: SplashTransition.slideTransition,
           backgroundColor:  Colors.white, //HexColor('5DCDC6'),
           splashIconSize: 100,

@@ -35,8 +35,6 @@ class ForgetPasswordPatient extends StatelessWidget {
                     TextFormField(
                       controller: ssss,
                       keyboardType: TextInputType.emailAddress,
-
-
                     ),
                     SizedBox(height: 70,),
                     Text("National-ID " , style:  TextStyle( fontSize: 18 , fontFamily:  'MontaguSlab'),),
