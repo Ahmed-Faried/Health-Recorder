@@ -16,6 +16,7 @@ import '../../../Network/local/shared_preferences.dart';
 import '../../../moudel/LoginModel/DoctorDataMoudleing.dart';
 import '../../../moudel/LoginModel/PatientDataMoudleing.dart';
 import '../../PatientDetails/PatientDetailsScreen.dart';
+import '../../SearchPatientFromNID/SearchPatientFromNID.dart';
 
 
 class HomeDoctorScreen extends StatelessWidget {
@@ -615,19 +616,17 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
               ),
               Expanded(
                 child: TextFormField(
+                  enabled: false,
                   controller: HomeCubit.get(context).searchController,
                   keyboardType: TextInputType.text,
                   onChanged: (value) {
                     //  NewsAppCubit.get(context).getSearch(value);
                     print("value");
                   },
-                  onTap: () {},
-                  validator: (value) {
-                    if (value != null) {
-                      return 'Search must not be empty ';
-                    }
-                    return 'A';
+                  onTap: () {
+                    navigateTo(context, SearchFromNID());
                   },
+                  validator: (value) {},
                   decoration: InputDecoration(
                     hintText: "Search by patient code ",
                     border: InputBorder.none,
@@ -739,8 +738,11 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
                                   borderRadius:
                                   BorderRadius.circular(50),
                                   image: DecorationImage(
+
                                     image: NetworkImage(
-                                        'https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'),
+
+                                      '${modelPatient?[index].data?.pationt?.image}',
+                                    ),
                                   )),
                             ),
                             SizedBox(
