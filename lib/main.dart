@@ -223,7 +223,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
-          nextScreen: X_rayPatient(),//ForgetPasswordPatient(),//startWidget,
+          nextScreen: startWidget,
           splashTransition: SplashTransition.slideTransition,
           backgroundColor:  Colors.white, //HexColor('5DCDC6'),
           splashIconSize: 100,

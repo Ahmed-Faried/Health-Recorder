@@ -4,35 +4,40 @@ import 'package:flutter/material.dart';
 import 'DetailX-RayScreen.dart';
 
 class X_rayPatient extends StatelessWidget {
-  const X_rayPatient({Key? key}) : super(key: key);
+  List<dynamic>? imageUrls ;
+
+  X_rayPatient({required this.imageUrls});
+
 
   @override
   Widget build(BuildContext context) {
-     List<String>? imageUrls =[
-       "https://picsum.photos/200/300?random=1",
-       "https://picsum.photos/200/300?random=2",
-       "https://picsum.photos/200/300?random=3",
-       "https://picsum.photos/200/300?random=4",
-       "https://picsum.photos/200/300?random=5",
-       "https://picsum.photos/200/300?random=6",
-     ];
-     List<String> textlist =[
-       "https://picsum",
-       "https://picsum",
-       "https://picsum.",
-       "https://picsum.p",
-       "httotos/200/300?random=5",
-       "https200/300?random=6",];
+
+
+     //=[
+     //        "https://picsum.photos/200/300?random=1",
+     //        "https://picsum.photos/200/300?random=2",
+     //        "https://picsum.photos/200/300?random=3",
+     //        "https://picsum.photos/200/300?random=4",
+     //        "https://picsum.photos/200/300?random=5",
+     //        "https://picsum.photos/200/300?random=6",
+     //      ];
+     // List<String> textlist =[
+     //   "https://picsum",
+     //   "https://picsum",
+     //   "https://picsum.",
+     //   "https://picsum.p",
+     //   "httotos/200/300?random=5",
+     //   "https200/300?random=6",];
 
 
     return  Scaffold(
 
       body: ConditionalBuilder(
-        condition: imageUrls.length != 0,
+        condition: imageUrls?.length != null,
         builder: (BuildContext context) { return  Padding(
           padding: const EdgeInsets.all(12.0),
           child: GridView.builder(
-            itemCount: imageUrls.length,
+            itemCount: imageUrls?.length,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount
               (
               crossAxisCount: 3, // عدد العناصر في الصف الواحد
@@ -47,12 +52,12 @@ class X_rayPatient extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (_) => DetailScreen(
-                        imageUrl: imageUrls[index],
+                        imageUrl: imageUrls![index],
                       ),
                     ),
                   );
                 },
-                child: Image.network(imageUrls[index] ,  fit: BoxFit.cover, ),
+                child: Image.network(imageUrls![index] ,  fit: BoxFit.cover, ),
               );
 
             },

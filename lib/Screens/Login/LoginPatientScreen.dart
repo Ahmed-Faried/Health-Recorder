@@ -5,11 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shop_app/Components/components.dart';
 import 'package:shop_app/Components/const.dart';
+import 'package:shop_app/Screens/ForgetPassword/Patient/ForgetPasswordPatient.dart';
 import 'package:shop_app/Screens/Login/Cubit/CubitLoginScreen.dart';
 import 'package:shop_app/Screens/Login/Cubit/StatesLoginScreen.dart';
 import '../../Network/local/shared_preferences.dart';
 import '../BottomPatientScreens/HomePagePatient/HomePagePatientScreen.dart';
 import '../LoginAndRegister/LoginAndRegister.dart';
+import '../Register/RegisterPatient/RegisterPatientScreen1.dart';
 
 
 
@@ -238,7 +240,7 @@ class LoginPatientScreen extends StatelessWidget {
                                 Center(
                                   child: InkWell(
                                     onTap: (){
-                                      navigateAndFinish(context, LoginAndRegister());
+                                      navigateAndFinish(context, ForgetPasswordPatient());
                                     },
                                     hoverColor: Colors.blue,
                                     splashColor:  Colors.blue ,
@@ -342,7 +344,7 @@ class LoginPatientScreen extends StatelessWidget {
                                     wordSpacing: 1,
                                   ),),
                                   onTap: (){
-                                    navigateTo(context, LoginAndRegister());
+                                    navigateTo(context, RegisterPatientScreen());
 
                                   },
                                 ),

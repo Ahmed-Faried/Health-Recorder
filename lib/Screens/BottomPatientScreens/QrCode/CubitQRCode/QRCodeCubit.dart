@@ -20,7 +20,7 @@ class QRCodeCubit extends Cubit<QRCodeStates> {
     "age":  "${patientDataModel?.data?.pationt?.age}\n",
     "phone": "${patientDataModel?.data?.pationt?.phoneNumber}\n" ,
     "BloodType": "${patientDataModel?.data?.pationt?.bloodType}\n",
-    "friend's phone":"${patientDataModel?.data?.pationt?.id}\n",
+    // "friend's phone":"${patientDataModel?.data?.pationt?.id}\n",
 
   };
 

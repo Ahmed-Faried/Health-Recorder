@@ -8,6 +8,7 @@ import '../Screens/PatientScreens/AddRecordHistoryScreens/addChronicDiseasesScre
 import '../Screens/PatientScreens/AddRecordHistoryScreens/addGeneticDiseasesScreen.dart';
 import '../Screens/PatientScreens/AddRecordHistoryScreens/addHealthProblemScreen.dart';
 import '../Screens/PatientScreens/AddRecordHistoryScreens/addSurgicalHistoryScreen.dart';
+import '../Screens/X-ray Patient/X-rayScreen.dart';
 import '../moudel/LoginModel/PatientDataMoudleing.dart';
 import 'const.dart';
 
@@ -429,7 +430,6 @@ Widget cardHelpCenter(context, String title, firstIcon, Screen) => Padding(
       padding: EdgeInsets.only(bottom: 25),
       child: InkWell(
         child: Container(
-          padding: EdgeInsets.only(top: 20),
           width: MediaQuery.of(context).size.width / 1.2,
           height: 55,
           decoration: BoxDecoration(
@@ -1188,6 +1188,140 @@ Widget UI_PatientDetials(PatientDataModel model, context) =>
                   ),
                 ),
               ],
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+
+            InkWell(
+              child: Container(
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width / 1.12,
+                          decoration: BoxDecoration(
+                            color: HexColor("5DCDC6"),
+                            borderRadius: BorderRadius.only(
+                                topRight: Radius.circular(15),
+                                topLeft: Radius.circular(15)),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10.0),
+                            child: Row(
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                      Row(
+                                        children: [
+                                          const Expanded(
+                                            child: Text(
+                                              " X-rays & Medical tests",
+                                              style: TextStyle(
+                                                fontSize: 13,
+                                                color: Colors.black87,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: 8,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                          width: MediaQuery.of(context).size.width / 1.12,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.only(
+                                bottomRight: Radius.circular(15),
+                                bottomLeft: Radius.circular(15)),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Color.fromRGBO(0, 0, 0, 0.35),
+                                offset: Offset(0, 1),
+                                blurRadius: 1,
+                              ),
+                            ],
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Row(
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              children: [
+                                Expanded(
+                                  child: Container(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.start,
+                                      children: [
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                "View your Tests",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontWeight:
+                                                    FontWeight.bold,
+                                                    fontSize: 11),
+                                              ),
+                                            ),
+                                            Icon(
+                                              Icons.edit_note,
+                                              color: HexColor("5DCDC6"),
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              onTap: () {
+                navigateTo(context, X_rayPatient(imageUrls: model.data!.pationt?.x_ray ));
+              },
             ),
             const SizedBox(
               height: 20,

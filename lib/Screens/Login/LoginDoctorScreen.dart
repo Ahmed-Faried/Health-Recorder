@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shop_app/Components/components.dart';
 import 'package:shop_app/Screens/BottomDoctorScreens/DoctorCubit/DoctorCubit.dart';
+import 'package:shop_app/Screens/ForgetPassword/Doctor/ForgetPasswordDoctor.dart';
+import 'package:shop_app/Screens/ForgetPassword/Patient/ForgetPasswordPatient.dart';
 import 'package:shop_app/Screens/Login/Cubit/CubitLoginScreen.dart';
 import 'package:shop_app/Screens/Login/Cubit/StatesLoginScreen.dart';
 import '../../Network/local/shared_preferences.dart';
@@ -230,7 +232,7 @@ class LoginDoctorScreen extends StatelessWidget {
                               child: InkWell(
                                 onTap: () {
                                   navigateAndFinish(
-                                      context, LoginAndRegister());
+                                      context, ForgetPasswordDoctor());
                                 },
                                 hoverColor: Colors.blue,
                                 splashColor: Colors.blue,
