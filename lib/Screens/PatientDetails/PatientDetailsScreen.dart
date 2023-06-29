@@ -15,80 +15,79 @@ class PatientDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeStates>(
       builder: (context, state) {
-        return SafeArea(
-            child: Scaffold(
+        return Scaffold(
           appBar: AppBar(
-            automaticallyImplyLeading: false,
-            title: Row(
+        automaticallyImplyLeading: false,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.orangeAccent,
-                      ),
-                      padding: EdgeInsets.zero,
-                    ),
-                  ],
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.arrow_back,
+                    color: Colors.orangeAccent,
+                  ),
+                  padding: EdgeInsets.zero,
                 ),
-                Expanded(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+              ],
+            ),
+            Expanded(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                      Row(
                         children: [
-                          Row(
-                            children: [
-                              Text(
-                                "Patient details",
-                                style: TextStyle(fontSize: 22),
-                              ),
-                            ],
+                          Text(
+                            "Patient details",
+                            style: TextStyle(fontSize: 22),
                           ),
-                          Row(
-                            children: [
-                              Text("Read & Edit",
-                                  style: TextStyle(
-                                      fontSize: 14, color: Colors.grey)),
-                            ],
-                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text("Read & Edit",
+                              style: TextStyle(
+                                  fontSize: 14, color: Colors.grey)),
                         ],
                       ),
                     ],
                   ),
+                ],
+              ),
+            ),
+          ],
+        ),
+          ),
+          body: ConditionalBuilder(
+        condition: patientDataModel != null,
+        builder: (BuildContext context) {
+          return Container(
+            child: Column(
+              children:
+              [
+                Divider(
+                  color: Colors.grey,
+                ),
+                Expanded(
+                  child: UI_PatientDetials(patientDataModel!, context),
                 ),
               ],
             ),
+          );
+        },
+        fallback: (BuildContext context) {
+          return Center(child: CircularProgressIndicator());
+        },
           ),
-          body: ConditionalBuilder(
-            condition: state is Data_PatientFromID_SuccessState,
-            builder: (BuildContext context) {
-              return Container(
-                child: Column(
-                  children:
-                  [
-                    Divider(
-                      color: Colors.grey,
-                    ),
-                    Expanded(
-                      child: UI_PatientDetials(patientDataModel!, context),
-                    ),
-                  ],
-                ),
-              );
-            },
-            fallback: (BuildContext context) {
-              return Center(child: CircularProgressIndicator());
-            },
-          ),
-        ));
+        );
       },
       listener: (context, state) {},
     );

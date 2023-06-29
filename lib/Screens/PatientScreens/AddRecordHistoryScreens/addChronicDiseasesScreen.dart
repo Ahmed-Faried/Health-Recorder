@@ -22,7 +22,7 @@ class ChronicDiseasesAdd extends StatelessWidget {
           context,
           chronicDiseaseController,
           regularMedicineChronicDiseaseController,
-        "ChronicDiseases",
+          "ChronicDiseases",
           "ChronicDiseases",
             functionontap
         ),

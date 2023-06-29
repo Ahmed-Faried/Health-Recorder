@@ -98,7 +98,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (BuildContext context) => HomeCubit()),//..getData_Doctor(idDoctor)
         BlocProvider(create: (BuildContext context) => ProfileCubit()),
         // BlocProvider(create: (BuildContext context) => RegisterCubit()),
-        BlocProvider(create: (BuildContext context) => LoginScreenCubit()),
+        // BlocProvider(create: (BuildContext context) => LoginScreenCubit()),
         // BlocProvider(create: (BuildContext context) => Patient_RegisterCubit())
       ],
       child: MaterialApp(
@@ -108,8 +108,8 @@ class MyApp extends StatelessWidget {
           // fontFamily:'MontaguSlab',
           scaffoldBackgroundColor: Colors.white,
           useMaterial3 : true,
-          primarySwatch: Colors.deepOrange,
-          appBarTheme: const AppBarTheme(
+          primarySwatch: Colors.lightGreen,
+          appBarTheme:  AppBarTheme(
               color: Colors.white,
               centerTitle : true,
               elevation: 0,
@@ -117,7 +117,7 @@ class MyApp extends StatelessWidget {
               shadowColor: Colors.grey,
               scrolledUnderElevation: 0,
               iconTheme: IconThemeData(
-                  color: Colors.deepOrange
+                  color: HexColor("5DCEC8"),
               )
           ),
           floatingActionButtonTheme: const FloatingActionButtonThemeData(
@@ -153,7 +153,7 @@ class MyApp extends StatelessWidget {
               shadowColor: Colors.deepOrange,
               scrolledUnderElevation: 0,
               iconTheme: IconThemeData(
-                  color: Colors.deepOrange
+                  color: Colors.grey
               )
 
           ),

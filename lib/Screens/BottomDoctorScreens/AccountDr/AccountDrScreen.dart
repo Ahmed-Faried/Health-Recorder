@@ -22,7 +22,7 @@ class AccountDoctorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (BuildContext context) => DoctorCubit()..getData_Doctor(),
+      create: (BuildContext context) => DoctorCubit(),
       child: BlocConsumer<DoctorCubit, DoctorStates>(
         listener: (context, state) {
           if (state is DarkMode) {

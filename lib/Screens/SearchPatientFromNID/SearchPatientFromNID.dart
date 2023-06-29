@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:shop_app/Components/components.dart';
 
+import '../../Components/const.dart';
+import '../../moudel/LoginModel/PatientDataMoudleing.dart';
+import '../BottomDoctorScreens/DoctorCubit/DoctorCubit.dart';
+import '../PatientDetails/PatientDetailsScreen.dart';
 import 'Cubit/SearchCubit.dart';
 import 'Cubit/SearchStates.dart';
 
@@ -14,10 +18,9 @@ class SearchFromNID extends StatelessWidget {
       create: (context) => SearchCubit(),
       child: BlocConsumer<SearchCubit ,SearchStates >(
         builder: (BuildContext context, state) {
-          return UISearchScreen(context );  },
+          return UISearchScreen(context , patientDataModelFromNid );  },
         listener: (BuildContext context, Object? state) {
           if(state is SearchStates_SuccessState){
-
             print("yes");
           }
           if(state is SearchStates_ErrorState){
@@ -32,7 +35,7 @@ class SearchFromNID extends StatelessWidget {
   }
 }
 
-Widget UISearchScreen(context ) => Scaffold(
+Widget UISearchScreen(context , PatientDataModel? model ) => Scaffold(
   appBar: AppBar(),
   body: Center(
     child: Column(
@@ -42,20 +45,22 @@ Widget UISearchScreen(context ) => Scaffold(
           padding:  EdgeInsets.symmetric(horizontal: 18.0),
           child: TextFormField(
             controller: SearchCubit.get(context).Search,
+            style: TextStyle(color: Colors.black),
             keyboardType: TextInputType.number,
             decoration: InputDecoration(
               hintText: " Inter N-ID Patient "
             ),
-            onTap: (){
+            onFieldSubmitted: (value){
               SearchCubit.get(context).DoctorSearchNID(SearchCubit.get(context).Search.text);
 
             },
           ),
         ),
-        SizedBox(height: 50),
+             SizedBox(height: 50),
+        model != null ?
              InkWell(
                   child: Padding(
-                    padding: const EdgeInsets.all(1),
+                    padding: const EdgeInsets.symmetric(horizontal: 14),
                     child: Container(
                       decoration: BoxDecoration(
                         color: Colors.white,
@@ -85,7 +90,7 @@ Widget UISearchScreen(context ) => Scaffold(
 
                                     image: NetworkImage(
 
-                                       '${modelPatient?[index].data?.pationt?.image}',
+                                       '${model?.data?.pationt?.image}',
                                     ),
                                   )),
                             ),
@@ -104,7 +109,7 @@ Widget UISearchScreen(context ) => Scaffold(
                                     Row(
                                       children:  [
                                         Text(
-                                          "${modelPatient?[index].data?.pationt?.fristName}   ",/*${model.data?.pationts[index].lastName} */
+                                          "${model?.data?.pationt?.fristName}   ",/*${model.data?.pationts[index].lastName} */
                                           style: const TextStyle(
                                               fontSize: 18,
                                               color: Colors.black,
@@ -138,7 +143,7 @@ Widget UISearchScreen(context ) => Scaffold(
                                         ),
                                         Spacer(),
                                         Text(
-                                          '${modelPatient?[index].data?.pationt?.phoneNumber}',
+                                          '${model?.data?.pationt?.phoneNumber}',
                                         ),
                                       ],
                                     ),
@@ -156,7 +161,7 @@ Widget UISearchScreen(context ) => Scaffold(
                                         ),
                                         Spacer(),
                                         Text(
-                                          '${modelPatient?[index].data?.pationt?.nationalId}',
+                                          '${model?.data?.pationt?.nationalId}',
                                         ),
                                       ],
                                     ),
@@ -170,10 +175,14 @@ Widget UISearchScreen(context ) => Scaffold(
                     ),
                   ),
                   onTap: (){
-                    DoctorCubit.get(context).getData_Patient(id:modelPatient?[index].data?.pationt?.nationalId);
-                    navigateTo(context, PatientDetails());
+                    DoctorCubit().getData_Patient(id:model?.data?.pationt?.nationalId ,context: context);
                   },
-                );
+                )
+            : Container(
+          height: 10,
+          width: 10,
+          color: Colors.red,
+        )
 
       ],
     ),

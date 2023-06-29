@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../Components/components.dart';
 import '../../../Components/const.dart';
 import '../../../Network/Endpoint/EndPoint.dart';
 import '../../../Network/local/shared_preferences.dart';
@@ -8,6 +9,7 @@ import '../../../Network/remote/dioHelper.dart';
 import '../../../moudel/LoginModel/DoctorDataMoudleing.dart';
 import '../../../moudel/LoginModel/PatientDataMoudleing.dart';
 import '../../../moudel/Mashro3tany/PatientModel/PatientIDMoudleing.dart';
+import '../../PatientDetails/PatientDetailsScreen.dart';
 import 'DoctorStates.dart';
 
 class DoctorCubit extends Cubit<DoctorStates> {
@@ -18,9 +20,25 @@ class DoctorCubit extends Cubit<DoctorStates> {
     return BlocProvider.of(context);
   }
 
+  List<dynamic> ss = []  ;
 
-   getData_Doctor() {
-    emit(Data_DoctorFromID_LoadingState());
+
+  clearListss(){
+    ss.clear();
+    emit(removess());
+    return ss ;
+  }
+  clearListDataPatientID(){
+    DataPatientID.clear();
+
+    emit(removeDataPatientID());
+
+    return DataPatientID ;
+  }
+
+  getData_Doctor() {
+
+     emit(Data_DoctorFromID_LoadingState());
      var id = CacheHelper.getData(key:'idDoctor') ;
     DioHelper.getData(urlMethod: "$GETALLDATADOCTORFROMID$id").then((value) async {
       doctorDataModel = DoctorDataModel.fromJson(value.data);
@@ -31,7 +49,6 @@ class DoctorCubit extends Cubit<DoctorStates> {
           value: doctorDataModel?.data?.doctor.department);
       CacheHelper.saveData(
           key: 'token', value: doctorDataModel?.token);
-
 
      ss.addAll(doctorDataModel?.data?.doctor.pId as Iterable);
       getAllPatientConnected(ss);
@@ -73,7 +90,7 @@ class DoctorCubit extends Cubit<DoctorStates> {
     DioHelper.getData(
       urlMethod: "$GetPatientFromNID$Nid",
     ).then((value)  {
-
+      
       DataPatientID.add(PatientDataModel.fromJson(value.data) );
       print("DataPatientID = " );
       print(DataPatientID);
@@ -95,7 +112,7 @@ class DoctorCubit extends Cubit<DoctorStates> {
       }
       print(onError.toString());
 
-      emit(Data_PatientFromNID_ErrorState());
+      emit(Data_PatientFromNID_ErrorState(onError.response!.data['message'].toString()));
       print("errrrrrrrrror server or net Data_PatientFromID_ErrorState ");
     });
   }
@@ -121,7 +138,7 @@ class DoctorCubit extends Cubit<DoctorStates> {
 
 
 ////////////////////
-    getData_Patient({id})  {
+    getData_Patient({id ,context })  {
 
     emit(Data_Patient_LoadingState());
 
@@ -130,6 +147,7 @@ class DoctorCubit extends Cubit<DoctorStates> {
      patientDataModel = PatientDataModel.fromJson(value.data);
       print(" Data El patient Gat tany ya 3alee ");
       emit(Data_Patient_SuccessState());
+     navigateTo(context, PatientDetails());
 
     }).catchError((onError){
       print("$GETALLDATAPATIENTFROMID$id");
@@ -148,7 +166,8 @@ class DoctorCubit extends Cubit<DoctorStates> {
         print(onError.toString());
       }
       print(onError.toString());
-      emit(Data_Patient_ErrorState());
+      print("Data_Patient_ErrorState ********");
+      emit(Data_Patient_ErrorState(onError.response!.data['message'].toString()));
     });
 
 

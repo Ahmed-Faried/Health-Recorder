@@ -10,6 +10,7 @@ class ForgetPasswordPatient extends StatelessWidget {
      var ssss = TextEditingController() ;
     return  Scaffold(
 
+      appBar: AppBar(),
 
         body: SingleChildScrollView(
           child: Stack(

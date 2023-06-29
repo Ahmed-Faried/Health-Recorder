@@ -1,5 +1,7 @@
 //  abdullah.ahmed0@gmail.com
 
+import 'package:shop_app/Screens/BottomDoctorScreens/DoctorCubit/DoctorCubit.dart';
+
 import '../moudel/LoginModel/DoctorDataMoudleing.dart';
 import '../moudel/LoginModel/PatientDataMoudleing.dart';
 import '../moudel/Mashro3tany/PatientModel/PatientIDMoudleing.dart';
@@ -17,7 +19,6 @@ DoctorDataModel? doctorDataModel;
 PatientDataModel? patientDataModel;
 PatientDataModel? patientDataModelFromNid;
 
-List<dynamic> ss = []  ;
 List<PatientDataModel> DataPatientID =[]  ;
 
  deleteAllData(){
@@ -25,12 +26,11 @@ List<PatientDataModel> DataPatientID =[]  ;
  doctorDataModel = null ;
  patientDataModel = null ;
  patientDataModelFromNid = null ;
- ss = [] ;
+ DoctorCubit().ss = [] ;
  DataPatientID =[]  ;
  print(doctorDataModel?.data?.doctor.pId);
  print(patientDataModel);
  print(patientDataModelFromNid);
- print(ss);
  print(DataPatientID);
  return doctorDataModel ;
 

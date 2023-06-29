@@ -240,7 +240,7 @@ class LoginPatientScreen extends StatelessWidget {
                                 Center(
                                   child: InkWell(
                                     onTap: (){
-                                      navigateAndFinish(context, ForgetPasswordPatient());
+                                      navigateTo(context, ForgetPasswordPatient());
                                     },
                                     hoverColor: Colors.blue,
                                     splashColor:  Colors.blue ,

@@ -498,8 +498,10 @@ Widget CardPatientDetialsDoctor(
                               child: Text(
                                 " $text1",
                                 style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.black87,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 11,
+                                  fontFamily: 'MontaguSlab',
                                 ),
                               ),
                             ),
@@ -507,10 +509,10 @@ Widget CardPatientDetialsDoctor(
                               child: const Text(
                                 "Edit",
                                 style: TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.blue,
-                                  decoration: TextDecoration.underline,
-                                  decorationColor: Colors.blue,
+                                  color: Colors.blueAccent,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                  fontFamily: 'MontaguSlab',
                                 ),
                               ),
                               onTap: () {
@@ -531,9 +533,11 @@ Widget CardPatientDetialsDoctor(
                               child: Text(
                                 " $text2",
                                 style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 14),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                  fontFamily: 'MontaguSlab',
+                                ),
                               ),
                             ),
                             Icon(icon)
@@ -612,7 +616,7 @@ Widget CardPatientDetialsPatient(
                                   style: TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.bold,
-                                      fontSize: 11,
+                                      fontSize: 12,
                                     fontFamily: 'MontaguSlab',
                                   ),
                                 ),
@@ -987,7 +991,7 @@ Widget UI_PatientDetials(PatientDataModel model, context) =>
                     CircleAvatar(
                       radius: 27,
                       backgroundImage: NetworkImage(
-                          'https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'),
+                          '${model.data?.pationt?.image}'),
                     ),
                     SizedBox(
                       width: 16,
@@ -1147,20 +1151,20 @@ Widget UI_PatientDetials(PatientDataModel model, context) =>
                                     //   ),
                                     //
                                     // ),)
-                                    InkWell(
-                                      child: const Text(
-                                        "Edit",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.blue,
-                                          decoration: TextDecoration.underline,
-                                          decorationColor: Colors.blue,
-                                        ),
-                                      ),
-                                      onTap: () {
-                                        print("edit Blood type ");
-                                      },
-                                    )
+                                    // InkWell(
+                                    //   child: const Text(
+                                    //     "Edit",
+                                    //     style: TextStyle(
+                                    //       fontSize: 16,
+                                    //       color: Colors.blue,
+                                    //       decoration: TextDecoration.underline,
+                                    //       decorationColor: Colors.blue,
+                                    //     ),
+                                    //   ),
+                                    //   onTap: () {
+                                    //     print("edit Blood type ");
+                                    //   },
+                                    // )
                                   ],
                                 ),
                                 Row(
@@ -1231,8 +1235,10 @@ Widget UI_PatientDetials(PatientDataModel model, context) =>
                                             child: Text(
                                               " X-rays & Medical tests",
                                               style: TextStyle(
-                                                fontSize: 13,
-                                                color: Colors.black87,
+                                                color: Colors.black,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 11,
+                                                fontFamily: 'MontaguSlab',
                                               ),
                                             ),
                                           ),
@@ -1291,10 +1297,11 @@ Widget UI_PatientDetials(PatientDataModel model, context) =>
                                               child: Text(
                                                 "View your Tests",
                                                 style: TextStyle(
-                                                    color: Colors.black,
-                                                    fontWeight:
-                                                    FontWeight.bold,
-                                                    fontSize: 11),
+                                                  color: Colors.black,
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 11,
+                                                  fontFamily: 'MontaguSlab',
+                                                ),
                                               ),
                                             ),
                                             Icon(

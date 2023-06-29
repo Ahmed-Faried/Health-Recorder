@@ -31,9 +31,11 @@ class X_rayPatient extends StatelessWidget {
 
 
     return  Scaffold(
+        appBar: AppBar(),
 
-      body: ConditionalBuilder(
-        condition: imageUrls?.length != null,
+
+        body: ConditionalBuilder(
+        condition: imageUrls?.length != 0,
         builder: (BuildContext context) { return  Padding(
           padding: const EdgeInsets.all(12.0),
           child: GridView.builder(
@@ -63,7 +65,7 @@ class X_rayPatient extends StatelessWidget {
             },
           ),
         ); },
-        fallback: (BuildContext context) { return Center(child: CircularProgressIndicator(),); },
+        fallback: (BuildContext context) { return Center(child: Text("Not Fond"),); },
       )
     );
   }

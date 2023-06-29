@@ -28,7 +28,7 @@ class HomeDoctorScreen extends StatelessWidget {
 
     return BlocProvider(
 
-      create: (BuildContext context) => DoctorCubit()..getData_Doctor(),
+      create: (BuildContext context) => DoctorCubit()..clearListss()..clearListDataPatientID()..getData_Doctor(),
       child: BlocConsumer<DoctorCubit, DoctorStates>(
         listener: (context, state) {
         },
@@ -499,11 +499,28 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(50),
-              child: const Image(
+              child:  Image(
+                loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) {
+                    // تم تحميل الصورة بنجاح
+                    return child;
+                  } else {
+                    // لم يتم تحميل الصورة بعد، أعرض خلفية زرقاء
+                    return Container(
+                      width: 50,
+                      height: 50,
+                      color: Colors.grey,
+                    );
+                  }
+                },
+
+
                 width: 50,
                 height: 50,
                 image: NetworkImage(
-                    'https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'),
+                    '${model?.data?.doctor.image}',
+
+                ),
               ),
             ),
             const SizedBox(
@@ -614,24 +631,10 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
                       color: Colors.grey,
                     )),
               ),
-              Expanded(
-                child: TextFormField(
-                  enabled: false,
-                  controller: HomeCubit.get(context).searchController,
-                  keyboardType: TextInputType.text,
-                  onChanged: (value) {
-                    //  NewsAppCubit.get(context).getSearch(value);
-                    print("value");
-                  },
-                  onTap: () {
-                    navigateTo(context, SearchFromNID());
-                  },
-                  validator: (value) {},
-                  decoration: InputDecoration(
-                    hintText: "Search by patient code ",
-                    border: InputBorder.none,
-                  ),
-                ),
+              InkWell(child: Center(child: Text("Search by patient code ",)) ,
+                onTap: () {
+                navigateTo(context, SearchFromNID());
+              },
               )
             ],
           ),
@@ -706,7 +709,7 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
         // ),
         Expanded(
           child: ConditionalBuilder(
-            condition: ss.isNotEmpty,
+            condition: DoctorCubit.get(context).ss.isNotEmpty,
             builder: (BuildContext context) { return ListView.separated(
               itemBuilder: (BuildContext context, int index) {
                 return InkWell(
@@ -734,16 +737,45 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
                               width: 65,
                               height: 65,
                               decoration: BoxDecoration(
-                                  color: Colors.orangeAccent,
+                                  color: Colors.white70,
                                   borderRadius:
-                                  BorderRadius.circular(50),
-                                  image: DecorationImage(
+                                  BorderRadius.circular(65),
+                                 )
+                              ,child: Image(
 
-                                    image: NetworkImage(
+                            loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) {
+                                // تم تحميل الصورة بنجاح
+                                return child;
+                              } else {
+                                // لم يتم تحميل الصورة بعد، أعرض خلفية زرقاء
+                                return Container(
+                                  width: 50,
+                                  height: 50,
+                                  color: Colors.grey,
+                                );
+                              }
+                            },
+                              errorBuilder: (BuildContext context, Object exception, StackTrace? stackTrace) {
+                                // لم يتم تحميل الصورة بنجاح، أعرض خلفية زرقاء
+                                return Container(
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(40),
+                                    color: Colors.grey,
 
-                                      '${modelPatient?[index].data?.pationt?.image}',
-                                    ),
-                                  )),
+                                  ),
+                                  child:  Image(image: NetworkImage(
+                                    'https://res.cloudinary.com/dxs0ugb8z/image/upload/v1687357323/doctorImg/z7ae1gaobpgnwfauvski.png',
+                                  ) ,)
+                                );
+                              },
+                              image:
+
+                            NetworkImage(
+                              '${modelPatient?[index].data?.pationt?.image}',
+                            ),),
                             ),
                             SizedBox(
                               width: 10,
@@ -826,8 +858,7 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
                     ),
                   ),
                   onTap: (){
-                    DoctorCubit.get(context).getData_Patient(id:modelPatient?[index].data?.pationt?.nationalId);
-                    navigateTo(context, PatientDetails());
+                    DoctorCubit.get(context).getData_Patient(id:modelPatient?[index].data?.pationt?.nationalId , context :context);
                   },
                 );
               },
