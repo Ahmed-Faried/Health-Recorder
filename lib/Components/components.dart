@@ -621,7 +621,7 @@ Widget CardPatientDetialsPatient(
                                   ),
                                 ),
                               ),
-                              Icon(icon,color: Colors.grey[300],)
+                              Icon(icon,color: Colors.grey,)
                             ],
                           ),
                           SizedBox(

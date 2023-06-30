@@ -1,5 +1,7 @@
 
 
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,8 @@ import '../../../Network/local/shared_preferences.dart';
 import '../../../Network/remote/dioHelper.dart';
 import '../../../moudel/LoginModel/DoctorDataMoudleing.dart';
 import 'ProfileStates.dart';
+import 'dart:io';
+import 'package:http/http.dart' as http;
 
 class ProfileCubit extends Cubit<ProfileStates> {
   ProfileCubit() : super(InitialProfileStates());
@@ -175,6 +179,7 @@ class ProfileCubit extends Cubit<ProfileStates> {
         print(onError.toString());
       }
       print(onError.toString());
+
       emit(PatientUpdateErrorState());
     });
   }
@@ -183,39 +188,31 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
 
 
-  void upData_Image_Doctor({
-    required Image,
+ upData_Image_Doctor({
+    required File? Image,
 
 
   }
-      ){
+      ) async {
        var    id = CacheHelper.getData(key: "idDoctor");
     emit(DoctorUpdateLoadingState());
 
-    DioHelper.update( path: "$GETALLDATADOCTORFROMID$id" ,
+       FormData formData = FormData.fromMap({
+         'image': await MultipartFile.fromFile(image!.path),
+       });
 
-        data:{
+    DioHelper.update( path: "$Update_Doctor_Image$id" ,
 
-          'image': Image,
+        data: formData ,
 
 
-        } ).then((value) {
+    ).then((value) {
 
       doctorDataModel = DoctorDataModel.fromJson(value.data);
-      try {
-        doctorDataModel = DoctorDataModel.fromJson(value.data);
 
         CacheHelper.saveData(key: 'idDoctor', value: doctorDataModel?.data?.doctor.id);
-      } catch (e) {
-        print('Error update id idi id id id d data: $e');
-      }
-      if (doctorDataModel == null) {
-        print('Data update error null id id id id id ');
-      } else {
-        print('Data update id id id id id id di successful');
-      }
-      toastShow(msg: "tamam Doctor", state: toastStates.SUCCESS);
-      print(" Data El Doctor update ya 3alee ");
+
+      toastShow(msg: "Update Image Done", state: toastStates.SUCCESS);
       emit(DoctorUpdateSuccessState());
 
     }).catchError((onError){
@@ -235,13 +232,16 @@ class ProfileCubit extends Cubit<ProfileStates> {
       } else {
         print(onError.toString());
       }
+      print(onError.response?.data);
+
       emit(DoctorUpdateErrorState());
     });
   }
 
 
-  XFile? image;
 
+
+  File? image ;
 
 
   final ImagePicker picker = ImagePicker();
@@ -251,10 +251,29 @@ class ProfileCubit extends Cubit<ProfileStates> {
   Future getImage(ImageSource media) async {
     var img = await picker.pickImage(source: media);
 
-    image = img;
-    emit(ImageUpdatePatientRegister());
+    image = File(img!.path);
+    upData_Image_Doctor(Image: image);
+    emit(ImageUpdateDoctor());
 
   }
+
+
+
+  // Future<void> uploadImage(File imageFile) async {
+  //   final url = 'https://example.com/upload_image';
+  //   final token = CacheHelper.getString(key: 'token') ?? '';
+  //   final request = http.MultipartRequest('POST', Uri.parse(url));
+  //   request.headers['Authorization'] = 'Bearer $token';
+  //   request.files.add(await http.MultipartFile.fromPath('image', imageFile.path));
+  //
+  //   final response = await http.Response.fromStream(await request.send());
+  //   if (response.statusCode == 200) {
+  //     final jsonResponse = json.decode(response.body);
+  //     // handle the response
+  //   } else {
+  //     throw Exception('Failed to upload image');
+  //   }
+  // }
 
   void myAlert(context) {
     showDialog(
@@ -281,8 +300,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
                     ),
                     //if user click this button, user can upload image from gallery
                     onPressed: () {
-                      Navigator.pop(context);
                       getImage(ImageSource.gallery);
+
+                      Navigator.pop(context);
                     },
                     child: Container(
                       height: 50,
@@ -301,8 +321,9 @@ class ProfileCubit extends Cubit<ProfileStates> {
                     ),
                     //if user click this button. user can upload image from camera
                     onPressed: () {
-                      Navigator.pop(context);
                       getImage(ImageSource.camera);
+                      Navigator.pop(context);
+
                     },
                     child: Container(
                       height: 50,

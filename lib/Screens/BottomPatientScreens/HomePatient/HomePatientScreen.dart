@@ -17,6 +17,7 @@ import '../../LoginAndRegister/LoginAndRegister.dart';
 import '../../PatientScreens/ShowRecordHistoryScreens/showDiagnosesScreen.dart';
 import '../../PatientScreens/ShowRecordHistoryScreens/showGeneticDiseasesScreen.dart';
 import '../../PatientScreens/ShowRecordHistoryScreens/showSurgicalHistoryScreen.dart';
+import '../../X-ray Patient/X-rayScreen.dart';
 import '../PatientCubit/PatientCubit.dart';
 
 class HomePatientScreen extends StatelessWidget {
@@ -370,13 +371,17 @@ Widget ProfilrScreen(PatientDataModel? mod, context) => Scaffold(
                   const SizedBox(
                     height: 20,
                   ),
+
                   InkWell(
                     child: Container(
+
                       child: Column(
                         children: [
                           Row(
+
                             children: [
                               Container(
+                                height: 40,
                                 width: MediaQuery.of(context).size.width / 1.12,
                                 decoration: BoxDecoration(
                                   color: HexColor("5DCDC6"),
@@ -386,21 +391,21 @@ Widget ProfilrScreen(PatientDataModel? mod, context) => Scaffold(
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 10.0),
+                                      horizontal: 10.0 ,vertical: 3),
                                   child: Row(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Expanded(
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment:
-                                              MainAxisAlignment.start,
+                                          MainAxisAlignment.start,
                                           crossAxisAlignment:
-                                              CrossAxisAlignment.start,
+                                          CrossAxisAlignment.start,
                                           children: [
                                             SizedBox(
-                                              height: 8,
+                                              height: 6,
                                             ),
                                             Row(
                                               children: [
@@ -408,8 +413,10 @@ Widget ProfilrScreen(PatientDataModel? mod, context) => Scaffold(
                                                   child: Text(
                                                     " Diagnostics recording",
                                                     style: TextStyle(
-                                                      fontSize: 13,
-                                                      color: Colors.black87,
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 12,
+                                                      fontFamily: 'MontaguSlab',
                                                     ),
                                                   ),
                                                 ),
@@ -446,18 +453,19 @@ Widget ProfilrScreen(PatientDataModel? mod, context) => Scaffold(
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.all(10.0),
+
                                   child: Row(
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    CrossAxisAlignment.start,
                                     children: [
                                       Expanded(
                                         child: Container(
                                           child: Column(
                                             mainAxisSize: MainAxisSize.min,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                             crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                             children: [
                                               SizedBox(
                                                 height: 10,
@@ -468,10 +476,11 @@ Widget ProfilrScreen(PatientDataModel? mod, context) => Scaffold(
                                                     child: Text(
                                                       "View your diagnoses",
                                                       style: TextStyle(
-                                                          color: Colors.black,
-                                                          fontWeight:
-                                                              FontWeight.bold,
-                                                          fontSize: 11),
+                                                        color: Colors.black,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 12,
+                                                        fontFamily: 'MontaguSlab',
+                                                      ),
                                                     ),
                                                   ),
                                                   Icon(
@@ -500,6 +509,146 @@ Widget ProfilrScreen(PatientDataModel? mod, context) => Scaffold(
                       navigateTo(context, DiagnosesShow());
                     },
                   ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  InkWell(
+                    child: Container(
+                      child: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                height: 40,
+
+                                width: MediaQuery.of(context).size.width / 1.12,
+                                decoration: BoxDecoration(
+                                  color: HexColor("5DCDC6"),
+                                  borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(15),
+                                      topLeft: Radius.circular(15)),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10.0,vertical: 3),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                            Row(
+                                              children: [
+                                                const Expanded(
+                                                  child: Text(
+                                                    " X-rays & Medical tests",
+                                                    style: TextStyle(
+                                                      color: Colors.black,
+                                                      fontWeight: FontWeight.bold,
+                                                      fontSize: 11,
+                                                      fontFamily: 'MontaguSlab',
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            SizedBox(
+                                              height: 8,
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: [
+                              Container(
+
+                                width: MediaQuery.of(context).size.width / 1.12,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.only(
+                                      bottomRight: Radius.circular(15),
+                                      bottomLeft: Radius.circular(15)),
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Color.fromRGBO(0, 0, 0, 0.35),
+                                      offset: Offset(0, 1),
+                                      blurRadius: 1,
+                                    ),
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 10.0 , vertical: 9),
+                                  child: Row(
+                                    crossAxisAlignment:
+                                    CrossAxisAlignment.start,
+                                    children: [
+                                      Expanded(
+                                        child: Container(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      "View your Tests",
+                                                      style: TextStyle(
+                                                        color: Colors.black,
+                                                        fontWeight: FontWeight.bold,
+                                                        fontSize: 12,
+                                                        fontFamily: 'MontaguSlab',
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Icon(
+                                                    Icons.receipt_long,
+                                                    color: HexColor("5DCDC6"),
+                                                  )
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: 10,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      navigateTo(context, X_rayPatient(imageUrls: mod?.data!.pationt?.x_ray ));
+                    },
+                  ),
+
                   const SizedBox(
                     height: 20,
                   ),

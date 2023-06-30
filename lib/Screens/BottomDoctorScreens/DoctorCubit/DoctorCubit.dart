@@ -35,7 +35,6 @@ class DoctorCubit extends Cubit<DoctorStates> {
 
     return DataPatientID ;
   }
-
   getData_Doctor() {
 
      emit(Data_DoctorFromID_LoadingState());
@@ -79,9 +78,6 @@ class DoctorCubit extends Cubit<DoctorStates> {
     });
   }
 
-
-
-
    getPatientFormNID({
 
     Nid ,}) {
@@ -118,7 +114,6 @@ class DoctorCubit extends Cubit<DoctorStates> {
   }
 
 
-
  getAllPatientConnected (List<dynamic> X) async {
 
   for(int  i = 0 ; i < X.length  ; i++   ){
@@ -137,7 +132,6 @@ class DoctorCubit extends Cubit<DoctorStates> {
 }
 
 
-////////////////////
     getData_Patient({id ,context })  {
 
     emit(Data_Patient_LoadingState());
@@ -174,10 +168,39 @@ class DoctorCubit extends Cubit<DoctorStates> {
   }
 
 
+
 /*Patient*/
 
 
 // function of getDataFromPatient
 
+  getDataAccount_Doctor() {
+
+    emit(Data_DoctorFromID_LoadingState());
+    var id = CacheHelper.getData(key:'idDoctor') ;
+    DioHelper.getData(urlMethod: "$GETALLDATADOCTORFROMID$id").then((value) async {
+      doctorDataModel = DoctorDataModel.fromJson(value.data);
+
+
+      print(" Data El Doctor Gat tany ya 3alee ");
+      emit(Data_DoctorFromID_SuccessState());
+    }).catchError((onError) {
+      if (onError is DioError) {
+        if (onError.response != null) {
+          // يمكن الوصول إلى البياناتالتي تم إرجاعها من الخادم باستخدام onError.response.data
+          print(onError.response?.data);
+          print(onError.toString());
+          print(onError.type.name);
+
+        } else {
+          print(onError.message);
+        }
+      } else {
+        print(onError.toString());
+      }
+      print(onError.toString());
+      emit(Data_DoctorFromID_ErrorState());
+    });
+  }
 
 }

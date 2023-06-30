@@ -16,7 +16,13 @@ const GetPatientFromNID     =  'v1/pationts/';
 
 const forget_pass_Patient   = 'v1/pationts/forget_pass' ;
 
-const forget_pass_Doctors   = 'v1/doctors/forget_pass' ;
+const forget_pass_Doctor   = 'v1/doctors/forget_pass' ;
+
+const Update_Doctor_Image     =  'v1/update_doc_picture/';
+
+const Update_Patient_Image     =  'v1/update_image/';
+
+const Update_X_ray_Image     =  'v1/updateX_ray/';
 
 //
 // {

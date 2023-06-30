@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,16 +10,22 @@ import 'package:shop_app/Screens/Edit%20Profile/ProfileCubit/ProfileStates.dart'
 import '../../Components/components.dart';
 import '../../Components/const.dart';
 import '../../Network/local/shared_preferences.dart';
+import '../BottomDoctorScreens/DoctorCubit/DoctorCubit.dart';
+import '../Register/RegisterPatient/Cubit_Patient_Register/Patient_Register_Cubit.dart';
 
 class EditProfileDoctor extends StatelessWidget {
   const EditProfileDoctor({Key? key}) : super(key: key);
 
-  get ss => null;
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+            // if(state is DoctorUpdateSuccessState){
+            //   DoctorCubit().getData_Doctor();
+            // }
+
+        },
         builder: (context, state) => Scaffold(
               appBar: AppBar(
                 title: Text("Edit Profile"),
@@ -38,20 +46,41 @@ class EditProfileDoctor extends StatelessWidget {
                                   children: [
                                     Row(
                                       children: [
-                                        ClipRRect(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
-                                          child:  Image(
-                                            width: 100,
-                                            height: 100,
-                                            fit: BoxFit.cover,
-                                            image:
-                                                AssetImage("${doctorDataModel?.data?.doctor.image}"),
-                                            //NetworkImage(
-                                            //     'https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'
-                                            //  ),
+                                        Container(
+                                          width: 100,
+                                          height: 100,
+                                          child: ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            child:
+                                            Image.network(
+                                                 "${doctorDataModel?.data?.doctor.image}",
+                                                fit: BoxFit.cover,
+                                                width: 100,
+                                                height: 100,
+                                              )
+                                            //   Image.network(
+                                            //    "${doctorDataModel?.data?.doctor.image}",
+                                            //   fit: BoxFit.cover,
+                                            //   width: 100,
+                                            //   height: 100,
+                                            // )
+                                            //   :
+                                            // Image(
+                                            //   //to show image, you type like this.
+                                            //   image: FileImage(File(ProfileCubit.get(context).image!.path)),
+                                            //   fit: BoxFit.cover,
+                                            //   width: 100,
+                                            //   height: 100
+                                            // ),
+
+                                              //NetworkImage(
+                                              //     'https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'
+                                              //  ),
+
+                                            ),
                                           ),
-                                        ),
+
                                       ],
                                     ),
                                     SizedBox(height: 6),
@@ -75,7 +104,8 @@ class EditProfileDoctor extends StatelessWidget {
 
                                             ProfileCubit.get(context).myAlert(context);
                                           },
-                                        )
+                                        ),
+
                                       ],
                                     ),
                                   ],
@@ -224,6 +254,7 @@ class EditProfileDoctor extends StatelessWidget {
                             SizedBox(
                               height: 20,
                             ),
+
                             InkWell(
                               child: Container(
                                 height: 70,

@@ -275,8 +275,8 @@ class RegisterPatientScreen6 extends StatelessWidget {
                                     test3: Patient_RegisterCubit.get(context).healthProblemController.text,
                                     test4: Patient_RegisterCubit.get(context).healthProblemMedicineController.text,
                                     test5: Patient_RegisterCubit.get(context).surgeryController.text,
-                                    test6: Patient_RegisterCubit.get(context).Date,
-                                      // test6: "01/02/2020",
+                                    // test6: Patient_RegisterCubit.get(context).Date,
+                                      test6: "01/02/2020",
                                     test7: Patient_RegisterCubit.get(context).geneticDiseaseController.text,
                                     test8: Patient_RegisterCubit.get(context).geneticDiseaseMedicineController.text,
                                     context:context

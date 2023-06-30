@@ -12,13 +12,13 @@ import '../../../../Network/local/shared_preferences.dart';
 import '../../../../Network/remote/dioHelper.dart';
 import '../../../../moudel/LoginModel/PatientDataMoudleing.dart';
 import '../../../LoginAndRegister/LoginAndRegister.dart';
-import '../RegisterPatientScreen1.dart';
 import '../RegisterPatientScreen2.dart';
 import '../RegisterPatientScreen4.dart';
 import '../RegisterPatientScreen5.dart';
 import '../RegisterPatientScreen6.dart';
 import 'Patient_Register_States.dart';
 import '../RegisterPatientScreen3.dart';
+import 'dart:io';
 
 class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
   Patient_RegisterCubit() : super(InitialPatientRegisterStates());
@@ -224,6 +224,27 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
           key: 'imagePatient', value: patientDataModel?.data?.pationt?.image);
 
 
+      upData_Image_patient(Image: imagePatient , id :patientDataModel?.data?.pationt?.id);
+
+      // Future<void> uploadImage(File imageFile) async {
+      //   final url = 'https://example.com/upload_image';
+      //   final token = CacheHelper.getString(key: 'token') ?? '';
+      //   final request = http.MultipartRequest('POST', Uri.parse(url));
+      //   request.headers['Authorization'] = 'Bearer $token';
+      //   request.files.add(await http.MultipartFile.fromPath('image', imageFile.path));
+      //
+      //   final response = await http.Response.fromStream(await request.send());
+      //   if (response.statusCode == 200) {
+      //     final jsonResponse = json.decode(response.body);
+      //     // handle the response
+      //   } else {
+      //     throw Exception('Failed to upload image');
+      //   }
+      // }
+
+
+
+
       print(idPatient);
       print(imagePatient);
       print(patientDataModel?.data?.pationt?.image);
@@ -251,7 +272,51 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
     });
   }
 
+  upData_Image_patient({
+    required File? Image,
+    required id
+  }
+      ) async {
+    emit(PatientRegisterImageLoadingState());
 
+    FormData formData = FormData.fromMap({
+      'image': await MultipartFile.fromFile(imagePatient!.path),
+    });
+
+    DioHelper.update( path: "$Update_Patient_Image$id" ,
+
+      data: formData ,
+
+
+    ).then((value) {
+
+      patientDataModel = PatientDataModel.fromJson(value.data);
+
+
+      toastShow(msg: "Update Image Done", state: toastStates.SUCCESS);
+
+    }).catchError((onError){
+      if (onError is DioError) {
+        if (onError.response != null) {
+
+          print(onError.response?.data['massage']);
+          print("---------------------------");
+          print(onError.toString());
+          print("---------------------------");
+
+          print(onError.type.name);
+
+        } else {
+          print(onError.message);
+        }
+      } else {
+        print(onError.toString());
+      }
+      print(onError.response?.data);
+
+      emit(PatientRegisterImageErrorState());
+    });
+  }
   //** update patient **//
 
   PatientRegisterHealthState({
@@ -330,9 +395,7 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
 
 
 
-
-  XFile? image;
-
+  File? imagePatient ;
 
 
   final ImagePicker picker = ImagePicker();
@@ -342,10 +405,12 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
   Future getImage(ImageSource media) async {
     var img = await picker.pickImage(source: media);
 
-      image = img;
-      emit(ImagePatientRegister());
+    imagePatient = File(img!.path);
+    emit(ImageUpdatePatientRegister());
 
   }
+
+
 
   void myAlert(context) {
     showDialog(

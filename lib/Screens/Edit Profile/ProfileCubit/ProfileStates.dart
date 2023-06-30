@@ -25,4 +25,4 @@ class PatientUpdateErrorState extends ProfileStates {
 }
 
 
-class ImageUpdatePatientRegister extends ProfileStates {}
+class ImageUpdateDoctor extends ProfileStates {}

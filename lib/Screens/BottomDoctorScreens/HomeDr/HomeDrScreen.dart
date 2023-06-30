@@ -2,20 +2,14 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:shop_app/Bloc/HomeCubit.dart';
-import 'package:shop_app/Bloc/HomeStates.dart';
 import 'package:shop_app/Components/components.dart';
 import 'package:shop_app/Screens/BottomDoctorScreens/DoctorCubit/DoctorCubit.dart';
 import 'package:shop_app/Screens/BottomDoctorScreens/DoctorCubit/DoctorStates.dart';
-import 'package:shop_app/Screens/Login/Cubit/CubitLoginScreen.dart';
-import 'package:shop_app/Screens/Login/Cubit/StatesLoginScreen.dart';
 import 'package:shop_app/Screens/LoginAndRegister/LoginAndRegister.dart';
 import 'package:skeletons/skeletons.dart';
 import '../../../Components/const.dart';
-import '../../../Network/local/shared_preferences.dart';
 import '../../../moudel/LoginModel/DoctorDataMoudleing.dart';
 import '../../../moudel/LoginModel/PatientDataMoudleing.dart';
-import '../../PatientDetails/PatientDetailsScreen.dart';
 import '../../SearchPatientFromNID/SearchPatientFromNID.dart';
 
 
@@ -500,21 +494,7 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
             ClipRRect(
               borderRadius: BorderRadius.circular(50),
               child:  Image(
-                loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress) {
-                  if (loadingProgress == null) {
-                    // تم تحميل الصورة بنجاح
-                    return child;
-                  } else {
-                    // لم يتم تحميل الصورة بعد، أعرض خلفية زرقاء
-                    return Container(
-                      width: 50,
-                      height: 50,
-                      color: Colors.grey,
-                    );
-                  }
-                },
-
-
+                fit: BoxFit.cover,
                 width: 50,
                 height: 50,
                 image: NetworkImage(
@@ -523,6 +503,7 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
                 ),
               ),
             ),
+
             const SizedBox(
               width: 12,
             ),

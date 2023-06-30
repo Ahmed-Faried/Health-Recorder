@@ -101,7 +101,7 @@ class RegisterPatientScreen2 extends StatelessWidget {
                               // SizedBox(height: height*0.01,),
                               //if image not null show the image
                               //if image null show text
-                              Patient_RegisterCubit.get(context).image != null
+                              Patient_RegisterCubit.get(context).imagePatient != null
                                   ? Padding(
                                 padding: const EdgeInsets.symmetric(horizontal: 20),
                                 child: Container(
@@ -114,7 +114,7 @@ class RegisterPatientScreen2 extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(50),
                                     child: Image(
                                       //to show image, you type like this.
-                                      image: FileImage(File(Patient_RegisterCubit.get(context).image!.path)),
+                                      image: FileImage(File(Patient_RegisterCubit.get(context).imagePatient!.path)),
                                       fit: BoxFit.cover,
                                       width: MediaQuery.of(context).size.width,
                                       height: 300,

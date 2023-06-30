@@ -59,3 +59,12 @@ class PatientRegisterHealthErrorState extends RegisterPatientStates {
   PatientRegisterHealthErrorState(this.Errors);
 
 }
+
+class PatientRegisterImageLoadingState extends RegisterPatientStates {}
+
+class PatientRegisterImageSuccessState extends RegisterPatientStates {}
+
+class PatientRegisterImageErrorState extends RegisterPatientStates {}
+
+class ImageUpdatePatientRegister extends RegisterPatientStates {}
+
