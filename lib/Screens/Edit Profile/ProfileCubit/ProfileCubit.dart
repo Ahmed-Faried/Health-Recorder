@@ -2,7 +2,9 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:shop_app/moudel/LoginModel/PatientDataMoudleing.dart';
 
 import '../../../Components/components.dart';
@@ -176,6 +178,150 @@ class ProfileCubit extends Cubit<ProfileStates> {
       emit(PatientUpdateErrorState());
     });
   }
+
+
+
+
+
+  void upData_Image_Doctor({
+    required Image,
+
+
+  }
+      ){
+       var    id = CacheHelper.getData(key: "idDoctor");
+    emit(DoctorUpdateLoadingState());
+
+    DioHelper.update( path: "$GETALLDATADOCTORFROMID$id" ,
+
+        data:{
+
+          'image': Image,
+
+
+        } ).then((value) {
+
+      doctorDataModel = DoctorDataModel.fromJson(value.data);
+      try {
+        doctorDataModel = DoctorDataModel.fromJson(value.data);
+
+        CacheHelper.saveData(key: 'idDoctor', value: doctorDataModel?.data?.doctor.id);
+      } catch (e) {
+        print('Error update id idi id id id d data: $e');
+      }
+      if (doctorDataModel == null) {
+        print('Data update error null id id id id id ');
+      } else {
+        print('Data update id id id id id id di successful');
+      }
+      toastShow(msg: "tamam Doctor", state: toastStates.SUCCESS);
+      print(" Data El Doctor update ya 3alee ");
+      emit(DoctorUpdateSuccessState());
+
+    }).catchError((onError){
+      if (onError is DioError) {
+        if (onError.response != null) {
+
+          print(onError.response?.data['massage']);
+          print("---------------------------");
+          print(onError.toString());
+          print("---------------------------");
+
+          print(onError.type.name);
+
+        } else {
+          print(onError.message);
+        }
+      } else {
+        print(onError.toString());
+      }
+      emit(DoctorUpdateErrorState());
+    });
+  }
+
+
+  XFile? image;
+
+
+
+  final ImagePicker picker = ImagePicker();
+
+
+  //we can upload image from camera or from gallery based on parameter
+  Future getImage(ImageSource media) async {
+    var img = await picker.pickImage(source: media);
+
+    image = img;
+    emit(ImageUpdatePatientRegister());
+
+  }
+
+  void myAlert(context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(child: Text('Please choose media \nto select', style: TextStyle(fontSize: 18), textAlign: TextAlign.center,)),
+              ],
+            ),
+            content: Container(
+              height: MediaQuery.of(context).size.height / 6,
+              child: Column(
+                children: [
+                  ElevatedButton(
+
+                    style:  ElevatedButton.styleFrom(
+
+                      backgroundColor: Colors.white,
+                    ),
+                    //if user click this button, user can upload image from gallery
+                    onPressed: () {
+                      Navigator.pop(context);
+                      getImage(ImageSource.gallery);
+                    },
+                    child: Container(
+                      height: 50,
+                      child: Row(
+                        children: [
+                          Icon(Icons.image),
+                          Text('From Gallery'),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  ElevatedButton(
+                    style:  ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                    ),
+                    //if user click this button. user can upload image from camera
+                    onPressed: () {
+                      Navigator.pop(context);
+                      getImage(ImageSource.camera);
+                    },
+                    child: Container(
+                      height: 50,
+                      child: Row(
+                        children: [
+                          Icon(Icons.camera),
+                          Text('From Camera'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+
+
 
 
 

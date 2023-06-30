@@ -19,32 +19,33 @@ class HomePagePatientScreen extends StatelessWidget {
     return  BlocConsumer<HomeCubit , HomeStates>(
       listener:(context ,state){} ,
       builder: (context ,state){
-        return SafeArea(
-          child: Scaffold(
+        return Scaffold(
 
-            backgroundColor: Colors.white,
-          // appBar: AppBar(
-          //   title: Text(ShopAppCubit.get(context).Titles[ShopAppCubit.get(context).x], style: TextStyle(
-          //     color: Colors.white
-          //   ),),
-          // ),
-               body: HomeCubit.get(context).PatientScreens[HomeCubit.get(context).x],
-          bottomNavigationBar: BottomNavigationBar(
-              type: BottomNavigationBarType.fixed,
-              currentIndex: HomeCubit.get(context).x,
-              onTap: (index) {
-                HomeCubit.get(context).changedBottomBar(index);
-              },
-              items:  const
-              [
-                BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-                BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner),   label:  'QrCode'),
-                BottomNavigationBarItem(icon: Icon(Icons.person),   label:  'Account'),
-              ]
+          backgroundColor: Colors.white,
+        // appBar: AppBar(
+        //   title: Text(ShopAppCubit.get(context).Titles[ShopAppCubit.get(context).x], style: TextStyle(
+        //     color: Colors.white
+        //   ),),
+        // ),
+             body: Padding(
+               padding: const EdgeInsets.only(top: 19.0),
+               child: HomeCubit.get(context).PatientScreens[HomeCubit.get(context).x],
+             ),
+        bottomNavigationBar: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: HomeCubit.get(context).x,
+            onTap: (index) {
+              HomeCubit.get(context).changedBottomBar(index);
+            },
+            items:  const
+            [
+              BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+              BottomNavigationBarItem(icon: Icon(Icons.qr_code_scanner),   label:  'QrCode'),
+              BottomNavigationBarItem(icon: Icon(Icons.person),   label:  'Account'),
+            ]
 
-          ),
-      ),
-        );
+        ),
+      );
      },
     );
   }

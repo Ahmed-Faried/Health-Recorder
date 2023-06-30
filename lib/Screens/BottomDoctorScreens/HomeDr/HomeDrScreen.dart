@@ -639,9 +639,7 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
             ],
           ),
         ),
-        const SizedBox(
-          height: 10,
-        ),
+
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.start,
         //   children: const [

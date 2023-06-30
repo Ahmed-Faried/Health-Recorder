@@ -14,6 +14,9 @@ const UpdateRegisterPatientHealth     =  'v1/update/';
 
 const GetPatientFromNID     =  'v1/pationts/';
 
+const forget_pass_Patient   = 'v1/pationts/forget_pass' ;
+
+const forget_pass_Doctors   = 'v1/doctors/forget_pass' ;
 
 //
 // {

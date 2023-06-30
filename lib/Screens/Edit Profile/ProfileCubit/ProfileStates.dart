@@ -23,3 +23,6 @@ class PatientUpdateSuccessState extends ProfileStates {
 class PatientUpdateErrorState extends ProfileStates {
 
 }
+
+
+class ImageUpdatePatientRegister extends ProfileStates {}
