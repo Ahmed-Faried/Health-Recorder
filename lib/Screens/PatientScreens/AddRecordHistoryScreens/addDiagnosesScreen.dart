@@ -20,7 +20,7 @@ class DiagnosesAdd extends StatelessWidget {
         create: (BuildContext context) => DoctorEditCubit(),
 
         child: BlocConsumer<DoctorEditCubit ,DoctorEditStates>(
-            builder:(context , states) {return Scaffold(
+            builder:(context , state) {return Scaffold(
               appBar: AppBar(
                 title: RecordHistoryAppBarTitle(" Diagnoses   "),
               ),
@@ -203,6 +203,7 @@ class DiagnosesAdd extends StatelessWidget {
                                 now : DoctorEditCubit.get(context).now.toString() ,
                                 Diagnose_condition :  DoctorEditCubit.get(context).diagonasController.text  ,
                                 Medicine : DoctorEditCubit.get(context).regularMedicinediagonasController.text,
+                                  NID_PAtient: patientDataModel?.data?.pationt?.nationalId
                               ) ;
                             },
                           ),
@@ -217,7 +218,16 @@ class DiagnosesAdd extends StatelessWidget {
                 },
               ),
             );},
-            listener:(context , states) {}
+            listener:(context , state) {
+              if( state is diagonas_SuccessStates){
+                toastShow(msg: " Added successfully ", state: toastStates.SUCCESS);
+              }
+              if( state is diagonas_ErrorStates){
+                toastShow(msg: "${state.diagonas_Error.toString()}", state: toastStates.SUCCESS);
+
+                toastShow(msg: "An error occurred while adding", state: toastStates.ERROR);
+              }
+            }
         ),
     );
   }

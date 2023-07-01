@@ -558,6 +558,7 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
                             [
                               TextButton(
                                 onPressed: () {
+                                  Navigator.pop(context);
 
                                 },
                                 child: Text('Cancel'),
@@ -565,11 +566,8 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
                               Spacer(),
                               TextButton(
                                 onPressed: () {
-
                                   deleteAllData();
                                   RemoveCacheHelper();
-
-
                                   navigateAndFinish(context, LoginAndRegister());
                                 },
                                   child: Text('Logout'),

@@ -166,14 +166,14 @@ class AccountDoctorScreen extends StatelessWidget {
                             ),
                             Spacer(),
                             IconButton(
-                              color: HomeCubit.get(context).isDark != true
+                              color: HomeCubit.get(context).isDark == true
                                   ? Colors.white
                                   : Colors.black,
                               onPressed: () {
                                 HomeCubit.get(context).changedMode();
                               },
                               icon: Icon(
-                                HomeCubit.get(context).isDark != true
+                                HomeCubit.get(context).isDark == true
                                     ? Icons.toggle_on_outlined
                                     : Icons.toggle_off_outlined,
                                 size: 35,

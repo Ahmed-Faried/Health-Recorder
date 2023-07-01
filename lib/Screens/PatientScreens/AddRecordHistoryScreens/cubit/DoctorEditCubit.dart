@@ -44,11 +44,10 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
     now,
     Diagnose_condition,
     Medicine,
-
+    NID_PAtient
 
   }) {
       emit(diagonas_LoadingStates());
-    var NID_PAtient  =  CacheHelper.getData(key:'id')   ;
     DioHelper.update(
 
         path: "$UpdateRegisterPatientHealth$NID_PAtient",
@@ -56,7 +55,8 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
           "diagonas": [
             {
               "DoctorName": DoctorName,
-              "date": now,
+              // "date": now,
+              "date": "01/02/2020",
               "Diagnose_condition": Diagnose_condition,
               "Medicine": [Medicine],
 
@@ -84,6 +84,7 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
       } else {
         print(onError.toString());
       }
+      print("$UpdateRegisterPatientHealth$NID_PAtient");
       emit(diagonas_ErrorStates(onError.response?.data['message']));
     });
   }
@@ -92,12 +93,11 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
   chronic_DiseasesEdit({
     name,
     medicen,
-
+    NID_PAtient
 
   }) {
 
     emit(chronic_DiseasesEdit_LoadingStates());
-    var NID_PAtient  =  CacheHelper.getData(key:'National_ID')   ;
     DioHelper.update(
 
         path: "$UpdateRegisterPatientHealth$NID_PAtient",
@@ -138,11 +138,10 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
   Health_problems({
     name,
     medicen,
-
+    NID_PAtient
 
   }) {
     emit(Health_problems_LoadingStates());
-    var NID_PAtient  =  CacheHelper.getData(key:'National_ID')   ;
     DioHelper.update(
         path: "$UpdateRegisterPatientHealth$NID_PAtient",
         data: {
@@ -185,12 +184,11 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
   Surgical_operations({
     name,
     date,
-
+    NID_PAtient
 
   }) {
     emit(Surgical_operations_LoadingStates());
 
-    var NID_PAtient  =  CacheHelper.getData(key:'National_ID')   ;
     DioHelper.update(
         path: "$UpdateRegisterPatientHealth$NID_PAtient",
         data: {
@@ -229,12 +227,11 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
   Hereditary_diseases({
     name,
     medicen,
-
+    NID_PAtient
 
   }) {
     emit(Hereditary_diseases_LoadingStates());
 
-    var NID_PAtient  =  CacheHelper.getData(key:'National_ID')   ;
     DioHelper.update(
         path: "$UpdateRegisterPatientHealth$NID_PAtient",
         data: {

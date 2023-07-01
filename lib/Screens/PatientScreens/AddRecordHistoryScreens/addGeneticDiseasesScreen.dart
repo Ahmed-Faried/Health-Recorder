@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app/Components/const.dart';
 
 import '../../../Components/components.dart';
 import '../ShowRecordHistoryScreens/showHealthProblemScreen.dart';
@@ -18,7 +19,7 @@ class GeneticDiseasesAdd extends StatelessWidget {
         create: (BuildContext context) => DoctorEditCubit(),
 
         child: BlocConsumer<DoctorEditCubit ,DoctorEditStates>(
-            builder:(context , states) {return  Scaffold(
+            builder:(context , state) {return  Scaffold(
               appBar: AppBar(
                 title: RecordHistoryAppBarTitle("Genetic Diseases Add" ),
               ),
@@ -31,12 +32,23 @@ class GeneticDiseasesAdd extends StatelessWidget {
                   DoctorEditCubit.get(context).Hereditary_diseases(
                   name: DoctorEditCubit.get(context).GeneticDiseasesController.text,
                   medicen:  DoctorEditCubit.get(context).regularMedicineGeneticDiseasesController.text,
+                      NID_PAtient : patientDataModel?.data?.pationt?.nationalId
 
                   )
               ),
 
             );},
-            listener:(context , states) {}
+            listener:(context , state) {
+
+              if( state is Hereditary_diseases_SuccessStates){
+                toastShow(msg: " Added successfully ", state: toastStates.SUCCESS);
+              }
+              if( state is Hereditary_diseases_ErrorStates){
+                toastShow(msg: "${state.ErrorHereditary_diseases.toString()}", state: toastStates.SUCCESS);
+
+                toastShow(msg: "An error occurred while adding", state: toastStates.ERROR);
+              }
+            }
         )
 
     );
