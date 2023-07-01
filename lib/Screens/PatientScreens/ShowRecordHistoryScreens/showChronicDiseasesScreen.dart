@@ -10,16 +10,20 @@ class ChronicDiseasesShow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return ScreensPatientShow(
-      "Chronic Diseases" ,
-      functionontap ,
-      context ,
-      patientDataModel?.data?.pationt?.chronicDiseases?.length,
-      "Chronic Diseases",
-      "Regular medicine",
-      patientDataModel?.data?.pationt?.chronicDiseases,
-      patientDataModel?.data?.pationt?.chronicDiseases,
+    return Scaffold(
+      appBar: AppBar(
+        title: RecordHistoryAppBarTitle(" Chronic Diseases  ",),
+      ),
+      body: ScreensPatientShow(
+        "Chronic Diseases" ,
+        context ,
+        patientDataModel?.data?.pationt?.chronicDiseases?.length,
+        "Chronic Diseases",
+        "Regular medicine",
+        patientDataModel?.data?.pationt?.chronicDiseases,
+        patientDataModel?.data?.pationt?.chronicDiseases,
 
+      ),
     );
   }
 }

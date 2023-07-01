@@ -18,51 +18,62 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
     return BlocProvider.of(context);
   }
 
-  chronic_DiseasesEdit({
-    test1,
-    test2,
+  TextEditingController  chronicDiseaseController = TextEditingController();
+  TextEditingController regularMedicineChronicDiseaseController = TextEditingController();
+
+  TextEditingController  GeneticDiseasesController = TextEditingController();
+  TextEditingController regularMedicineGeneticDiseasesController = TextEditingController();
+
+  TextEditingController  HealthProblemController = TextEditingController();
+  TextEditingController regularMedicineHealthProblemController = TextEditingController();
+
+  TextEditingController  SurgicalHistoryController = TextEditingController();
+  TextEditingController regularMedicineSurgicalHistoryController = TextEditingController();
+
+
+  TextEditingController  diagonasController = TextEditingController();
+  TextEditingController regularMedicinediagonasController = TextEditingController();
+
+
+
+
+  DateTime now = DateTime.now();
+
+  diagonas({
+    DoctorName,
+    now,
+    Diagnose_condition,
+    Medicine,
 
 
   }) {
-    var NID_PAtient  =  CacheHelper.getData(key:'National_ID')   ;
+      emit(diagonas_LoadingStates());
+    var NID_PAtient  =  CacheHelper.getData(key:'id')   ;
     DioHelper.update(
+
         path: "$UpdateRegisterPatientHealth$NID_PAtient",
         data: {
-          "chronic_Diseases": [
+          "diagonas": [
             {
-              "name": test1,
-              "medicen": test2 // تحديث حقل medicen للمرض الأول
+              "DoctorName": DoctorName,
+              "date": now,
+              "Diagnose_condition": Diagnose_condition,
+              "Medicine": [Medicine],
+
             }
-          ],
-          "Health_problems": [
-            {
-              "name": test3,
-              "medicen": test4
-            },
-          ],
-          "Surgical_operations": [
-            {
-              "name": test5,
-              "date": test6
-            },
-          ],
-          "Hereditary_diseases": [
-            {
-              "name": test7,
-              "medicen": test8
-            }
-          ],
+          ]
         }
     ).then((value) async {
+      emit(diagonas_SuccessStates());
 
-      print("tamam");
+
+      print("diagonas_ Tamam");
 
 
 
     }).catchError((onError) {
       if (onError is DioError) {
         if (onError.response != null) {
-          // يمكن الوصول إلى البياناتالتي تم إرجاعها من الخادم باستخدام onError.response.data
           print(onError.response?.data);
           print(onError.toString());
           print(onError.type.name);
@@ -73,49 +84,82 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
       } else {
         print(onError.toString());
       }
-      toastShow(msg: "error PatientRegisterHealthErrorState ", state: toastStates.ERROR);
-      emit(PatientRegisterHealthErrorState(onError.response?.data['message'].toString()));
+      emit(diagonas_ErrorStates(onError.response?.data['message']));
     });
   }
 
-  Health_problems({
-    test1,
-    test2,
+
+  chronic_DiseasesEdit({
+    name,
+    medicen,
 
 
   }) {
+
+    emit(chronic_DiseasesEdit_LoadingStates());
     var NID_PAtient  =  CacheHelper.getData(key:'National_ID')   ;
     DioHelper.update(
+
         path: "$UpdateRegisterPatientHealth$NID_PAtient",
         data: {
           "chronic_Diseases": [
             {
-              "name": test1,
-              "medicen": test2 // تحديث حقل medicen للمرض الأول
+              "name": name,
+              "medicen": medicen
             }
           ],
-          "Health_problems": [
-            {
-              "name": test3,
-              "medicen": test4
-            },
-          ],
-          "Surgical_operations": [
-            {
-              "name": test5,
-              "date": test6
-            },
-          ],
-          "Hereditary_diseases": [
-            {
-              "name": test7,
-              "medicen": test8
-            }
-          ],
+
         }
     ).then((value) async {
 
-      print("tamam");
+      print("chronic_DiseasesEdit Tamam");
+
+      emit(chronic_DiseasesEdit_SuccessStates());
+
+
+    }).catchError((onError) {
+      if (onError is DioError) {
+        if (onError.response != null) {
+          print(onError.response?.data);
+          print(onError.toString());
+          print(onError.type.name);
+
+        } else {
+          print(onError.message);
+        }
+      } else {
+        print(onError.toString());
+      }
+      emit(chronic_DiseasesEdit_ErrorStates(onError.response?.data['message']));
+    });
+  }
+
+
+  Health_problems({
+    name,
+    medicen,
+
+
+  }) {
+    emit(Health_problems_LoadingStates());
+    var NID_PAtient  =  CacheHelper.getData(key:'National_ID')   ;
+    DioHelper.update(
+        path: "$UpdateRegisterPatientHealth$NID_PAtient",
+        data: {
+
+          "Health_problems": [
+            {
+              "name": name,
+              "medicen": medicen
+            },
+          ],
+
+        }
+    ).then((value) async {
+      emit(Health_problems_LoadingStates());
+
+
+      print("Health_problems Tamam");
 
 
 
@@ -133,48 +177,35 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
       } else {
         print(onError.toString());
       }
-      toastShow(msg: "error PatientRegisterHealthErrorState ", state: toastStates.ERROR);
-      emit(PatientRegisterHealthErrorState(onError.response?.data['message'].toString()));
+      emit(Health_problems_ErrorStates(onError.response?.data['message']));
     });
   }
 
 
   Surgical_operations({
-    test1,
-    test2,
+    name,
+    date,
 
 
   }) {
+    emit(Surgical_operations_LoadingStates());
+
     var NID_PAtient  =  CacheHelper.getData(key:'National_ID')   ;
     DioHelper.update(
         path: "$UpdateRegisterPatientHealth$NID_PAtient",
         data: {
-          "chronic_Diseases": [
-            {
-              "name": test1,
-              "medicen": test2 // تحديث حقل medicen للمرض الأول
-            }
-          ],
-          "Health_problems": [
-            {
-              "name": test3,
-              "medicen": test4
-            },
-          ],
+
           "Surgical_operations": [
             {
-              "name": test5,
-              "date": test6
+              "name": name,
+              "date": date
             },
           ],
-          "Hereditary_diseases": [
-            {
-              "name": test7,
-              "medicen": test8
-            }
-          ],
+
         }
     ).then((value) async {
+      emit(Surgical_operations_SuccessStates());
+
 
       print("tamam");
 
@@ -188,58 +219,37 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
           print(onError.toString());
           print(onError.type.name);
 
-        } else {
-          print(onError.message);
         }
-      } else {
-        print(onError.toString());
       }
-      toastShow(msg: "error PatientRegisterHealthErrorState ", state: toastStates.ERROR);
-      emit(PatientRegisterHealthErrorState(onError.response?.data['message'].toString()));
+      emit(Surgical_operations_ErrorStates(onError.response?.data['message']));
     });
   }
 
 
   Hereditary_diseases({
-    test1,
-    test2,
+    name,
+    medicen,
 
 
   }) {
+    emit(Hereditary_diseases_LoadingStates());
+
     var NID_PAtient  =  CacheHelper.getData(key:'National_ID')   ;
     DioHelper.update(
         path: "$UpdateRegisterPatientHealth$NID_PAtient",
         data: {
-          "chronic_Diseases": [
-            {
-              "name": test1,
-              "medicen": test2 // تحديث حقل medicen للمرض الأول
-            }
-          ],
-          "Health_problems": [
-            {
-              "name": test3,
-              "medicen": test4
-            },
-          ],
-          "Surgical_operations": [
-            {
-              "name": test5,
-              "date": test6
-            },
-          ],
+
           "Hereditary_diseases": [
             {
-              "name": test7,
-              "medicen": test8
+              "name": name,
+              "medicen": medicen
             }
           ],
         }
     ).then((value) async {
+      emit(Hereditary_diseases_SuccessStates());
 
-      print("tamam");
-
-
+      print("Hereditary_diseases Tamam ");
 
     }).catchError((onError) {
       if (onError is DioError) {
@@ -249,14 +259,9 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
           print(onError.toString());
           print(onError.type.name);
 
-        } else {
-          print(onError.message);
         }
-      } else {
-        print(onError.toString());
       }
-      toastShow(msg: "error PatientRegisterHealthErrorState ", state: toastStates.ERROR);
-      emit(PatientRegisterHealthErrorState(onError.response?.data['message'].toString()));
+      emit(Hereditary_diseases_ErrorStates(onError.response?.data['message']));
     });
   }
 

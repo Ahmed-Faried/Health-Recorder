@@ -11,7 +11,7 @@ class SurgicalHistoryShow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: RecordHistoryAppBarTitle("Surgical History     ", functionontap),
+        title: RecordHistoryAppBarTitle("Surgical History     ",),
       ),
       body: ConditionalBuilder(
         condition: patientDataModel != null,

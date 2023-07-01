@@ -11,7 +11,6 @@ class GeneticDiseasesShow extends StatelessWidget {
   Widget build(BuildContext context) {
     return  ScreensPatientShow(
       "Genetic Diseases" ,
-      functionontap ,
       context ,
       patientDataModel?.data?.pationt?.hereditaryDiseases?.length,
       "Genetic Diseases",

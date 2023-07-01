@@ -9,9 +9,8 @@ class HealthProblemShow extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreensPatientShow(
         "Health Problem" ,
-        functionontap ,
         context ,
-       patientDataModel?.data?.pationt?.healthProblems?.length,
+        patientDataModel?.data?.pationt?.healthProblems?.length,
         "Health problem",
         "Regular medicine",
         patientDataModel?.data?.pationt?.healthProblems,
@@ -22,6 +21,4 @@ class HealthProblemShow extends StatelessWidget {
 
 
 }
-void functionontap (){
-  print("on tap ");
-}
+

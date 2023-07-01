@@ -14,7 +14,7 @@ class DiagnosesShow extends StatelessWidget {
 
     return   Scaffold(
       appBar: AppBar(
-        title: RecordHistoryAppBarTitle(" Diagnoses      ", functionontap),
+        title: RecordHistoryAppBarTitle(" Diagnoses      "),
       ),
       body: ConditionalBuilder(
         condition: patientDataModel != null,
