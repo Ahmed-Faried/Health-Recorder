@@ -5,7 +5,6 @@ import 'package:shop_app/Screens/ForgetPassword/Doctor/cubit/ForgetDrCubit.dart'
 
 import '../../../Components/components.dart';
 import '../../BottomDoctorScreens/HomePageDoctor/HomePageDoctorScreen.dart';
-import '../Patient/cubit/ForgetPatientStates.dart';
 import 'cubit/ForgetDrStates.dart';
 
 class ForgetPasswordDoctor extends StatelessWidget {

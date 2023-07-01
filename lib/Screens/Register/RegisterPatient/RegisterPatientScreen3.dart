@@ -6,7 +6,6 @@ import 'package:hexcolor/hexcolor.dart';
 import '../../../Components/components.dart';
 import 'Cubit_Patient_Register/Patient_Register_Cubit.dart';
 import 'Cubit_Patient_Register/Patient_Register_States.dart';
-import 'dart:io';
 
 class RegisterPatientScreen3 extends StatelessWidget {
   RegisterPatientScreen3({Key? key}) : super(key: key);

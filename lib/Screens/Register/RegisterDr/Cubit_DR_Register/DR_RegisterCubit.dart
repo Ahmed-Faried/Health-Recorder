@@ -1,14 +1,11 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../Components/components.dart';
 import '../../../../Components/const.dart';
 import '../../../../Network/Endpoint/EndPoint.dart';
 import '../../../../Network/remote/dioHelper.dart';
 import '../../../../moudel/LoginModel/DoctorDataMoudleing.dart';
-import '../../../../moudel/LoginModel/PatientDataMoudleing.dart';
 import 'DR_RegisterStates.dart';
 
 class DR_Cubit_Register extends Cubit<RegisterDR_States> {

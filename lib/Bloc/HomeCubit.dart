@@ -1,4 +1,3 @@
-import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,20 +5,16 @@ import 'package:shop_app/Network/Endpoint/EndPoint.dart';
 import 'package:shop_app/Network/remote/dioHelper.dart';
 import '../Components/components.dart';
 import '../Components/const.dart';
-import '../Network/local/shared_preferences.dart';
 import '../Screens/BottomDoctorScreens/AccountDr/AccountDrScreen.dart';
 import '../Screens/BottomDoctorScreens/HomeDr/HomeDrScreen.dart';
 import '../Screens/BottomPatientScreens/AccountPatient/AccountPatientScreen.dart';
 import '../Screens/BottomPatientScreens/HomePatient/HomePatientScreen.dart';
 import '../Screens/BottomPatientScreens/QrCode/QrCodeScreen.dart';
-import '../Screens/PatientDetails/PatientDetailsScreen.dart';
 import '../moudel/LoginModel/DoctorDataMoudleing.dart';
-import '../moudel/LoginModel/PatientDataMoudleing.dart';
-import '../moudel/Mashro3tany/PatientModel/PatientIDMoudleing.dart';
 import 'HomeStates.dart';
 
 class HomeCubit extends Cubit<HomeStates>{
-  HomeCubit() : super(initialStateShopApp());
+  HomeCubit() : super(initialStateHomeDoctorApp());
 
 
   static HomeCubit get(context){
@@ -31,6 +26,49 @@ class HomeCubit extends Cubit<HomeStates>{
   // Home page Doctor Screen
   var searchController = TextEditingController();
   var enterCodeController = TextEditingController();
+
+
+
+  addNIDPatient({
+   required DoctorID ,
+    required NID_PAtient,
+
+  }) {
+    emit(addNID_Patient_LoadingState());
+
+    DioHelper.update(
+        path: "$UpdateDoctorAddNIDPatient$DoctorID",
+        data: {
+          'pId': [NID_PAtient],
+        }
+    ).then((value) async {
+
+
+      doctorDataModel = DoctorDataModel.fromJson(value.data);
+      print("add NID tamam");
+
+      emit(addNID_Patient_SuccessState());
+    }).catchError((onError) {
+      if (onError is DioError) {
+        if (onError.response != null) {
+          // يمكن الوصول إلى البياناتالتي تم إرجاعها من الخادم باستخدام onError.response.data
+          print(onError.response?.data);
+          print(onError.toString());
+          print(onError.type.name);
+
+        } else {
+          print(onError.message);
+        }
+      } else {
+        print(onError.toString());
+      }
+      toastShow(msg: "error add NID  ", state: toastStates.ERROR);
+      emit(addNID_Patient_ErrorState());
+    });
+  }
+
+
+
 
   //index of NavigationBar
   int x = 0 ;

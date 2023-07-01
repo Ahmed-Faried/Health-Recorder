@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 import 'package:shop_app/Screens/PatientScreens/ShowRecordHistoryScreens/showHealthProblemScreen.dart';
-
 import '../../../Components/components.dart';
 import '../../../Components/const.dart';
-import '../../Login/Cubit/CubitLoginScreen.dart';
 
 class ChronicDiseasesShow extends StatelessWidget {
    ChronicDiseasesShow({Key? key}) : super(key: key);

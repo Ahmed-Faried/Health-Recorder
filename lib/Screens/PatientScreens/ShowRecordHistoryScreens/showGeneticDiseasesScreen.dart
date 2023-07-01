@@ -3,7 +3,6 @@ import 'package:shop_app/Screens/PatientScreens/ShowRecordHistoryScreens/showHea
 
 import '../../../Components/components.dart';
 import '../../../Components/const.dart';
-import '../../Login/Cubit/CubitLoginScreen.dart';
 
 class GeneticDiseasesShow extends StatelessWidget {
   const GeneticDiseasesShow({Key? key}) : super(key: key);

@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shop_app/Bloc/HomeCubit.dart';
-import 'package:shop_app/Bloc/HomeStates.dart';
 import 'package:shop_app/Components/components.dart';
 import 'package:shop_app/Screens/BottomPatientScreens/PatientCubit/PatientStates.dart';
 import 'package:shop_app/Screens/Help%20center/HelpCenterScreen.dart';
@@ -13,7 +12,6 @@ import '../../../Components/const.dart';
 import '../../../Network/local/shared_preferences.dart';
 import '../../Dangerous/dangerous.dart';
 import '../../Edit Profile/EditProfilePatientScreen.dart';
-import '../../Security/SecurtiyScreen.dart';
 import '../../TestBarCode/TestBarCode.dart';
 import '../PatientCubit/PatientCubit.dart';
 

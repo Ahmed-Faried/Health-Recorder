@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shop_app/Components/components.dart';
@@ -7,7 +6,6 @@ import 'package:shop_app/Screens/Login/LoginPatientScreen.dart';
 import 'package:shop_app/Screens/Register/RegisterDr/RegisterDrScreen.dart';
 import 'package:shop_app/Screens/Register/RegisterPatient/RegisterPatientScreen1.dart';
 
-import '../../Network/local/shared_preferences.dart';
 
 
 

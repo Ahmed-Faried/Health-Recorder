@@ -5,7 +5,6 @@ import 'package:shop_app/Components/components.dart';
 import '../../Components/const.dart';
 import '../../moudel/LoginModel/PatientDataMoudleing.dart';
 import '../BottomDoctorScreens/DoctorCubit/DoctorCubit.dart';
-import '../PatientDetails/PatientDetailsScreen.dart';
 import 'Cubit/SearchCubit.dart';
 import 'Cubit/SearchStates.dart';
 
@@ -25,7 +24,6 @@ class SearchFromNID extends StatelessWidget {
           }
           if(state is SearchStates_ErrorState){
             toastShow(msg: state.errors.toString(), state:toastStates.WARNING );
-            toastShow(msg: "لا يوجد مرض ب هذا الرقم", state:toastStates.WARNING );
             print(state.errors.toString());
           }
         },
@@ -90,7 +88,7 @@ Widget UISearchScreen(context , PatientDataModel? model ) => Scaffold(
 
                                     image: NetworkImage(
 
-                                       '${model?.data?.pationt?.image}',
+                                       '${model.data?.pationt?.image}',
                                     ),
                                   )),
                             ),
@@ -109,7 +107,7 @@ Widget UISearchScreen(context , PatientDataModel? model ) => Scaffold(
                                     Row(
                                       children:  [
                                         Text(
-                                          "${model?.data?.pationt?.fristName}   ",/*${model.data?.pationts[index].lastName} */
+                                          "${model.data?.pationt?.fristName}   ",/*${model.data?.pationts[index].lastName} */
                                           style: const TextStyle(
                                               fontSize: 18,
                                               color: Colors.black,
@@ -143,7 +141,7 @@ Widget UISearchScreen(context , PatientDataModel? model ) => Scaffold(
                                         ),
                                         Spacer(),
                                         Text(
-                                          '${model?.data?.pationt?.phoneNumber}',
+                                          '${model.data?.pationt?.phoneNumber}',
                                         ),
                                       ],
                                     ),
@@ -161,7 +159,7 @@ Widget UISearchScreen(context , PatientDataModel? model ) => Scaffold(
                                         ),
                                         Spacer(),
                                         Text(
-                                          '${model?.data?.pationt?.nationalId}',
+                                          '${model.data?.pationt?.nationalId}',
                                         ),
                                       ],
                                     ),
@@ -175,13 +173,14 @@ Widget UISearchScreen(context , PatientDataModel? model ) => Scaffold(
                     ),
                   ),
                   onTap: (){
-                    DoctorCubit().getData_Patient(id:model?.data?.pationt?.nationalId ,context: context);
+                    DoctorCubit().getData_Patient(id:model.data?.pationt?.nationalId ,context: context);
                   },
                 )
             : Container(
           height: 10,
           width: 10,
-          color: Colors.red,
+          color: Colors.transparent,
+
         )
 
       ],

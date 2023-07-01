@@ -1,6 +1,5 @@
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
-import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -13,14 +12,9 @@ import 'Components/const.dart';
 import 'Network/local/shared_preferences.dart';
 import 'Network/remote/dioHelper.dart';
 import 'OnBoardingScreen/OnBoardingScreen.dart';
-import 'Screens/ForgetPassword/Patient/ForgetPasswordPatient.dart';
-import 'Screens/Login/Cubit/CubitLoginScreen.dart';
+
 import 'Screens/LoginAndRegister/LoginAndRegister.dart';
-import 'Screens/Register/RegisterPatient/Cubit_Patient_Register/Patient_Register_Cubit.dart';
-import 'Screens/Register/RegisterPatient/RegisterPatientScreen1.dart';
-import 'Screens/Register/RegisterPatient/RegisterPatientScreen4.dart';
-import 'Screens/TEST/test.dart';
-import 'Screens/X-ray Patient/X-rayScreen.dart';
+
 import 'bloc/bloc_observer.dart';
 void main()async {
 

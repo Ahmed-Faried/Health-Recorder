@@ -4,7 +4,6 @@ import 'package:shop_app/Screens/BottomDoctorScreens/DoctorCubit/DoctorCubit.dar
 
 import '../moudel/LoginModel/DoctorDataMoudleing.dart';
 import '../moudel/LoginModel/PatientDataMoudleing.dart';
-import '../moudel/Mashro3tany/PatientModel/PatientIDMoudleing.dart';
 
 String? token = '';
 String? department = '';

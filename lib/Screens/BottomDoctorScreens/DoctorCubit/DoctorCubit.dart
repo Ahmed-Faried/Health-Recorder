@@ -8,7 +8,6 @@ import '../../../Network/local/shared_preferences.dart';
 import '../../../Network/remote/dioHelper.dart';
 import '../../../moudel/LoginModel/DoctorDataMoudleing.dart';
 import '../../../moudel/LoginModel/PatientDataMoudleing.dart';
-import '../../../moudel/Mashro3tany/PatientModel/PatientIDMoudleing.dart';
 import '../../PatientDetails/PatientDetailsScreen.dart';
 import 'DoctorStates.dart';
 

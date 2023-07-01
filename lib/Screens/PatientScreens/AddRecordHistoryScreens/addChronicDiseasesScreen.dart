@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 import '../../../Components/components.dart';
 import '../ShowRecordHistoryScreens/showHealthProblemScreen.dart';
@@ -13,12 +12,13 @@ class ChronicDiseasesAdd extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    return  SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: RecordHistoryAppBarTitle("Chronic Diseases Add", functionontap ),
-        ),
-        body:RecordHistoryBodyAdd(
+    return  Scaffold(
+      appBar: AppBar(
+        title: RecordHistoryAppBarTitle("Chronic Diseases Add", functionontap ),
+      ),
+      body:Padding(
+        padding: const EdgeInsets.only(top: 19.0),
+        child: RecordHistoryBodyAdd(
           context,
           chronicDiseaseController,
           regularMedicineChronicDiseaseController,
@@ -26,8 +26,8 @@ class ChronicDiseasesAdd extends StatelessWidget {
           "ChronicDiseases",
             functionontap
         ),
-
       ),
+
     );
   }
 }

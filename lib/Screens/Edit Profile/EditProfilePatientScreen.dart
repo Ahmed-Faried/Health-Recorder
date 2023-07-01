@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shop_app/Components/const.dart';
 
 import '../../Components/components.dart';
 import '../../Network/local/shared_preferences.dart';
@@ -40,18 +40,24 @@ class EditProfilePatient extends StatelessWidget {
                               [
                                 Row(
                                   children: [
-                                    ClipRRect(
-                                      borderRadius: BorderRadius.circular(50),
-                                      child: const Image(
-                                        width: 100,
-                                        height: 100,
-                                        fit: BoxFit.cover,
-                                        image: AssetImage("assets/test.png"),
-                                        //NetworkImage(
-                                        //     'https://images.theconversation.com/files/247814/original/file-20181128-32230-mojlgr.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=1200.0&fit=crop'
-                                        //  ),
+                                    Container(
+                                      width: 100,
+                                      height: 100,
+                                      child: ClipRRect(
+                                          borderRadius:
+                                          BorderRadius.circular(50),
+                                          child:
+                                          Image.network(
+                                            "${patientDataModel?.data?.pationt?.image}",
+                                            fit: BoxFit.cover,
+                                            width: 100,
+                                            height: 100,
+                                          )
+
+
                                       ),
                                     ),
+
                                   ],
                                 ),
                                 SizedBox(height: 6),
@@ -68,7 +74,10 @@ class EditProfilePatient extends StatelessWidget {
                                             decorationStyle: TextDecorationStyle.solid
                                         ),
                                       ),
-                                      onTap: (){},
+                                      onTap: (){
+                                        ProfileCubit.get(context).myAlertP(context);
+
+                                      },
                                     )
                                   ],
                                 ),

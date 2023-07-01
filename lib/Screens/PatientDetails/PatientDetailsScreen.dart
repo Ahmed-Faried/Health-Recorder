@@ -5,7 +5,6 @@ import 'package:shop_app/Bloc/HomeCubit.dart';
 import 'package:shop_app/Bloc/HomeStates.dart';
 import '../../Components/components.dart';
 import '../../Components/const.dart';
-import '../BottomPatientScreens/PatientCubit/PatientStates.dart';
 
 
 class PatientDetails extends StatelessWidget {
@@ -76,7 +75,7 @@ class PatientDetails extends StatelessWidget {
                   color: Colors.grey,
                 ),
                 Expanded(
-                  child: UI_PatientDetials(patientDataModel!, context),
+                  child: UI_PatientDetials(patientDataModel!, doctorDataModel!, context ),
                 ),
               ],
             ),
@@ -88,7 +87,14 @@ class PatientDetails extends StatelessWidget {
           ),
         );
       },
-      listener: (context, state) {},
+      listener: (context, state) {
+        if(state is addNID_Patient_SuccessState ){
+          toastShow(msg: " The disease has been added to favorites ", state: toastStates.SUCCESS);
+        }
+        if(state is addNID_Patient_ErrorState ){
+          toastShow(msg: " The operation failed. \n  Please try again later ", state: toastStates.ERROR);
+        }
+      },
     );
   }
 

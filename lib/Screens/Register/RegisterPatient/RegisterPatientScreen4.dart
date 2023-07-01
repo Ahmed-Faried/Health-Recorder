@@ -4,13 +4,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../../Components/components.dart';
-import '../../../Network/local/shared_preferences.dart';
-import '../RegisterDr/RegisterDrScreen.dart';
+
 import 'Cubit_Patient_Register/Patient_Register_Cubit.dart';
 import 'Cubit_Patient_Register/Patient_Register_States.dart';
-import 'Cubit_Skip_Patient_Register/Patient_Skip_Register_Cubit.dart';
-import 'Cubit_Skip_Patient_Register/Patient_Skip_Register_States.dart';
-import 'RegisterPatientScreen5.dart';
+
 
 
 class RegisterPatientScreen4 extends StatelessWidget {

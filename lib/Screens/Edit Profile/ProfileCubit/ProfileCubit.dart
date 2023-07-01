@@ -1,9 +1,7 @@
 
 
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -17,7 +15,6 @@ import '../../../Network/remote/dioHelper.dart';
 import '../../../moudel/LoginModel/DoctorDataMoudleing.dart';
 import 'ProfileStates.dart';
 import 'dart:io';
-import 'package:http/http.dart' as http;
 
 class ProfileCubit extends Cubit<ProfileStates> {
   ProfileCubit() : super(InitialProfileStates());
@@ -240,11 +237,11 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
 
 
+  final ImagePicker picker = ImagePicker();
+
+
 
   File? image ;
-
-
-  final ImagePicker picker = ImagePicker();
 
 
   //we can upload image from camera or from gallery based on parameter
@@ -257,6 +254,74 @@ class ProfileCubit extends Cubit<ProfileStates> {
 
   }
 
+
+
+  File? imageP ;
+
+
+  //we can upload image from camera or from gallery based on parameter
+  Future getImageP(ImageSource media) async {
+    var img = await picker.pickImage(source: media);
+
+    imageP = File(img!.path);
+    upData_Image_patient(imagePatient: imageP);
+    emit(ImageUpdateP());
+
+  }
+
+
+
+
+  upData_Image_patient({
+    required File? imagePatient,
+  }
+      ) async {
+
+    var    id = CacheHelper.getData(key: "id");
+
+    emit(PatientUpdateLoadingState());
+
+    FormData formData = FormData.fromMap({
+      'image': await MultipartFile.fromFile(imagePatient!.path),
+    });
+
+    DioHelper.update( path: "$Update_Patient_Image$id" ,
+
+      data: formData ,
+
+
+    ).then((value) {
+
+      patientDataModel = PatientDataModel.fromJson(value.data);
+
+
+      toastShow(msg: "Update Image Done", state: toastStates.SUCCESS);
+
+      emit(PatientUpdateSuccessState());
+
+
+    }).catchError((onError){
+      if (onError is DioError) {
+        if (onError.response != null) {
+
+          print(onError.response?.data['massage']);
+          print("---------------------------");
+          print(onError.toString());
+          print("---------------------------");
+
+          print(onError.type.name);
+
+        } else {
+          print(onError.message);
+        }
+      } else {
+        print(onError.toString());
+      }
+      print(onError.response?.data);
+
+      emit(PatientUpdateErrorState());
+    });
+  }
 
 
   // Future<void> uploadImage(File imageFile) async {
@@ -322,6 +387,72 @@ class ProfileCubit extends Cubit<ProfileStates> {
                     //if user click this button. user can upload image from camera
                     onPressed: () {
                       getImage(ImageSource.camera);
+                      Navigator.pop(context);
+
+                    },
+                    child: Container(
+                      height: 50,
+                      child: Row(
+                        children: [
+                          Icon(Icons.camera),
+                          Text('From Camera'),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        });
+  }
+  void myAlertP(context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape:
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(child: Text('Please choose media \nto select', style: TextStyle(fontSize: 18), textAlign: TextAlign.center,)),
+              ],
+            ),
+            content: Container(
+              height: MediaQuery.of(context).size.height / 6,
+              child: Column(
+                children: [
+                  ElevatedButton(
+
+                    style:  ElevatedButton.styleFrom(
+
+                      backgroundColor: Colors.white,
+                    ),
+                    //if user click this button, user can upload image from gallery
+                    onPressed: () {
+                      getImageP(ImageSource.gallery);
+
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      height: 50,
+                      child: Row(
+                        children: [
+                          Icon(Icons.image),
+                          Text('From Gallery'),
+                        ],
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  ElevatedButton(
+                    style:  ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                    ),
+                    //if user click this button. user can upload image from camera
+                    onPressed: () {
+                      getImageP(ImageSource.camera);
                       Navigator.pop(context);
 
                     },

@@ -1,5 +1,4 @@
 
-import '../../../../moudel/LoginModel/PatientDataMoudleing.dart';
 
 abstract class RegisterSkipPatientStates {}
 

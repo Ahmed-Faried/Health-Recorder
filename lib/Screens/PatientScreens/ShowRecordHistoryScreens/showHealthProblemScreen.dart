@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
-
 import '../../../Components/components.dart';
 import '../../../Components/const.dart';
-import '../../Login/Cubit/CubitLoginScreen.dart';
 
 class HealthProblemShow extends StatelessWidget {
    HealthProblemShow({Key? key}) : super(key: key);

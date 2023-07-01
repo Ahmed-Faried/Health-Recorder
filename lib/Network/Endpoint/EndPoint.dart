@@ -12,6 +12,8 @@ const GETALLDATAPATIENTFROMID     =  'v1/pationts/';
 
 const UpdateRegisterPatientHealth     =  'v1/update/';
 
+const UpdateDoctorAddNIDPatient     =  'v1/pId/';
+
 const GetPatientFromNID     =  'v1/pationts/';
 
 const forget_pass_Patient   = 'v1/pationts/forget_pass' ;

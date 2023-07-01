@@ -1,6 +1,6 @@
 abstract class HomeStates {}
 
-class initialStateShopApp extends HomeStates {}
+class initialStateHomeDoctorApp extends HomeStates {}
 
 class changebottomNavbar extends HomeStates {}
 
@@ -16,6 +16,17 @@ class Data_Doctor_SuccessState extends HomeStates {}
 class Data_Doctor_ErrorState extends HomeStates {}
 
 class Data_Doctor_LoadingState extends HomeStates {}
+
+
+
+
+class addNID_Patient_SuccessState extends HomeStates {}
+
+class addNID_Patient_ErrorState extends HomeStates {}
+
+class addNID_Patient_LoadingState extends HomeStates {}
+
+
 
 class changedDarkMode extends HomeStates {}
 

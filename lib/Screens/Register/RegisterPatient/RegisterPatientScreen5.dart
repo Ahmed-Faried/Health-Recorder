@@ -1,18 +1,12 @@
 import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:intl/intl.dart';
-import 'package:shop_app/Screens/BottomPatientScreens/HomePagePatient/HomePagePatientScreen.dart';
 
 import '../../../Components/components.dart';
-import '../../../Network/local/shared_preferences.dart';
-import '../RegisterDr/RegisterDrScreen.dart';
+
 import 'Cubit_Patient_Register/Patient_Register_Cubit.dart';
 import 'Cubit_Patient_Register/Patient_Register_States.dart';
-import 'Cubit_Skip_Patient_Register/Patient_Skip_Register_Cubit.dart';
-import 'Cubit_Skip_Patient_Register/Patient_Skip_Register_States.dart';
 
 
 class RegisterPatientScreen5 extends StatelessWidget {

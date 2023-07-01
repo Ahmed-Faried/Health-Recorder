@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hexcolor/hexcolor.dart';
 
 import 'Cubit_Patient_Register/Patient_Register_Cubit.dart';
 import 'Cubit_Patient_Register/Patient_Register_States.dart';

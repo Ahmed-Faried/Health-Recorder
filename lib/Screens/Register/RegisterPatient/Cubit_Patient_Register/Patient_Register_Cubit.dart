@@ -295,6 +295,8 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
 
       toastShow(msg: "Update Image Done", state: toastStates.SUCCESS);
 
+      emit(PatientRegisterImageSuccessState());
+
     }).catchError((onError){
       if (onError is DioError) {
         if (onError.response != null) {

@@ -2,6 +2,12 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:shop_app/Bloc/HomeCubit.dart';
+import 'package:shop_app/Screens/PatientScreens/ShowRecordHistoryScreens/showChronicDiseasesScreen.dart';
+import 'package:shop_app/Screens/PatientScreens/ShowRecordHistoryScreens/showGeneticDiseasesScreen.dart';
+import 'package:shop_app/Screens/PatientScreens/ShowRecordHistoryScreens/showHealthProblemScreen.dart';
+import 'package:shop_app/Screens/PatientScreens/ShowRecordHistoryScreens/showSurgicalHistoryScreen.dart';
+import 'package:shop_app/moudel/LoginModel/DoctorDataMoudleing.dart';
 
 import '../Network/local/shared_preferences.dart';
 import '../Screens/PatientScreens/AddRecordHistoryScreens/addChronicDiseasesScreen.dart';
@@ -464,7 +470,7 @@ Widget cardHelpCenter(context, String title, firstIcon, Screen) => Padding(
     );
 
 Widget CardPatientDetialsDoctor(
-        context, String text1, String text2, IconData icon, Widget) =>
+        context, String text1, String text2, IconData icon, Widget ,Widget1) =>
     Row(
       children: [
         Container(
@@ -518,7 +524,23 @@ Widget CardPatientDetialsDoctor(
                               onTap: () {
                                 navigateTo(context, Widget);
                               },
+                            ),
+                            SizedBox(width: 5,),
+                            InkWell(
+                              child: const Text(
+                                "View",
+                                style: TextStyle(
+                                  color: Colors.blueAccent,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                  fontFamily: 'MontaguSlab',
+                                ),
+                              ),
+                              onTap: () {
+                                navigateTo(context, Widget1);
+                              },
                             )
+
                           ],
                         ),
                         Divider(
@@ -947,7 +969,7 @@ Widget RecordHistoryAppBarTitle(String title, context) => Row(
       ],
     );
 
-Widget UI_PatientDetials(PatientDataModel model, context) =>
+Widget UI_PatientDetials(PatientDataModel model,DoctorDataModel Do_model, context) =>
     SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -1024,6 +1046,19 @@ Widget UI_PatientDetials(PatientDataModel model, context) =>
                                       color: Colors.grey,
                                       fontWeight: FontWeight.w400),
                                 ),
+                                Spacer(),
+                                TextButton(onPressed: (){
+                                  HomeCubit.get(context).addNIDPatient(DoctorID: Do_model.data?.doctor.id, NID_PAtient: model.data?.pationt?.nationalId);
+                                }, child: Container(
+                                    decoration: BoxDecoration(
+                                      // color: HexColor("5DCDC6"),
+                                      color: Colors.grey.shade100,
+                                      borderRadius: BorderRadius.circular(25)
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(horizontal: 8.0 ,vertical: 5),
+                                      child: Center(child: Text("Favorite" , style: TextStyle(color: HexColor("5DCDC6"),),)),
+                                    )))
                               ],
                             ),
                           ],
@@ -1196,7 +1231,6 @@ Widget UI_PatientDetials(PatientDataModel model, context) =>
             const SizedBox(
               height: 20,
             ),
-
             InkWell(
               child: Container(
                 child: Column(
@@ -1339,6 +1373,7 @@ Widget UI_PatientDetials(PatientDataModel model, context) =>
               "The disease name.....",
               Icons.coronavirus_sharp,
               ChronicDiseasesAdd(),
+              ChronicDiseasesShow(),
             ),
             const SizedBox(
               height: 20,
@@ -1349,6 +1384,7 @@ Widget UI_PatientDetials(PatientDataModel model, context) =>
               "Morem ipsum dolor sit amet, consectetur.......",
               Icons.coffee_outlined,
               HealthProblemAdd(),
+              HealthProblemShow(),
             ),
             const SizedBox(
               height: 20,
@@ -1359,6 +1395,7 @@ Widget UI_PatientDetials(PatientDataModel model, context) =>
               " The surgery type.....",
               Icons.adb_rounded,
               SurgicalHistoryAdd(),
+              SurgicalHistoryShow(),
             ),
             const SizedBox(
               height: 20,
@@ -1369,6 +1406,7 @@ Widget UI_PatientDetials(PatientDataModel model, context) =>
               " The disease name.....",
               Icons.coronavirus_sharp,
               GeneticDiseasesAdd(),
+              GeneticDiseasesShow(),
             ),
             const SizedBox(
               height: 20,

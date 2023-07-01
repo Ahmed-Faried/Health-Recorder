@@ -6,8 +6,6 @@ import 'package:shop_app/Screens/BottomDoctorScreens/HomePageDoctor/HomePageDoct
 
 import '../../../Components/components.dart';
 import '../../../Network/local/shared_preferences.dart';
-import '../../Login/Cubit/CubitLoginScreen.dart';
-import '../RegisterPatient/Cubit_Patient_Register/Patient_Register_Cubit.dart';
 import 'Cubit_DR_Register/DR_RegisterCubit.dart';
 import 'Cubit_DR_Register/DR_RegisterStates.dart';
 
@@ -140,6 +138,8 @@ class RegisterDrScreen extends StatelessWidget {
                                             toastShow(
                                                 msg: 'first Name isEmpty',
                                                 state: toastStates.WARNING);
+                                            return "*";
+
                                           }
                                         },
                                         style: TextStyle(color: Colors.black),
@@ -183,6 +183,7 @@ class RegisterDrScreen extends StatelessWidget {
                                             toastShow(
                                                 msg: 'Last Name isEmpty',
                                                 state: toastStates.WARNING);
+                                            return "*";
                                           }
                                         },
                                         style: TextStyle(
@@ -225,6 +226,8 @@ class RegisterDrScreen extends StatelessWidget {
                                   toastShow(
                                       msg: 'Password isEmpty',
                                       state: toastStates.WARNING);
+                                  return "*";
+
                                 }
                               },
                               label: 'Password',

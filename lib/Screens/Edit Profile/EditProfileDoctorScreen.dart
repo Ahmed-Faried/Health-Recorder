@@ -1,6 +1,4 @@
-import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -10,8 +8,6 @@ import 'package:shop_app/Screens/Edit%20Profile/ProfileCubit/ProfileStates.dart'
 import '../../Components/components.dart';
 import '../../Components/const.dart';
 import '../../Network/local/shared_preferences.dart';
-import '../BottomDoctorScreens/DoctorCubit/DoctorCubit.dart';
-import '../Register/RegisterPatient/Cubit_Patient_Register/Patient_Register_Cubit.dart';
 
 class EditProfileDoctor extends StatelessWidget {
   const EditProfileDoctor({Key? key}) : super(key: key);
