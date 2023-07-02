@@ -642,9 +642,7 @@ class RegisterPatientScreen3 extends StatelessWidget {
           }
         }
         if (state is PatientRegisterErrorState) {
-          if (state.Errors != null) {
             toastShow(msg: "${state.Errors}", state: toastStates.ERROR);
-          }
         }
 
 

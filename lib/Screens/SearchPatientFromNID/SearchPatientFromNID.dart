@@ -24,6 +24,7 @@ class SearchFromNID extends StatelessWidget {
           }
           if(state is SearchStates_ErrorState){
             toastShow(msg: state.errors.toString(), state:toastStates.WARNING );
+            toastShow(msg: "N-ID Not Fond", state:toastStates.WARNING );
             print(state.errors.toString());
           }
         },
