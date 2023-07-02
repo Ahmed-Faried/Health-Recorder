@@ -4,12 +4,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../../../Components/components.dart';
+import '../../BottomPatientScreens/HomePagePatient/HomePagePatientScreen.dart';
 import 'Cubit_Patient_Register/Patient_Register_Cubit.dart';
 import 'Cubit_Patient_Register/Patient_Register_States.dart';
 
 
 class RegisterPatientScreen6 extends StatelessWidget {
   RegisterPatientScreen6({Key? key}) : super(key: key);
+  var formKey5 = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,7 @@ class RegisterPatientScreen6 extends StatelessWidget {
         if (state is PatientRegisterHealthErrorState) {
           if (state.Errors != null) {
             toastShow(msg: "${state.Errors}", state: toastStates.ERROR);
+            toastShow(msg: "حدث خطا حاول في وقت لاحق ", state: toastStates.ERROR);
           }
         }
       },
@@ -57,6 +60,7 @@ class RegisterPatientScreen6 extends StatelessWidget {
               ),
             ), // Image top.png
             Form(
+              key: formKey5,
               child: Padding(
                 padding: const EdgeInsets.all(18.0), //Padding all Screen
                 child: SingleChildScrollView(
@@ -232,16 +236,11 @@ class RegisterPatientScreen6 extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(35),
                                 color: HexColor("#68DED7"),
                               ),
-                              child:Center(child: Icon(Icons.arrow_back , color:  Colors.white,)) ,
+                              child:Center(child: Text("Skip" ,style: TextStyle(color: Colors.white ,fontSize: 13),)) ,
                             ),
                             onTap: () {
-                              Patient_RegisterCubit.get(context)
-                                  .controller
-                                  .previousPage(
-                                  duration: const Duration(
-                                    milliseconds: 1500,
-                                  ),
-                                  curve: Curves.fastLinearToSlowEaseIn);
+                              navigateTo(context, HomePagePatientScreen());
+                              ;
                             },
                           ),
                           Spacer(),
@@ -263,18 +262,43 @@ class RegisterPatientScreen6 extends StatelessWidget {
                                   ),
                                 ),
                                 onTap: () {
-                                  Patient_RegisterCubit.get(context).PatientRegisterHealthState(
-                                    test1: Patient_RegisterCubit.get(context).chronicDiseaseValue,
-                                    test2: Patient_RegisterCubit.get(context).chronicDiseaseMedicineController.text,
-                                    test3: Patient_RegisterCubit.get(context).healthProblemController.text,
-                                    test4: Patient_RegisterCubit.get(context).healthProblemMedicineController.text,
-                                    test5: Patient_RegisterCubit.get(context).surgeryController.text,
-                                    // test6: Patient_RegisterCubit.get(context).Date,
-                                      test6: "01/02/2020",
-                                    test7: Patient_RegisterCubit.get(context).geneticDiseaseController.text,
-                                    test8: Patient_RegisterCubit.get(context).geneticDiseaseMedicineController.text,
-                                    context:context
-                                  );
+    if (formKey5.currentState!.validate()) {
+      Patient_RegisterCubit.get(context).PatientRegisterHealthState(
+          test1: Patient_RegisterCubit
+              .get(context)
+              .chronicDiseaseValue,
+          test2: Patient_RegisterCubit
+              .get(context)
+              .chronicDiseaseMedicineController
+              .text,
+          test3: Patient_RegisterCubit
+              .get(context)
+              .healthProblemController
+              .text,
+          test4: Patient_RegisterCubit
+              .get(context)
+              .healthProblemMedicineController
+              .text,
+          test5: Patient_RegisterCubit
+              .get(context)
+              .surgeryController
+              .text,
+          // test6: Patient_RegisterCubit.get(context).Date,
+          test6: "01/02/2020",
+          test7: Patient_RegisterCubit
+              .get(context)
+              .geneticDiseaseController
+              .text,
+          test8: Patient_RegisterCubit
+              .get(context)
+              .geneticDiseaseMedicineController
+              .text,
+          context: context
+      );
+    }
+
+
+
                                 },
                               );
                             },

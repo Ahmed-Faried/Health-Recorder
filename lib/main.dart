@@ -12,9 +12,7 @@ import 'Components/const.dart';
 import 'Network/local/shared_preferences.dart';
 import 'Network/remote/dioHelper.dart';
 import 'OnBoardingScreen/OnBoardingScreen.dart';
-
 import 'Screens/LoginAndRegister/LoginAndRegister.dart';
-
 import 'bloc/bloc_observer.dart';
 void main()async {
 
@@ -35,21 +33,12 @@ void main()async {
        imagePatient = CacheHelper.getData(key:'imagePatient') ;
        imageDoctor = CacheHelper.getData(key:'imageDoctor') ;
 
-
-
-
   print("isdark el print $isdark");
-
   print("National_ID el print $National_ID");
-
   print("onBoarding el print $onboarding");
-
   print("token el print $token");
-
   print("idPatient el print $idPatient");
-
   print("department el print $department");
-
   print("idDoctor el print $idDoctor");
 
 
@@ -81,15 +70,11 @@ class MyApp extends StatelessWidget {
    var startWidget ;
 
   Widget build(BuildContext context) {
-    // SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
-    //     statusBarColor: Colors.white,
-    //     statusBarIconBrightness: Brightness.dark
-    // ));
 
     return MultiBlocProvider(
       providers:
       [
-        BlocProvider(create: (BuildContext context) => HomeCubit()),//..getData_Doctor(idDoctor)
+        BlocProvider(create: (BuildContext context) => HomeCubit()),
         BlocProvider(create: (BuildContext context) => ProfileCubit()),
         // BlocProvider(create: (BuildContext context) => RegisterCubit()),
         // BlocProvider(create: (BuildContext context) => LoginScreenCubit()),
@@ -180,7 +165,6 @@ class MyApp extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-
                     SizedBox(height: 5,),
                     Row(
                       children: [

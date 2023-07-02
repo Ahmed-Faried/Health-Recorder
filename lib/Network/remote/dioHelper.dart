@@ -1,78 +1,39 @@
 import 'package:dio/dio.dart';
 class DioHelper {
-
   static Dio dio = Dio();
 
-  static init (){
-
+  static init() {
     dio = Dio(BaseOptions(
       baseUrl: 'https://eslamsaber8-healthrecorder.onrender.com/api/',
       //eslam talet  //https://nice-rose-yak-ring.cyclic.app/api/
       //eslam tany  //https://eslamsaber8-healthrecorder.onrender.com/api/
       //eslam      //https://joyous-cormorant.cyclic.app/api/
-     //abdo       //https://student.valuxapps.com/api/
-       receiveDataWhenStatusError: true ,
-
+      //abdo       //https://student.valuxapps.com/api/
+      receiveDataWhenStatusError: true,
     ));
-
   }
 
-  static Future<Response> getData ({
-
+  static Future<Response> getData({
     required String urlMethod,
-
-}) async {
-
-
-    return await dio.get(
-        urlMethod,
-    ) ;
-  }
-
-
-  static Future<Response> postData  ({
-    required String path,
-     dynamic data ,
-
-}) async {
-
-
-    return dio.post(
-      path ,
-      data: data
-    ) ;
-
-  }
-
-
-
-
-
-
-
-
-
-
-  static Future<Response> update  ({
-    required String path,
-    dynamic data ,
-
   }) async {
-
-
-    return dio.patch(
-        path ,
-        data: data
-    ) ;
-
+    return await dio.get(
+      urlMethod,
+    );
   }
 
+  static Future<Response> postData({
+    required String path,
+    dynamic data,
+  }) async {
+    return dio.post(path, data: data);
+  }
 
-
-
-
-
-
+  static Future<Response> update({
+    required String path,
+    dynamic data,
+  }) async {
+    return dio.patch(path, data: data);
+  }
 
 //   static Future<Response> getData ({
 //
@@ -121,7 +82,6 @@ class DioHelper {
 //
 //
 }
-
 
 //api/v1/Equipments
 // https://newsapi.org/v2/top-headlines?county=eg%&category=business&apikey=5cc91775b2d245af9622a59b109cbf6e

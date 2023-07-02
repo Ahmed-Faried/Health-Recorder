@@ -22,7 +22,7 @@ class RegisterPatientScreen extends StatelessWidget {
                 children: [
                   Expanded(
                     child: PageView.builder(
-                     // physics: NeverScrollableScrollPhysics(),/ مهم علشان الاسكرول
+                     physics: NeverScrollableScrollPhysics(),
                       // pageSnapping: false,
                       // allowImplicitScrolling: true,
                       controller: Patient_RegisterCubit.get(context).controller,

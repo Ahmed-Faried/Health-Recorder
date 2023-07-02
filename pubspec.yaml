@@ -30,32 +30,32 @@ environment:
 dependencies:
   bloc: ^8.1.0
   flutter_bloc: ^8.1.1
-  sqflite: ^2.2.0+1
   intl: ^0.17.0
   conditional_builder_null_safety: ^0.0.6
   dio: ^4.0.6
   shared_preferences: ^2.0.17
-#  webview_flutter: ^4.0.6  msh sha8ala
   smooth_page_indicator: ^1.0.1
   hexcolor: ^3.0.1
   fluttertoast: ^8.2.1
   carousel_slider: ^4.2.1
   readmore: ^2.2.0
-
-  #  barcode: ^2.2.4 be floos
   flutter_svg: ^2.0.5
   qr_flutter: ^4.0.0
   google_fonts: ^4.0.4
   animated_splash_screen: ^1.3.0
-
-#new package
   sliding_up_panel: ^2.0.0+1
   image_picker: ^0.8.9
-  flutter_speed_dial: ^7.0.0
-  url_launcher: ^6.1.11
   skeletons: ^0.0.3
 
 
+
+
+  #new package
+  #barcode: ^2.2.4 be floos
+  #webview_flutter: ^4.0.6  msh sha8ala
+  #sqflite: ^2.2.0+1
+  flutter_speed_dial: ^7.0.0
+  url_launcher: ^6.1.11
 
 
 

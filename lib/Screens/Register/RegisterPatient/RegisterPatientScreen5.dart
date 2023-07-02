@@ -5,12 +5,15 @@ import 'package:hexcolor/hexcolor.dart';
 
 import '../../../Components/components.dart';
 
+import '../../BottomPatientScreens/HomePagePatient/HomePagePatientScreen.dart';
 import 'Cubit_Patient_Register/Patient_Register_Cubit.dart';
 import 'Cubit_Patient_Register/Patient_Register_States.dart';
 
 
 class RegisterPatientScreen5 extends StatelessWidget {
   RegisterPatientScreen5({Key? key}) : super(key: key);
+
+  var formKey4 = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +48,7 @@ class RegisterPatientScreen5 extends StatelessWidget {
               ),
             ), // Image top.png
             Form(
+              key: formKey4,
               child: Padding(
                 padding: const EdgeInsets.all(18.0), //Padding all Screen
                 child: SingleChildScrollView(
@@ -225,16 +229,12 @@ class RegisterPatientScreen5 extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(35),
                                 color: HexColor("#68DED7"),
                               ),
-                              child:Center(child: Icon(Icons.arrow_back , color:  Colors.white,)) ,
+                              child:Center(child:  Text("Skip" ,style: TextStyle(color: Colors.white ,fontSize: 13),)) ,
                             ),
                             onTap: () {
-                              Patient_RegisterCubit.get(context)
-                                  .controller
-                                  .previousPage(
-                                  duration: const Duration(
-                                    milliseconds: 1500,
-                                  ),
-                                  curve: Curves.fastLinearToSlowEaseIn);                            },
+                              navigateTo(context, HomePagePatientScreen());
+
+                            },
                           ),
                           Spacer(),
                           ConditionalBuilder(
@@ -255,14 +255,16 @@ class RegisterPatientScreen5 extends StatelessWidget {
                                   ),
                                 ),
                                 onTap: () {
-                                  Patient_RegisterCubit.get(context)
-                                      .controller
-                                      .nextPage(
-                                      duration: const Duration(
-                                        milliseconds: 1500,
-                                      ),
-                                      curve: Curves.fastLinearToSlowEaseIn);
-
+    if (formKey4.currentState!.validate()) {
+      Patient_RegisterCubit
+          .get(context)
+          .controller
+          .nextPage(
+          duration: const Duration(
+            milliseconds: 1500,
+          ),
+          curve: Curves.fastLinearToSlowEaseIn);
+    }
                                 },
                               );
                             },

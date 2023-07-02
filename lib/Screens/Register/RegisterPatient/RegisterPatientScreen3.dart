@@ -589,13 +589,7 @@ class RegisterPatientScreen3 extends StatelessWidget {
                                     onTap: () {
                                       if (formKey2.currentState!.validate()) {
 
-                                        // Patient_RegisterCubit.get(context)
-                                        //     .controller
-                                        //     .nextPage(
-                                        //     duration: const Duration(
-                                        //       milliseconds: 1500,
-                                        //     ),
-                                        //     curve: Curves.fastLinearToSlowEaseIn);
+
                                             Patient_RegisterCubit.get(context).PatientRegister(
                                             fristName: Patient_RegisterCubit.get(context).firstNamePatientController.text,
                                             lastName: Patient_RegisterCubit.get(context).lastNamePatientController.text,

@@ -10,7 +10,6 @@ import 'package:shop_app/Screens/Help%20center/HelpCenterScreen.dart';
 import 'package:shop_app/Screens/LoginAndRegister/LoginAndRegister.dart';
 import '../../../Components/const.dart';
 import '../../../Network/local/shared_preferences.dart';
-import '../../Dangerous/dangerous.dart';
 import '../../Edit Profile/EditProfilePatientScreen.dart';
 import '../../TestBarCode/TestBarCode.dart';
 import '../PatientCubit/PatientCubit.dart';
@@ -60,16 +59,16 @@ class AccountPatientScreen extends StatelessWidget {
                                 fontSize: 18),
                             ),
                           ),
-                          InkWell(
-                            child: const Icon(
-                              Icons.dangerous_outlined,
-                              size: 45,
-                              color: Colors.white,
-                            ),
-                            onTap: (){
-                              navigateAndFinish(context, dangerous());
-                            },
-                          ),
+                          // InkWell(
+                          //   child: const Icon(
+                          //     Icons.dangerous_outlined,
+                          //     size: 45,
+                          //     color: Colors.white,
+                          //   ),
+                          //   onTap: (){
+                          //     navigateAndFinish(context, dangerous());
+                          //   },
+                          // ),
 
                         ],
                       ),

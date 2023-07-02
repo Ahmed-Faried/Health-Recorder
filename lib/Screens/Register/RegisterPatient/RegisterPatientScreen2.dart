@@ -170,12 +170,9 @@ class RegisterPatientScreen2 extends StatelessWidget {
                                       onChanged: (vaule) {},
                                       validator: (vaule) {
                                         if (vaule!.isEmpty) {
-                                          toastShow(
-                                              msg: 'first Name isEmpty',
-                                              state: toastStates.WARNING);
+
                                           return "*" ;
                                         }
-                                        return null;
                                       },
                                       style: TextStyle(color: Colors.black),
                                       decoration: InputDecoration(
@@ -214,9 +211,7 @@ class RegisterPatientScreen2 extends StatelessWidget {
                                       onChanged: (vaule) {},
                                       validator: (vaule) {
                                         if (vaule!.isEmpty) {
-                                          toastShow(
-                                              msg: 'Last Name isEmpty',
-                                              state: toastStates.WARNING);
+
                                           return "*" ;
                                         }
                                       },
@@ -256,9 +251,7 @@ class RegisterPatientScreen2 extends StatelessWidget {
                             suffixPressed: () {},
                             validator: (vaule) {
                               if (vaule!.isEmpty) {
-                                toastShow(
-                                    msg: 'email isEmpty',
-                                    state: toastStates.WARNING);
+
                                 return "*" ;
                               }
                             },
@@ -277,9 +270,7 @@ class RegisterPatientScreen2 extends StatelessWidget {
                             suffixPressed: () {},
                             validator: (vaule) {
                               if (vaule!.isEmpty) {
-                                toastShow(
-                                    msg: 'password isEmpty',
-                                    state: toastStates.WARNING);
+
                                 return "*" ;
                               }
                             },
@@ -312,9 +303,8 @@ class RegisterPatientScreen2 extends StatelessWidget {
                             suffixPressed: () {},
                             validator: (vaule) {
                               if (vaule!.isEmpty) {
-                                toastShow(
-                                    msg: 'phone isEmpty',
-                                    state: toastStates.WARNING);
+
+
                                 return "*" ;
                               }
                             },

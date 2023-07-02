@@ -9,54 +9,37 @@ import '../../../Network/local/shared_preferences.dart';
 import '../../../moudel/LoginModel/PatientDataMoudleing.dart';
 import 'StatesLoginScreen.dart';
 
-
-class LoginScreenCubit extends Cubit<LoginScreenStates>{
+class LoginScreenCubit extends Cubit<LoginScreenStates> {
   LoginScreenCubit() : super(InitialStateLoginScreen());
 
-
-  static LoginScreenCubit get(context){
+  static LoginScreenCubit get(context) {
     return BlocProvider.of(context);
   }
 
+  var userNameController = TextEditingController();
+  var passwordController = TextEditingController();
 
-  var userNameController = TextEditingController() ;
-  var passwordController = TextEditingController() ;
-
-
-
-  DoctorLogin(
-  {
+  DoctorLogin({
     required String email,
     required String password,
-  }
-)
- {
-
-emit(LoginDoctorScreenLoadingState());
+  }) {
+    emit(LoginDoctorScreenLoadingState());
     DioHelper.postData(
         path: GETDATADOCTOR,
-        data:
-        {
-       'email' : email ,
-       'password' : password
-        }).then((value) async {
+        data: {'email': email, 'password': password}).then((value) async {
+      doctorDataModel = DoctorDataModel.fromJson(value.data);
 
+      CacheHelper.saveData(
+          key: 'idDoctor', value: doctorDataModel?.data?.doctor.id);
+      CacheHelper.saveData(
+          key: 'department', value: doctorDataModel?.data?.doctor.department);
+      CacheHelper.saveData(key: 'token', value: doctorDataModel?.token);
 
-          doctorDataModel = DoctorDataModel.fromJson(value.data);
+      print(doctorDataModel?.data?.doctor.department);
+      print(doctorDataModel?.data?.doctor.id);
 
-          CacheHelper.saveData(
-              key: 'idDoctor', value: doctorDataModel?.data?.doctor.id);
-          CacheHelper.saveData(
-              key: 'department',
-              value: doctorDataModel?.data?.doctor.department);
-          CacheHelper.saveData(
-              key: 'token', value: doctorDataModel?.token);
-
-          print(doctorDataModel?.data?.doctor.department);
-          print(doctorDataModel?.data?.doctor.id);
-
-          emit(LoginDoctorScreenSuccessState(doctorDataModel!));
-    }).catchError((onError){
+      emit(LoginDoctorScreenSuccessState(doctorDataModel!));
+    }).catchError((onError) {
       print(onError.toString());
       if (onError is DioError) {
         if (onError.response != null) {
@@ -64,7 +47,6 @@ emit(LoginDoctorScreenLoadingState());
           print(onError.response?.data);
           print(onError.toString());
           print(onError.type.name);
-
         } else {
           print(onError.message);
         }
@@ -72,32 +54,23 @@ emit(LoginDoctorScreenLoadingState());
         print(onError.toString());
       }
       print("eslam errrrrrrrrror eslam server eslam or net ");
-      emit(LoginDoctorScreenErrorState(onError.response!.data['message'].toString()));
+      emit(LoginDoctorScreenErrorState(
+          onError.response!.data['message'].toString()));
     });
- }
+  }
 
-
-
-
-   PatientLogin(
-      {
-        //Patient@signin.com
-        //Patient@signin.com
-        required String email,
-        required String password,}
-      )
-  {
-
+  PatientLogin({
+    //Patient@signin.com
+    //Patient@signin.com
+    required String email,
+    required String password,
+  }) {
     emit(LoginPatientScreenLoadingState());
     DioHelper.postData(
         path: GETDATAPATIENT,
-        data:
-        {
-          'email' : email ,
-          'password' : password
-        }).then((value) async {
+        data: {'email': email, 'password': password}).then((value) async {
       print(value.statusMessage);
-       patientDataModel =  PatientDataModel.fromJson(value.data);
+      patientDataModel = PatientDataModel.fromJson(value.data);
       try {
         patientDataModel = PatientDataModel.fromJson(value.data);
       } catch (e) {
@@ -111,20 +84,16 @@ emit(LoginDoctorScreenLoadingState());
       print(patientDataModel?.data);
       print(patientDataModel?.data?.pationt?.id);
 
-
       emit(LoginPatientScreenSuccessState(patientDataModel!));
-    }).catchError((onError){
-
+    }).catchError((onError) {
       if (onError is DioError) {
         if (onError.response != null) {
-
           print(onError.response?.data);
           print("---------------------------");
           print(onError.toString());
           print("---------------------------");
 
           print(onError.type.name);
-
         } else {
           print(onError.message);
         }
@@ -134,12 +103,10 @@ emit(LoginDoctorScreenLoadingState());
 
       print(onError.toString());
       print("eslam errrrrrrrrror eslam server eslam or net ");
-      emit(LoginPatientScreenErrorState(onError.response?.data['message'].toString()));
+      emit(LoginPatientScreenErrorState(
+          onError.response?.data['message'].toString()));
     });
   }
-
-
-
 
   //
   // // function of getDataFromPatient
@@ -204,21 +171,13 @@ emit(LoginDoctorScreenLoadingState());
   //
   //
 
+  bool isPassword = true;
+  IconData showPassword = Icons.visibility_off_rounded;
 
-
-
-
-  bool isPassword = true ;
-  IconData showPassword = Icons.visibility_off_rounded ;
-
-  void changePasswordRegister(){
-    isPassword =  ! isPassword ;
-    showPassword = isPassword ? Icons.visibility_off_rounded : Icons.visibility ;
+  void changePasswordRegister() {
+    isPassword = !isPassword;
+    showPassword = isPassword ? Icons.visibility_off_rounded : Icons.visibility;
 
     emit(ChangePasswordIconRegister());
   }
-
-
-
-
 }

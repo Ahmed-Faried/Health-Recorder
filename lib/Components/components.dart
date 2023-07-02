@@ -5,6 +5,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:shop_app/Bloc/HomeCubit.dart';
 import 'package:shop_app/Screens/PatientScreens/AddRecordHistoryScreens/addDiagnosesScreen.dart';
 import 'package:shop_app/Screens/PatientScreens/ShowRecordHistoryScreens/showChronicDiseasesScreen.dart';
+import 'package:shop_app/Screens/PatientScreens/ShowRecordHistoryScreens/showDiagnosesScreen.dart';
 import 'package:shop_app/Screens/PatientScreens/ShowRecordHistoryScreens/showGeneticDiseasesScreen.dart';
 import 'package:shop_app/Screens/PatientScreens/ShowRecordHistoryScreens/showHealthProblemScreen.dart';
 import 'package:shop_app/Screens/PatientScreens/ShowRecordHistoryScreens/showSurgicalHistoryScreen.dart';
@@ -240,7 +241,8 @@ Widget newDivider(context) {
   );
 }
 
-Widget ScreenArticleBulder(list) => ConditionalBuilder(
+Widget ScreenArticleBulder(list) =>
+    ConditionalBuilder(
     condition: list.length > 0,
     builder: (context) => ListView.separated(
           physics: const BouncingScrollPhysics(),
@@ -340,7 +342,7 @@ FieldFromRegistr({
         obscureText: obscureText,
         controller: controller,
         keyboardType: type,
-        onTap: onTap,
+        onTap:(){ onTap;},
         onChanged: (value) {},
         validator: validator ,
         style: TextStyle(color: Colors.black),
@@ -471,7 +473,7 @@ Widget cardHelpCenter(context, String title, firstIcon, Screen) => Padding(
     );
 
 Widget CardPatientDetialsDoctor(
-        context, String text1, String text2, IconData icon, Widget ,Widget1) =>
+        context, String text1, String text2, IconData icon, Widget0 ,Widget1) =>
     Row(
       children: [
         Container(
@@ -514,7 +516,7 @@ Widget CardPatientDetialsDoctor(
                             ),
                             InkWell(
                               child: const Text(
-                                "Edit",
+                                "Add",
                                 style: TextStyle(
                                   color: Colors.blueAccent,
                                   fontWeight: FontWeight.bold,
@@ -523,7 +525,7 @@ Widget CardPatientDetialsDoctor(
                                 ),
                               ),
                               onTap: () {
-                                navigateTo(context, Widget);
+                                navigateTo(context, Widget0);
                               },
                             ),
                             SizedBox(width: 5,),
@@ -715,7 +717,7 @@ Widget EditProfileRow(context, String title, String hint, controller) => Row(
 
 
 Widget RecordHistoryBodyShow(context, String text1, String text2,
-        String ApiText1, String ApiText2, Function ontap) =>
+        String ApiText1, String ApiText2) =>
     Padding(
       padding: const EdgeInsets.only(bottom: 15, left: 30, right: 30),
       child: Container(
@@ -820,7 +822,7 @@ Widget RecordHistoryBodyAdd(
         TextEditingController ControllerSolve,
         String HintTextProblem,
         String HintTextSolve,
-        Function ontap) =>
+    void Function()? ontap ) =>
     Padding(
       padding: const EdgeInsets.only(bottom: 15, left: 20, right: 20),
       child: Container(
@@ -941,9 +943,10 @@ Widget RecordHistoryBodyAdd(
                   ),
                 ),
               ),
-              onTap: () {
-                ontap();
-              },
+              onTap:(){
+                ontap ;
+              }  ,
+
             ),
             const SizedBox(
               height: 10,
@@ -1416,6 +1419,35 @@ Widget UI_PatientDetials(PatientDataModel model,DoctorDataModel Do_model, contex
                                               ),
                                             ),
                                           ),
+                                          InkWell(
+                                            child: const Text(
+                                              "Add",
+                                              style: TextStyle(
+                                                color: Colors.blueAccent,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                                fontFamily: 'MontaguSlab',
+                                              ),
+                                            ),
+                                            onTap: () {
+                                              navigateTo(context,DiagnosesAdd() );
+                                            },
+                                          ),
+                                          SizedBox(width: 5,),
+                                          InkWell(
+                                            child: const Text(
+                                              "View",
+                                              style: TextStyle(
+                                                color: Colors.blueAccent,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 12,
+                                                fontFamily: 'MontaguSlab',
+                                              ),
+                                            ),
+                                            onTap: () {
+                                              navigateTo(context, DiagnosesShow());
+                                            },
+                                          )
                                         ],
                                       ),
                                       SizedBox(
@@ -1523,7 +1555,7 @@ Widget UI_PatientDetials(PatientDataModel model,DoctorDataModel Do_model, contex
               context,
               "health problem",
               "Morem ipsum dolor sit amet, consectetur.......",
-              Icons.coffee_outlined,
+              Icons.library_books,
               HealthProblemAdd(),
               HealthProblemShow(),
             ),

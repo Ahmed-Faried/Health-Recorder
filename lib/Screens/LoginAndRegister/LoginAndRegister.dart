@@ -6,72 +6,70 @@ import 'package:shop_app/Screens/Login/LoginPatientScreen.dart';
 import 'package:shop_app/Screens/Register/RegisterDr/RegisterDrScreen.dart';
 import 'package:shop_app/Screens/Register/RegisterPatient/RegisterPatientScreen1.dart';
 
-
-
-
 class LoginAndRegister extends StatelessWidget {
   const LoginAndRegister({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-    return
-      Scaffold(
+    return Scaffold(
       body: Stack(
-        children: <Widget>
-        [
-           Container(
+        children: <Widget>[
+          Container(
             color: Colors.white,
             alignment: Alignment.bottomLeft,
-            child:  const Image(image: AssetImage('assets/bot-L.png'),
-              alignment: Alignment.bottomLeft,width: 200 ,height: 350  , fit: BoxFit.contain,),
-
+            child: const Image(
+              image: AssetImage('assets/bot-L.png'),
+              alignment: Alignment.bottomLeft,
+              width: 200,
+              height: 350,
+              fit: BoxFit.contain,
+            ),
           ), // Image bot-L.png STACK
-           const  SizedBox(
+          const SizedBox(
             width: double.infinity,
             height: 100,
-            child: Image(image: AssetImage('assets/top.png'), fit: BoxFit.fill, colorBlendMode: BlendMode.colorDodge,),
-
+            child: Image(
+              image: AssetImage('assets/top.png'),
+              fit: BoxFit.fill,
+              colorBlendMode: BlendMode.colorDodge,
+            ),
           ), // Image top.png STACK
-           Center(
+          Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,//19/4/2023
-              children:
-              [
+              crossAxisAlignment: CrossAxisAlignment.center, //19/4/2023
+              children: [
                 const SizedBox(height: 70),
                 const Spacer(),
                 Row(
-                 mainAxisAlignment: MainAxisAlignment.center,
-                 children:
-                  [
-                   // Container(
-                   //   width: 150 ,
-                   //   height: 150,
-                   //   decoration: BoxDecoration(
-                   //
-                   //     borderRadius: BorderRadius.circular(50),
-                   //      color: Colors.white,
-                   //     shape: BoxShape.rectangle,
-                   //
-                   //   ),
-                   //
-                   //   child: Image(image: AssetImage('assets/Logo.png' ,),
-                   //
-                   //     ),
-                   // ),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    // Container(
+                    //   width: 150 ,
+                    //   height: 150,
+                    //   decoration: BoxDecoration(
+                    //
+                    //     borderRadius: BorderRadius.circular(50),
+                    //      color: Colors.white,
+                    //     shape: BoxShape.rectangle,
+                    //
+                    //   ),
+                    //
+                    //   child: Image(image: AssetImage('assets/Logo.png' ,),
+                    //
+                    //     ),
+                    // ),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(20),
                       child: Container(
-
-                        decoration:   BoxDecoration(
-                            boxShadow:  [
-                              BoxShadow(
-                                color: Colors.grey,
-                                blurRadius: 5,
-                                spreadRadius: 1,
-                                offset: Offset(2, 2),
-                              ),
-                            ] ,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 5,
+                              spreadRadius: 1,
+                              offset: Offset(2, 2),
+                            ),
+                          ],
                         ),
                         child: const Image(
                           width: 150,
@@ -84,9 +82,8 @@ class LoginAndRegister extends StatelessWidget {
                         ),
                       ),
                     ),
-
                   ],
-               ),
+                ),
                 // Image Logo.png
                 const SizedBox(height: 20),
 
@@ -94,98 +91,119 @@ class LoginAndRegister extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: const [
-                    Text("Health" , style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 35,
-                    ),)
+                    Text(
+                      "Health",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 35,
+                      ),
+                    )
                   ],
                 ), // Text Health
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: const [
-                    Text("Recorder"  , style: TextStyle(
-                      fontWeight: FontWeight.w900,
-                      fontSize: 35,
-                    ),)
+                    Text(
+                      "Recorder",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 35,
+                      ),
+                    )
                   ],
                 ), // Text Recorder
-                const SizedBox(height: 60,),
+                const SizedBox(
+                  height: 60,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 22.0),
                   child: DropdownButton(
-                    underline: Container() ,
-                    icon: Icon(Icons.list,color: Colors.black,),
+                    underline: Container(),
+                    icon: Icon(
+                      Icons.list,
+                      color: Colors.black,
+                    ),
                     borderRadius: BorderRadius.circular(20),
                     hint: Container(
                         width: 200,
                         height: 40,
                         decoration: BoxDecoration(
-                          color:HexColor("#5DCEC8"),
+                          color: HexColor("#5DCEC8"),
                           borderRadius: BorderRadius.circular(20),
                         ),
-                        child: Center(child: const Text('Login',style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        ),))
-                    ),
+                        child: Center(
+                            child: const Text(
+                          'Login',
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                            color: Colors.white,
+                          ),
+                        ))),
                     elevation: 8,
-                    style:  TextStyle(
+                    style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
                     ),
                     menuMaxHeight: 130,
-                    items:
-                    [
+                    items: [
                       DropdownMenuItem(
                         value: 'Page 1',
-                        child:  TextButton(
-                            onPressed:(){
+                        child: TextButton(
+                            onPressed: () {
                               RemoveCacheHelper();
 
                               navigateTo(context, LoginDoctorScreen());
                             },
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(HexColor("#5DCEC8")),
+                              backgroundColor: MaterialStateProperty.all(
+                                  HexColor("#5DCEC8")),
                               elevation: MaterialStateProperty.all(2),
-                              shadowColor: MaterialStateProperty.all(Colors.grey),
+                              shadowColor:
+                                  MaterialStateProperty.all(Colors.grey),
                             ),
-                            child:  Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(' Doctor ',
+                                Text(
+                                  ' Doctor ',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.white,
-                                  ),),
+                                  ),
+                                ),
                               ],
                             )),
                       ),
                       DropdownMenuItem(
                         value: 'Page 2',
-                        child:  TextButton(
-                            onPressed:(){
+                        child: TextButton(
+                            onPressed: () {
                               RemoveCacheHelper();
 
                               navigateTo(context, LoginPatientScreen());
                             },
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(HexColor("#5DCEC8")),
+                              backgroundColor: MaterialStateProperty.all(
+                                  HexColor("#5DCEC8")),
                               elevation: MaterialStateProperty.all(2),
-                              shadowColor: MaterialStateProperty.all(Colors.grey),
+                              shadowColor:
+                                  MaterialStateProperty.all(Colors.grey),
                             ),
-                            child:  Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
-                                Text(' Patient ',
+                                Text(
+                                  ' Patient ',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.white,
-                                  ),),
+                                  ),
+                                ),
                               ],
                             )),
                       ),
@@ -208,12 +226,17 @@ class LoginAndRegister extends StatelessWidget {
                 //     fontWeight: FontWeight.w400,
                 //     color: Colors.white,
                 //   ),)), // Sign in Button &&  backgroundColor #5DCEC8
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 Padding(
-                 padding: const EdgeInsets.only(left: 22.0),
+                  padding: const EdgeInsets.only(left: 22.0),
                   child: DropdownButton(
-                    underline: Container() ,
-                    icon: Icon(Icons.list,color: Colors.black,),
+                    underline: Container(),
+                    icon: Icon(
+                      Icons.list,
+                      color: Colors.black,
+                    ),
                     borderRadius: BorderRadius.circular(20),
                     hint: Container(
                         width: 200,
@@ -222,13 +245,13 @@ class LoginAndRegister extends StatelessWidget {
                           color: HexColor("#5DCEC8"),
                           borderRadius: BorderRadius.circular(20),
                         ),
-
-                        child: Center(child: const Text('Register' , style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                          color: Colors.white,
-                        )))
-                    ),
+                        child: Center(
+                            child: const Text('Register',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.white,
+                                )))),
                     elevation: 8,
                     style: const TextStyle(
                       fontSize: 16,
@@ -236,64 +259,67 @@ class LoginAndRegister extends StatelessWidget {
                       color: Colors.white,
                     ),
                     menuMaxHeight: 130,
-
-                    items:
-                    [
+                    items: [
                       DropdownMenuItem(
-                        alignment:AlignmentDirectional.bottomCenter,
+                        alignment: AlignmentDirectional.bottomCenter,
                         value: 'Page 1',
-                        child:    TextButton(
-                            onPressed:(){
+                        child: TextButton(
+                            onPressed: () {
                               RemoveCacheHelper();
                               navigateTo(context, RegisterDrScreen());
                             },
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(HexColor("#5DCEC8")),
+                              backgroundColor: MaterialStateProperty.all(
+                                  HexColor("#5DCEC8")),
                               elevation: MaterialStateProperty.all(2),
-                              shadowColor: MaterialStateProperty.all(Colors.grey),
+                              shadowColor:
+                                  MaterialStateProperty.all(Colors.grey),
                             ),
-                            child:  Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(' Doctor ',
+                                Text(
+                                  ' Doctor ',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.white,
-                                  ),),
+                                  ),
+                                ),
                               ],
                             )),
                       ),
                       DropdownMenuItem(
                         value: 'Page 2',
-                        child:  TextButton(
-                            onPressed:(){
+                        child: TextButton(
+                            onPressed: () {
                               RemoveCacheHelper();
 
-                              navigateTo(context,  RegisterPatientScreen());
+                              navigateTo(context, RegisterPatientScreen());
                             },
                             style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(HexColor("#5DCEC8")),
+                              backgroundColor: MaterialStateProperty.all(
+                                  HexColor("#5DCEC8")),
                               elevation: MaterialStateProperty.all(2),
-                              shadowColor: MaterialStateProperty.all(Colors.grey),
+                              shadowColor:
+                                  MaterialStateProperty.all(Colors.grey),
                             ),
-                            child:  Row(
+                            child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: const [
-                                Text(' Patient ',
+                                Text(
+                                  ' Patient ',
                                   style: TextStyle(
                                     fontSize: 18,
                                     fontWeight: FontWeight.w400,
                                     color: Colors.white,
-                                  ),),
+                                  ),
+                                ),
                               ],
                             )),
                       ),
                     ],
-                    onChanged: (Object? value) {
-
-                    },
-
+                    onChanged: (Object? value) {},
                   ),
                 ),
                 // Row(
@@ -317,7 +343,9 @@ class LoginAndRegister extends StatelessWidget {
                 //
                 //   ],
                 // ),
-                const SizedBox(height: 10,),
+                const SizedBox(
+                  height: 10,
+                ),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,
                 //
@@ -346,61 +374,57 @@ class LoginAndRegister extends StatelessWidget {
                   width: double.infinity,
                   height: 100,
                   child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children:
-                  [
-
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Expanded(
-                          child: Text("By crating an account or signing you " ,
-                            maxLines: 2,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Expanded(
+                            child: Text(
+                              "By crating an account or signing you ",
+                              maxLines: 2,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Text(
+                            " agree to our",
+                            maxLines: 1,
                             textAlign: TextAlign.center,
-                            style:  TextStyle(
+                            style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 14,
                               color: Colors.grey,
-
-                            ),),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Text(" agree to our" ,
-                          maxLines: 1,
-                          textAlign: TextAlign.center,
-                          style:  TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            color: Colors.grey,
-
-                          ),),
-                        Text(" Terms and Conditions",
-                            style:  TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: Colors.black,
-
-                        )),
-                      ],
-                    )
-                  ]
-                  ,
+                            ),
+                          ),
+                          Text(" Terms and Conditions",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Colors.black,
+                              )),
+                        ],
+                      )
+                    ],
                   ),
                 ), //Two Row Text "By crating an account or signing you" && "agree to our"
               ],
             ),
-          )  // UI & UX Screen
-          ],
-      ) ,
-
+          ) // UI & UX Screen
+        ],
+      ),
     );
-
   }
 }

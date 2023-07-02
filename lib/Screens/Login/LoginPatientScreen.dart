@@ -143,7 +143,7 @@ class LoginPatientScreen extends StatelessWidget {
                                 validator: (vaule){
 
                                   if(vaule!.isEmpty){
-                                    toastShow(msg: 'UserName isEmpty', state: toastStates.WARNING);
+                                    return"*";
 
                                   }
                                 },
@@ -192,7 +192,7 @@ class LoginPatientScreen extends StatelessWidget {
                                 onChanged: (vaule){},
                                 validator: (vaule){
                                   if(vaule!.isEmpty){
-                                    toastShow(msg: 'Password isEmpty', state: toastStates.WARNING);
+                                    return"*";
 
                                   }
                                 },

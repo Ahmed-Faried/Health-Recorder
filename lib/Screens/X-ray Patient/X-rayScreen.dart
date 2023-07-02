@@ -31,7 +31,7 @@ class X_rayPatient extends StatelessWidget {
 
 
     return  Scaffold(
-        appBar: AppBar(),
+        appBar: AppBar( title:  Text("X-rays & Medical tests   "),),
 
 
         body: ConditionalBuilder(

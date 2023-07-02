@@ -125,9 +125,8 @@ class LoginDoctorScreen extends StatelessWidget {
                               onChanged: (vaule) {},
                               validator: (vaule) {
                                 if (vaule!.isEmpty) {
-                                  toastShow(
-                                      msg: 'UserName isEmpty',
-                                      state: toastStates.WARNING);
+
+                                  return"*";
                                 }
                               },
                               style: TextStyle(color: Colors.black),
@@ -178,9 +177,8 @@ class LoginDoctorScreen extends StatelessWidget {
                               onChanged: (vaule) {},
                               validator: (vaule) {
                                 if (vaule!.isEmpty) {
-                                  toastShow(
-                                      msg: 'Password isEmpty',
-                                      state: toastStates.WARNING);
+                                  return"*";
+
                                 }
                               },
                               style: TextStyle(color: Colors.black),
