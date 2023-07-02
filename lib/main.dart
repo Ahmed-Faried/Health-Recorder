@@ -56,7 +56,7 @@ void main()async {
   }
 
   else{
-
+//update
     widget = onBoarding();
   }
 
@@ -81,6 +81,8 @@ class MyApp extends StatelessWidget {
         // BlocProvider(create: (BuildContext context) => Patient_RegisterCubit())
       ],
       child: MaterialApp(
+
+
 
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
