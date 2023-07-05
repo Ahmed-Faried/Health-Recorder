@@ -22,6 +22,9 @@ class RegisterPatientScreen4 extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
+    var height = MediaQuery.of(context).size.height ;
+    var width = MediaQuery.of(context).size.width ;
+
      return BlocConsumer<Patient_RegisterCubit, RegisterPatientStates>(
        listener: (context ,state ) {},
 
@@ -43,7 +46,7 @@ class RegisterPatientScreen4 extends StatelessWidget {
              ), // Image bot-L.png
              SizedBox(
                width: MediaQuery.of(context).size.width,
-               height: 70,
+               height: 100,
                child: const Image(
                  image: AssetImage('assets/top.png'),
                  fit: BoxFit.fill,
@@ -58,8 +61,8 @@ class RegisterPatientScreen4 extends StatelessWidget {
                    child: Column(
                      children:
                      [
-                       const SizedBox(
-                         height: 55,
+                        SizedBox(
+                         height: height*.0825,
                        ),
                        Column(
                          children: [
@@ -98,8 +101,8 @@ class RegisterPatientScreen4 extends StatelessWidget {
                            )
                          ],
                        ),
-                       const SizedBox(
-                         height: 10,
+                        SizedBox(
+                          height: height*.015,
                        ),
                        Row(
                          mainAxisAlignment: MainAxisAlignment.start,
@@ -109,8 +112,8 @@ class RegisterPatientScreen4 extends StatelessWidget {
 
                          ],
                        ),
-                       const SizedBox(
-                         height: 10,
+                        SizedBox(
+                         height: height*.015,
                        ),
                        Container(
                          width: double.infinity,
@@ -147,37 +150,36 @@ class RegisterPatientScreen4 extends StatelessWidget {
                                icon: Icon(Icons.arrow_drop_down),
                                style: TextStyle(color: Colors.black),
                                value: Patient_RegisterCubit.get(context).chronicDiseaseValue,
-                                 menuMaxHeight : 200 ,
-
+                                 menuMaxHeight :  height*.3,
                                items: [ //add items in the dropdown
                                  DropdownMenuItem(
                                      child: Container(
-                                         child: Text("I Don't Know")),
-                                     value: "I Don't Know"
+                                         child: Text("None Of These")),
+                                     value: "None Of These"
                                  ),
                                  DropdownMenuItem(
-                                   child: Text("1"),
-                                   value: "1",
+                                   child: Text("Diabetes"),
+                                   value: "Diabetes",
                                  ),
                                  DropdownMenuItem(
-                                   child: Text("2"),
-                                   value: "2",
+                                   child: Text("Heart Disease"),
+                                   value: "Heart Disease",
                                  ),
                                  DropdownMenuItem(
-                                   child: Text("3"),
-                                   value: "3",
+                                   child: Text("High Blood Pressure"),
+                                   value: "High Blood Pressure",
                                  ),
                                  DropdownMenuItem(
-                                   child: Text("4"),
-                                   value: "4",
+                                   child: Text("Low Blood Pressure"),
+                                   value: "Low Blood Pressure",
                                  ),
                                  DropdownMenuItem(
-                                   child: Text("5"),
-                                   value: "5",
+                                   child: Text("Cancer"),
+                                   value: "Cancer",
                                  ),
                                  DropdownMenuItem(
-                                   child: Text("6"),
-                                   value: "6",
+                                   child: Text("Asthma"),
+                                   value: "Asthma",
                                  ),
                                ],
                                onChanged: (value){ //get value when changed
@@ -197,8 +199,8 @@ class RegisterPatientScreen4 extends StatelessWidget {
                            ),
                          ),
                        ),
-                       const SizedBox(
-                         height: 35,
+                        SizedBox(
+                         height: height*.051,
                        ),
                        FieldFromRegistr(
                          controller: Patient_RegisterCubit.get(context).chronicDiseaseMedicineController,
@@ -218,8 +220,8 @@ class RegisterPatientScreen4 extends StatelessWidget {
                          label: 'Regular medicine',
                          prefix: Icons.medical_services,
                        ),
-                       const SizedBox(
-                         height: 40,
+                        SizedBox(
+                          height: height*.060,
                        ),
                        Row(
                          mainAxisAlignment: MainAxisAlignment.start,
@@ -229,8 +231,8 @@ class RegisterPatientScreen4 extends StatelessWidget {
 
                          ],
                        ),
-                       const SizedBox(
-                         height: 10,
+                        SizedBox(
+                         height: height*.015,
                        ),
                        FieldFromRegistr(
                          controller: Patient_RegisterCubit.get(context).healthProblemController,
@@ -250,8 +252,8 @@ class RegisterPatientScreen4 extends StatelessWidget {
                          label: 'Type it here...',
                          prefix: Icons.add_chart_rounded,
                        ),
-                       const SizedBox(
-                         height: 20,
+                        SizedBox(
+                          height: height*.030,
                        ),
                        FieldFromRegistr(
                        controller: Patient_RegisterCubit.get(context).healthProblemMedicineController,
@@ -271,8 +273,8 @@ class RegisterPatientScreen4 extends StatelessWidget {
                        label: 'Regular medicine',
                        prefix: Icons.medical_services,
                      ),
-                       const SizedBox(
-                         height: 22,
+                        SizedBox(
+                         height: height*.033,
                        ),
                        Row(
                          mainAxisAlignment: MainAxisAlignment.end,
@@ -298,7 +300,7 @@ class RegisterPatientScreen4 extends StatelessWidget {
                                return InkWell(
                                  child: Container(
                                    width: 65,
-                                   height: 35,
+                                   height: 40,
                                    decoration: BoxDecoration(
                                      borderRadius: BorderRadius.circular(35),
                                      color: HexColor("#68DED7"),

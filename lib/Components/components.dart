@@ -417,7 +417,7 @@ Widget cardAccount(context, String title, firstIcon, Screen) => Padding(
                 ),
                 Text(
                   title,
-                  style: TextStyle(fontSize: 13,),
+                  style: TextStyle(fontSize: 13,fontFamily: 'MontaguSlab'),
                 ),
                 Spacer(),
                 Icon(

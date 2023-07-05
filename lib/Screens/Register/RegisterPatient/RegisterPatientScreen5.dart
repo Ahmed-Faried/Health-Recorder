@@ -18,6 +18,8 @@ class RegisterPatientScreen5 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    var height = MediaQuery.of(context).size.height ;
+    var width = MediaQuery.of(context).size.width ;
 
     return BlocConsumer<Patient_RegisterCubit, RegisterPatientStates>(
       listener: (context ,state ) {},
@@ -55,8 +57,8 @@ class RegisterPatientScreen5 extends StatelessWidget {
                   child: Column(
                     children:
                     [
-                      const SizedBox(
-                        height: 55,
+                       SizedBox(
+                        height: height*.0825,
                       ),
                       Column(
                         children: [
@@ -95,8 +97,8 @@ class RegisterPatientScreen5 extends StatelessWidget {
                           )
                         ],
                       ),
-                      const SizedBox(
-                        height: 10,
+                       SizedBox(
+                        height: height*.015,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -106,8 +108,8 @@ class RegisterPatientScreen5 extends StatelessWidget {
 
                         ],
                       ),
-                      const SizedBox(
-                        height: 10,
+                       SizedBox(
+                        height: height*.015,
                       ),
                       FieldFromRegistr(
                         controller: Patient_RegisterCubit.get(context).surgeryController,
@@ -127,8 +129,8 @@ class RegisterPatientScreen5 extends StatelessWidget {
                         label: 'Surgery type',
                         prefix: Icons.bar_chart_sharp ,
                       ),
-                      const SizedBox(
-                        height: 22,
+                       SizedBox(
+                        height: height*.035,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -172,34 +174,37 @@ class RegisterPatientScreen5 extends StatelessWidget {
                       //     return null;
                       //   },
                       // ),
-                      const SizedBox(
-                        height: 10,
+                       SizedBox(
+                        height: height*.015,
                       ),
                       InkWell(
-                        child: Container(
-                          height: 60,
-                          width: 350,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white ,
-                            boxShadow:  [
-                          BoxShadow(
-                          color: Colors.grey.shade300,
-                            blurRadius: 5,
-                            spreadRadius: 1,
-                            offset: Offset(2, 2),
-                          ),
-                          ],
-                          ),
+                        child: Padding(
+                          padding:  EdgeInsets.symmetric(horizontal: 8.0),
+                          child: Container(
+                            height: 60,
+                            width: 350,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.white ,
+                              boxShadow:  [
+                            BoxShadow(
+                            color: Colors.grey.shade300,
+                              blurRadius: 5,
+                              spreadRadius: 1,
+                              offset: Offset(2, 2),
+                            ),
+                            ],
+                            ),
 
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric( horizontal: 18.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text("${Patient_RegisterCubit.get(context).Date}"),
-                                Icon(Icons.arrow_drop_down_sharp)
-                              ],
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric( horizontal: 18.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Text("${Patient_RegisterCubit.get(context).Date}"),
+                                  Icon(Icons.arrow_drop_down_sharp)
+                                ],
+                              ),
                             ),
                           ),
                         ),
@@ -215,8 +220,8 @@ class RegisterPatientScreen5 extends StatelessWidget {
                           });
                         },
                       ),
-                      const SizedBox(
-                        height: 240,
+                       SizedBox(
+                        height: height*.345,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -243,7 +248,7 @@ class RegisterPatientScreen5 extends StatelessWidget {
                               return InkWell(
                                 child: Container(
                                   width: 65,
-                                  height: 35,
+                                  height: 40,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(35),
                                     color: HexColor("#68DED7"),
@@ -255,7 +260,7 @@ class RegisterPatientScreen5 extends StatelessWidget {
                                   ),
                                 ),
                                 onTap: () {
-    if (formKey4.currentState!.validate()) {
+                                 if (formKey4.currentState!.validate()) {
       Patient_RegisterCubit
           .get(context)
           .controller
@@ -279,7 +284,8 @@ class RegisterPatientScreen5 extends StatelessWidget {
                   ),
                 ),
               ),
-            ) // Ui Screen
+            ), // Ui Screen
+
           ],
         ),
       );},

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:shop_app/Components/components.dart';
 import 'package:shop_app/Screens/Login/LoginDoctorScreen.dart';
@@ -11,6 +12,17 @@ class LoginAndRegister extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var height = MediaQuery.of(context).size.height ;
+
+    var width = MediaQuery.of(context).size.width ;
+
+    SystemChrome.setSystemUIOverlayStyle( SystemUiOverlayStyle(
+        statusBarColor:  HexColor("#5DCDC6"),
+        statusBarIconBrightness:
+        Brightness.dark //or set color with: Color(0xFF0000FF)
+    ));
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
@@ -20,14 +32,14 @@ class LoginAndRegister extends StatelessWidget {
             child: const Image(
               image: AssetImage('assets/bot-L.png'),
               alignment: Alignment.bottomLeft,
-              width: 200,
-              height: 350,
-              fit: BoxFit.contain,
+              width: 100,
+              height: 400,
+              fit: BoxFit.fill,
             ),
           ), // Image bot-L.png STACK
           const SizedBox(
             width: double.infinity,
-            height: 100,
+            height: 95,
             child: Image(
               image: AssetImage('assets/top.png'),
               fit: BoxFit.fill,
@@ -38,7 +50,7 @@ class LoginAndRegister extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center, //19/4/2023
               children: [
-                const SizedBox(height: 70),
+                 SizedBox(height: height * .105),
                 const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -83,10 +95,8 @@ class LoginAndRegister extends StatelessWidget {
                       ),
                     ),
                   ],
-                ),
-                // Image Logo.png
-                const SizedBox(height: 20),
-
+                ), // Image Logo.png
+                 SizedBox(height: height * .029 ),//20
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -113,8 +123,8 @@ class LoginAndRegister extends StatelessWidget {
                     )
                   ],
                 ), // Text Recorder
-                const SizedBox(
-                  height: 60,
+                 SizedBox(
+                  height: height * .087 ,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 22.0),
@@ -127,7 +137,7 @@ class LoginAndRegister extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     hint: Container(
                         width: 200,
-                        height: 40,
+                        height: 45,
                         decoration: BoxDecoration(
                           color: HexColor("#5DCEC8"),
                           borderRadius: BorderRadius.circular(20),
@@ -226,8 +236,8 @@ class LoginAndRegister extends StatelessWidget {
                 //     fontWeight: FontWeight.w400,
                 //     color: Colors.white,
                 //   ),)), // Sign in Button &&  backgroundColor #5DCEC8
-                const SizedBox(
-                  height: 10,
+                 SizedBox(
+                  height: height * .029,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 22.0),
@@ -240,7 +250,7 @@ class LoginAndRegister extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     hint: Container(
                         width: 200,
-                        height: 40,
+                        height: 45,
                         decoration: BoxDecoration(
                           color: HexColor("#5DCEC8"),
                           borderRadius: BorderRadius.circular(20),
@@ -343,8 +353,8 @@ class LoginAndRegister extends StatelessWidget {
                 //
                 //   ],
                 // ),
-                const SizedBox(
-                  height: 10,
+                 SizedBox(
+                  height: height * .015,
                 ),
                 // Row(
                 //   mainAxisAlignment: MainAxisAlignment.center,

@@ -226,24 +226,6 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
 
       upData_Image_patient(Image: imagePatient , id :patientDataModel?.data?.pationt?.id);
 
-      // Future<void> uploadImage(File imageFile) async {
-      //   final url = 'https://example.com/upload_image';
-      //   final token = CacheHelper.getString(key: 'token') ?? '';
-      //   final request = http.MultipartRequest('POST', Uri.parse(url));
-      //   request.headers['Authorization'] = 'Bearer $token';
-      //   request.files.add(await http.MultipartFile.fromPath('image', imageFile.path));
-      //
-      //   final response = await http.Response.fromStream(await request.send());
-      //   if (response.statusCode == 200) {
-      //     final jsonResponse = json.decode(response.body);
-      //     // handle the response
-      //   } else {
-      //     throw Exception('Failed to upload image');
-      //   }
-      // }
-
-
-
 
       print(idPatient);
       print(imagePatient);
@@ -267,8 +249,7 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
       } else {
         print(onError.toString());
       }
-      toastShow(msg: "error leh msh 3aref ", state: toastStates.ERROR);
-      emit(PatientRegisterErrorState(onError.response?.data.toString()));//['message']
+      emit(PatientRegisterErrorState(onError.response?.data['message'].toString()));//['message']
     });
   }
 
@@ -385,7 +366,6 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
       } else {
         print(onError.toString());
       }
-      toastShow(msg: "error PatientRegisterHealthErrorState ", state: toastStates.ERROR);
       emit(PatientRegisterHealthErrorState(onError.response?.data['message'].toString()));
     });
   }
@@ -504,9 +484,9 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
 
 
 
-  int selectedContainerIndex = -1;
+  int selectedContainerIndex = 8;
 
-  List<String> containerValues = ["A+","A-","B+","B-","AB+","AB-","O+","O-"];
+  List<String> containerValues = ["A+","A-","B+","B-","AB+","AB-","O+","O-","don't know"];
 
 
   int indexs = -1;
@@ -539,7 +519,7 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
 
 
 
-  String Gender = "" ;
+  String Gender = "mail" ;
   List<String> GenderType = ["mail","femail"];
   Color mark = Colors.blue;
   Color notMark = Colors.transparent;
@@ -582,7 +562,7 @@ class Patient_RegisterCubit extends Cubit<RegisterPatientStates> {
   }
 
 
-  String chronicDiseaseValue = "I Don't Know" ;
+  String chronicDiseaseValue = "None Of These" ;
 
   void ChronicDiseaseValue (X){
 

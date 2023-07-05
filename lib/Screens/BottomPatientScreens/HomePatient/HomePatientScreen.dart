@@ -41,7 +41,7 @@ class HomePatientScreen extends StatelessWidget {
               return ProfilrScreen(patientDataModel, context);
             },
             fallback: (BuildContext context) {
-              return Center(child: CircularProgressIndicator());
+              return Center(child: CircularProgressIndicator( color: HexColor("#5DCDC6"),));
             },
           );
         },
@@ -369,7 +369,6 @@ Widget ProfilrScreen(PatientDataModel? mod, context) => Scaffold(
                   const SizedBox(
                     height: 20,
                   ),
-
                   InkWell(
                     child: Container(
 
@@ -646,7 +645,6 @@ Widget ProfilrScreen(PatientDataModel? mod, context) => Scaffold(
                       navigateTo(context, X_rayPatient(imageUrls: mod?.data!.pationt?.x_ray ));
                     },
                   ),
-
                   const SizedBox(
                     height: 20,
                   ),

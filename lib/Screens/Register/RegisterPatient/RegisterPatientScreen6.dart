@@ -17,6 +17,9 @@ class RegisterPatientScreen6 extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
+    var height = MediaQuery.of(context).size.height ;
+    var width = MediaQuery.of(context).size.width ;
+
     return BlocConsumer<Patient_RegisterCubit, RegisterPatientStates>(
       listener: (context ,state ) {
 
@@ -28,8 +31,9 @@ class RegisterPatientScreen6 extends StatelessWidget {
         }
         if (state is PatientRegisterHealthErrorState) {
           if (state.Errors != null) {
-            toastShow(msg: "${state.Errors}", state: toastStates.ERROR);
             toastShow(msg: "حدث خطا حاول في وقت لاحق ", state: toastStates.ERROR);
+            toastShow(msg: "${state.Errors}", state: toastStates.ERROR);
+
           }
         }
       },
@@ -67,8 +71,8 @@ class RegisterPatientScreen6 extends StatelessWidget {
                   child: Column(
                     children:
                     [
-                      const SizedBox(
-                        height: 55,
+                       SizedBox(
+                        height: height*0.0825,
                       ),
                       Column(
                         children: [
@@ -107,8 +111,8 @@ class RegisterPatientScreen6 extends StatelessWidget {
                           )
                         ],
                       ),
-                      const SizedBox(
-                        height: 20,
+                       SizedBox(
+                         height: height*0.030,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -118,8 +122,9 @@ class RegisterPatientScreen6 extends StatelessWidget {
 
                         ],
                       ),
-                      const SizedBox(
-                        height: 10,),
+                       SizedBox(
+                        height: height*0.015,
+                      ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -156,8 +161,8 @@ class RegisterPatientScreen6 extends StatelessWidget {
 
                         ],
                       ),
-                      const SizedBox(
-                        height: 25,
+                       SizedBox(
+                        height: height*0.037,
                       ),
                       FieldFromRegistr(
                         controller: Patient_RegisterCubit.get(context).relativeRelationController,
@@ -177,8 +182,8 @@ class RegisterPatientScreen6 extends StatelessWidget {
                         label: 'The relative relation',
                         prefix: Icons.receipt_long_outlined ,
                       ),
-                      const SizedBox(
-                        height: 25,
+                       SizedBox(
+                        height: height*0.037,
                       ),
                       FieldFromRegistr(
                       controller: Patient_RegisterCubit.get(context).geneticDiseaseController,
@@ -198,8 +203,8 @@ class RegisterPatientScreen6 extends StatelessWidget {
                       label: 'The disease',
                       prefix: Icons.coronavirus_rounded ,
                     ),
-                      const SizedBox(
-                        height: 25,
+                       SizedBox(
+                        height: height*0.037,
                       ),
                       FieldFromRegistr(
                       controller: Patient_RegisterCubit.get(context).geneticDiseaseMedicineController,
@@ -219,11 +224,8 @@ class RegisterPatientScreen6 extends StatelessWidget {
                       label: 'Regular medicine',
                       prefix: Icons.medication ,
                     ),
-                      const SizedBox(
-                        height: 50,
-                      ),
-                      const SizedBox(
-                        height: 30,
+                       SizedBox(
+                        height: height*0.125,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -313,7 +315,16 @@ class RegisterPatientScreen6 extends StatelessWidget {
                   ),
                 ),
               ),
-            ) // Ui Screen
+            ), // Ui Screen
+            if(state is PatientRegisterHealthLoadingState)
+              Positioned.fill(
+                child: Container(
+                  color: Colors.black.withOpacity(0.5),
+                  child: Center(
+                    child: CircularProgressIndicator( color: HexColor("#5DCDC6"),),
+                  ),
+                ),
+              ),
           ],
         ),
       );},

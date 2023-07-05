@@ -12,6 +12,10 @@ class ForgetPasswordDoctor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var height = MediaQuery.of(context).size.height ;
+    var width = MediaQuery.of(context).size.width ;
+
     return BlocProvider(
       create: (context) => ForgetPassDoctor(),
       child: BlocConsumer<ForgetPassDoctor, ForgetPassDoctorStates>(
@@ -37,7 +41,7 @@ class ForgetPasswordDoctor extends StatelessWidget {
                   Column(
                     children: [
                       SizedBox(
-                        height: 50,
+                        height: height*.075,
                       ),
                       Image(
                         image: AssetImage(
@@ -51,8 +55,8 @@ class ForgetPasswordDoctor extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        SizedBox(
-                          height: 10,
+                        SizedBox(height: height*.015,
+
                         ),
                         Text(
                           "Forget Password ",
@@ -61,9 +65,9 @@ class ForgetPasswordDoctor extends StatelessWidget {
                               fontFamily: 'MontaguSlab',
                               color: Colors.black),
                         ),
-                        SizedBox(
-                          height: 100,
-                        ),
+                    SizedBox(height: height*.15,),
+
+
                         Text(
                           "E-mail ",
                           style: TextStyle(
@@ -74,9 +78,8 @@ class ForgetPasswordDoctor extends StatelessWidget {
                           keyboardType: TextInputType.emailAddress,
                           style: TextStyle(color: Colors.black),
                         ),
-                        SizedBox(
-                          height: 70,
-                        ),
+                        SizedBox(height: height*.105,),
+
                         Text(
                           "Phone Number ",
                           style: TextStyle(
@@ -87,9 +90,7 @@ class ForgetPasswordDoctor extends StatelessWidget {
                           keyboardType: TextInputType.number,
                           style: TextStyle(color: Colors.black),
                         ),
-                        SizedBox(
-                          height: 70,
-                        ),
+                        SizedBox(height: height*.105,),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

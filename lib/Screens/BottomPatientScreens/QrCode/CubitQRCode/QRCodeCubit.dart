@@ -15,11 +15,12 @@ class QRCodeCubit extends Cubit<QRCodeStates> {
 
   late Map<String, dynamic> data = {
      "\n"
-    ' email': '${patientDataModel?.data?.pationt?.email }\n',
     "name": "${patientDataModel?.data?.pationt?.fristName } ${patientDataModel?.data?.pationt?.lastName}\n",
     "age":  "${patientDataModel?.data?.pationt?.age}\n",
     "phone": "${patientDataModel?.data?.pationt?.phoneNumber}\n" ,
     "BloodType": "${patientDataModel?.data?.pationt?.bloodType}\n",
+    "National-Id": "${patientDataModel?.data?.pationt?.nationalId}\n",
+
     // "friend's phone":"${patientDataModel?.data?.pationt?.id}\n",
 
   };

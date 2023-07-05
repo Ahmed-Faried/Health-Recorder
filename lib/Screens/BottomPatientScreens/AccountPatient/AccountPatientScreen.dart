@@ -19,6 +19,10 @@ class AccountPatientScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+
+    var height = MediaQuery.of(context).size.height ;
+    var width = MediaQuery.of(context).size.width ;
     return BlocProvider(
 
       create: (BuildContext context) => PatientCubit()..getData_Patient(),
@@ -72,7 +76,7 @@ class AccountPatientScreen extends StatelessWidget {
 
                         ],
                       ),
-                      SizedBox(height: 15,),
+                      SizedBox(height: height*0.045,),
                       Column(
                         children: [
                           Row(
@@ -108,9 +112,8 @@ class AccountPatientScreen extends StatelessWidget {
 
                                     ],
                                   ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
+                                  SizedBox(height: height*0.0250,),
+
                                   Row(
                                     children:  [
                                       Text(
@@ -118,18 +121,19 @@ class AccountPatientScreen extends StatelessWidget {
                                         style: GoogleFonts.inter(
                                           textStyle: TextStyle(
                                               fontWeight: FontWeight.bold,
+                                              fontFamily: 'MontaguSlab',
                                               fontSize: 16,
                                           ),
                                         )
                                       )
                                     ],
                                   ),
-                                  SizedBox(height: 6),
+                                  SizedBox(height: height*0.011),
                                   Row(
                                     children:  [
                                       Text(
                                         "${patientDataModel?.data?.pationt?.phoneNumber}",
-                                        style: TextStyle(fontSize: 11 , ),
+                                        style: TextStyle(fontSize: 12 , ),
                                       )
                                     ],
                                   ),
@@ -137,7 +141,7 @@ class AccountPatientScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          SizedBox(height: 6),
+                          SizedBox(height: height*0.011),
                           MyDivider(context, 1.2),
                           Padding(
                             padding: const EdgeInsets.only(top: 15.0),
@@ -173,18 +177,18 @@ class AccountPatientScreen extends StatelessWidget {
                                       ),
                                       Text(
                                         "Dark mode",
-                                        style: TextStyle(fontSize: 13),
+                                        style: TextStyle(fontSize: 13 , fontFamily: 'MontaguSlab'),
                                       ),
                                       Spacer(),
                                       IconButton(
-                                        color: cubit.isDark != true
+                                        color: cubit.isDark == true
                                             ? Colors.white
                                             : Colors.black,
                                         onPressed: () {
                                           cubit.changedMode();
                                         },
                                         icon: Icon(
-                                          cubit.isDark != true
+                                          cubit.isDark == true
                                               ?   Icons.toggle_on_outlined
 
                                               : Icons.toggle_off_outlined,
@@ -201,7 +205,7 @@ class AccountPatientScreen extends StatelessWidget {
 
                         ],
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(height: height*0.045,),
                       // Padding(
                       //   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                       //   child: Row(

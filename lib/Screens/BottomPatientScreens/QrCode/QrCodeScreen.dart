@@ -30,7 +30,7 @@ class QrCodeScreen extends StatelessWidget {
               ),
               SizedBox(height: 50,),
               Center(
-                child: QrImage(
+                child: QrImageView(
                   data: QRCodeCubit.get(context).qrData,
                   size: 200.0,
 

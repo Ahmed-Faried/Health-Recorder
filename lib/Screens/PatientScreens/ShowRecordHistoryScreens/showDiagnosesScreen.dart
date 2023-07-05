@@ -17,7 +17,7 @@ class DiagnosesShow extends StatelessWidget {
         title: RecordHistoryAppBarTitle(" Diagnoses      "),
       ),
       body: ConditionalBuilder(
-        condition: patientDataModel != null,
+        condition: patientDataModel?.data?.pationt?.diagonas?.length != 0,
         builder: (BuildContext context) {
           return ListView.builder(
             itemBuilder: (BuildContext context, int index) {
@@ -141,8 +141,7 @@ class DiagnosesShow extends StatelessWidget {
           );
         },
         fallback: (BuildContext context) {
-          return CircularProgressIndicator();
-        },
+          return Center(child: Text("Not Fond"),);        },
       ),
     );
   }

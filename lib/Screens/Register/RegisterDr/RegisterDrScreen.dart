@@ -16,6 +16,10 @@ class RegisterDrScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var height = MediaQuery.of(context).size.height ;
+    var width = MediaQuery.of(context).size.width ;
+
     return BlocProvider(
       create: (BuildContext context) => DR_Cubit_Register(),
       child: BlocConsumer<DR_Cubit_Register, RegisterDR_States>(
@@ -76,7 +80,7 @@ class RegisterDrScreen extends StatelessWidget {
                 ), // Image bot-L.png
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  height: 100,
+                  height: 80,
                   child: const Image(
                     image: AssetImage('assets/top.png'),
                     fit: BoxFit.fill,
@@ -92,8 +96,8 @@ class RegisterDrScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: [
-                            const SizedBox(
-                              height: 65,
+                             SizedBox(
+                              height: height*.0850,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -111,9 +115,7 @@ class RegisterDrScreen extends StatelessWidget {
                                 )
                               ],
                             ), // Text Hello
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            SizedBox(height: height*.030,),
                             Container(
                               width: double.infinity,
                               height: 70,
@@ -210,9 +212,26 @@ class RegisterDrScreen extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            const SizedBox(
-                              height: 20,
+                            SizedBox(height: height*.030,),
+                            FieldFromRegistr(
+                              controller:
+                              DR_Cubit_Register.get(context).emailDoctorController,
+                              type: TextInputType.emailAddress,
+                              onSubmit: () {},
+                              onChanged: () {},
+                              onTap: () {},
+                              suffixPressed: () {},
+                              validator: (vaule) {
+                                if (vaule!.isEmpty) {
+                                  toastShow(
+                                      msg: 'E-mail isEmpty',
+                                      state: toastStates.WARNING);
+                                }
+                              },
+                              label: 'E-mail',
+                              prefix: Icons.email,
                             ),
+                            SizedBox(height: height*.035,),
                             FieldFromRegistr(
                               controller:
                               DR_Cubit_Register.get(context).passwordDoctorController,
@@ -238,34 +257,11 @@ class RegisterDrScreen extends StatelessWidget {
                                       .changePasswordRegister();
                                 },
                                 icon:
-                                    Icon(DR_Cubit_Register.get(context).showPassword),
+                                Icon(DR_Cubit_Register.get(context).showPassword),
                               ),
                               obscureText: DR_Cubit_Register.get(context).isPassword,
                             ),
-                            const SizedBox(
-                              height: 25,
-                            ),
-                            FieldFromRegistr(
-                              controller:
-                              DR_Cubit_Register.get(context).emailDoctorController,
-                              type: TextInputType.emailAddress,
-                              onSubmit: () {},
-                              onChanged: () {},
-                              onTap: () {},
-                              suffixPressed: () {},
-                              validator: (vaule) {
-                                if (vaule!.isEmpty) {
-                                  toastShow(
-                                      msg: 'E-mail isEmpty',
-                                      state: toastStates.WARNING);
-                                }
-                              },
-                              label: 'E-mail',
-                              prefix: Icons.email,
-                            ),
-                            const SizedBox(
-                              height: 25,
-                            ),
+                            SizedBox(height: height*.037,),
                             FieldFromRegistr(
                               controller:
                               DR_Cubit_Register.get(context).departDoctorController,
@@ -284,9 +280,7 @@ class RegisterDrScreen extends StatelessWidget {
                               label: 'Depart',
                               prefix: Icons.portrait_outlined,
                             ),
-                            const SizedBox(
-                              height: 25,
-                            ),
+                            SizedBox(height: height*.035,),
                             FieldFromRegistr(
                               controller:
                               DR_Cubit_Register.get(context).addressDoctorController,
@@ -305,9 +299,7 @@ class RegisterDrScreen extends StatelessWidget {
                               label: 'Address',
                               prefix: Icons.location_on_outlined,
                             ),
-                            const SizedBox(
-                              height: 25,
-                            ),
+                            SizedBox(height: height*.035,),
                             FieldFromRegistr(
                               controller:
                               DR_Cubit_Register.get(context).numberDoctorController,
@@ -326,9 +318,7 @@ class RegisterDrScreen extends StatelessWidget {
                               label: 'Phone',
                               prefix: Icons.phone_android_rounded,
                             ),
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            SizedBox(height: height*.035,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
@@ -360,9 +350,7 @@ class RegisterDrScreen extends StatelessWidget {
                                 ),
                               ],
                             ), // Text Don't have an account? and Text Create
-                            const SizedBox(
-                              height: 20,
-                            ),
+                            SizedBox(height: height*.035,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
@@ -449,7 +437,7 @@ class RegisterDrScreen extends StatelessWidget {
                                   },
                                   fallback: (BuildContext context) {
                                     return Center(
-                                        child: CircularProgressIndicator());
+                                        child: CircularProgressIndicator(   color: HexColor("#5DCDC6"),));
                                   },
                                 )
                               ],
@@ -459,7 +447,16 @@ class RegisterDrScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                ) // Ui Screen
+                ), // Ui Screen
+                if(state is DoctorRegisterLoadingState)
+                  Positioned.fill(
+                    child: Container(
+                      color: Colors.black.withOpacity(0.5),
+                      child: Center(
+                        child: CircularProgressIndicator( color: HexColor("#5DCDC6"),),
+                      ),
+                    ),
+                  ),
               ],
             ),
           );

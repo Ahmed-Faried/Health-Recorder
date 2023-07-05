@@ -12,6 +12,10 @@ class ForgetPasswordPatient extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var height = MediaQuery.of(context).size.height ;
+    var width = MediaQuery.of(context).size.width ;
+
     return  BlocProvider(
       create: (context) => ForgetPassPatient(),
       child: BlocConsumer<ForgetPassPatient ,ForgetPassPatientStates>(
@@ -39,8 +43,10 @@ class ForgetPasswordPatient extends StatelessWidget {
               [
                 Column(
                   children: [
-                    SizedBox(height: 50,),
-                    Image(image: AssetImage("assets/ForgetPassword.png" ,),),
+                    SizedBox(
+                      height: height*.075,
+                    ),
+                    Image(image: AssetImage("assets/ForgetPassword.png" , ),),
                   ],
                 ),
                 Padding(
@@ -50,9 +56,10 @@ class ForgetPasswordPatient extends StatelessWidget {
 
                     children:
                     [
-                      SizedBox(height: 10,),
+                      SizedBox(height: height*.015,
+                      ),
                       Text("Forget Password " , style:  TextStyle( fontSize: 18 , fontFamily:  'MontaguSlab' , color: Colors.black),),
-                      SizedBox(height: 100,),
+                      SizedBox(height: height*.15,),
                       Text("E-mail " , style:  TextStyle( fontSize: 18 , fontFamily:  'MontaguSlab'),),
                       TextFormField(
                         controller: ForgetPassPatient.get(context).email,
@@ -60,14 +67,14 @@ class ForgetPasswordPatient extends StatelessWidget {
                         style: TextStyle(color: Colors.black),
 
                       ),
-                      SizedBox(height: 70,),
+                      SizedBox(height: height*.105,),
                       Text("National-ID " , style:  TextStyle( fontSize: 18 , fontFamily:  'MontaguSlab'),),
                       TextFormField(
                         controller: ForgetPassPatient.get(context).National_ID,
                         keyboardType: TextInputType.number,
                       style: TextStyle(color: Colors.black),
                       ),
-                      SizedBox(height: 70,),
+                      SizedBox(height: height*.105,),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

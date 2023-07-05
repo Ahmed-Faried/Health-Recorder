@@ -16,6 +16,10 @@ class RegisterPatientScreen3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<Patient_RegisterCubit, RegisterPatientStates>(
       builder: (context, state) {
+
+        var height = MediaQuery.of(context).size.height ;
+
+
         return Scaffold(
           backgroundColor: Colors.white70,
           body: Stack(
@@ -50,8 +54,8 @@ class RegisterPatientScreen3 extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          const SizedBox(
-                            height: 55,
+                          SizedBox(
+                            height: height*.0700,
                           ),
                           Column(
                             children: [
@@ -90,9 +94,8 @@ class RegisterPatientScreen3 extends StatelessWidget {
                               )
                             ],
                           ),
-
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(
+                            height: height*.015,
                           ),
                           FieldFromRegistr(
                             controller: Patient_RegisterCubit.get(context)
@@ -113,8 +116,8 @@ class RegisterPatientScreen3 extends StatelessWidget {
                             label: 'National ID',
                             prefix: Icons.credit_card_outlined,
                           ),
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(
+                            height: height*.015,
                           ),
                           FieldFromRegistr(
                             controller: Patient_RegisterCubit.get(context)
@@ -135,53 +138,12 @@ class RegisterPatientScreen3 extends StatelessWidget {
                             label: 'Age',
                             prefix: Icons.calendar_month,
                           ),
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(
+                            height: height*.015,
                           ),
-                          // Gender And Blood Type
-                          // FieldFromRegistr(
-                          //   controller: Patient_RegisterCubit.get(context)
-                          //       .genderPatientController,
-                          //   type: TextInputType.text,
-                          //   onSubmit: () {},
-                          //   onChanged: () {},
-                          //   onTap: () {},
-                          //   suffixPressed: () {},
-                          //   validator: (vaule) {
-                          //     if (vaule!.isEmpty) {
-                          //       toastShow(
-                          //           msg: 'gender isEmpty',
-                          //           state: toastStates.WARNING);
-                          //       return "*";
-                          //     }
-                          //   },
-                          //   label: 'gender',
-                          //   prefix: Icons.g_mobiledata_outlined,
-                          // ),
-                          // const SizedBox(
-                          //   height: 10,
-                          // ),
-                          // FieldFromRegistr(
-                          //   controller: Patient_RegisterCubit.get(context)
-                          //       .bloodTypePatientController,
-                          //   type: TextInputType.text,
-                          //   onSubmit: () {},
-                          //   onChanged: () {},
-                          //   onTap: () {},
-                          //   suffixPressed: () {},
-                          //   validator: (vaule) {
-                          //     if (vaule!.isEmpty) {
-                          //       toastShow(
-                          //           msg: 'blood Type isEmpty',
-                          //           state: toastStates.WARNING);
-                          //       return "*";
-                          //     }
-                          //   },
-                          //   label: 'blood Type',
-                          //   prefix: Icons.bloodtype,
-                          // ),
-                          const SizedBox(
-                            height: 10,
+
+                          SizedBox(
+                            height: height*.015,
                           ),
                           Center(
                             child: Container(
@@ -209,7 +171,7 @@ class RegisterPatientScreen3 extends StatelessWidget {
                                         child: Padding(
                                           padding:  EdgeInsets.only(left: 4, top: 4 ,bottom: 4 , right: 1),
                                           child: Container(
-                                            height: 40,
+                                            height: height*0.060,
                                             child: Center(child: Text("Male" , style: TextStyle(fontSize: 15),)),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(10),
@@ -228,7 +190,7 @@ class RegisterPatientScreen3 extends StatelessWidget {
                                         child: Padding(
                                           padding:  EdgeInsets.only(right:4, top:4 ,bottom: 4 , left: 1),
                                           child: Container(
-                                            height: 40,
+                                            height: height*0.060,
                                             child: Center(child: Text("Female", style: TextStyle(fontSize: 15))),
                                             decoration: BoxDecoration(
                                               borderRadius: BorderRadius.circular(10),
@@ -242,8 +204,8 @@ class RegisterPatientScreen3 extends StatelessWidget {
                                   ],
                                 )),
                           ) ,// Gender Male or Female
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(
+                            height: height*.015,
                           ),
                           Row(
                             children: [
@@ -267,8 +229,9 @@ class RegisterPatientScreen3 extends StatelessWidget {
                           ),
                           Container(
                             width: double.infinity,
-                            height: 150,
+                            height: height*.225,
                             child: GridView.count(
+                              physics: NeverScrollableScrollPhysics(),
                               padding: EdgeInsets.zero,
                               shrinkWrap: true,
                               crossAxisCount: 4,
@@ -316,15 +279,15 @@ class RegisterPatientScreen3 extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              Patient_RegisterCubit.get(context).changeBloodType(-1);
+                              Patient_RegisterCubit.get(context).changeBloodType(8);
                             },
                             child: Container(
                               width: 192,
-                              height: 30,
+                              height: height*.045,
                               child: Center(child: Text("Don’t know" , style: TextStyle(fontSize: 15),)),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
-                                color: Patient_RegisterCubit.get(context).selectedContainerIndex == -1
+                                color: Patient_RegisterCubit.get(context).selectedContainerIndex == 8
                                     ? HexColor("#5DCDC6")
                                     : Colors.white,
                                 boxShadow:  [
@@ -338,8 +301,8 @@ class RegisterPatientScreen3 extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const SizedBox(
-                            height: 30,
+                          SizedBox(
+                            height: height*.033,
                           ),
                           // Blood type 2 way
                           // Padding(
@@ -539,7 +502,6 @@ class RegisterPatientScreen3 extends StatelessWidget {
                           //     ],
                           //   ),
                           // ),
-
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
@@ -575,7 +537,7 @@ class RegisterPatientScreen3 extends StatelessWidget {
                                   return InkWell(
                                     child: Container(
                                       width: 65,
-                                      height: 35,
+                                      height: 40,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(35),
                                         color: HexColor("#68DED7"),
@@ -590,18 +552,18 @@ class RegisterPatientScreen3 extends StatelessWidget {
                                       if (formKey2.currentState!.validate()) {
 
 
-                                            Patient_RegisterCubit.get(context).PatientRegister(
-                                            fristName: Patient_RegisterCubit.get(context).firstNamePatientController.text,
-                                            lastName: Patient_RegisterCubit.get(context).lastNamePatientController.text,
-                                            bloodType: Patient_RegisterCubit.get(context).containerValues[Patient_RegisterCubit.get(context).selectedContainerIndex] ,
-                                            gender: Patient_RegisterCubit.get(context).Gender,
-                                            password: Patient_RegisterCubit.get(context).passwordPatientController.text,
-                                            email: Patient_RegisterCubit.get(context).emailPatientController.text,
-                                            number: Patient_RegisterCubit.get(context).numberPatientController.text,
-                                            National_ID: Patient_RegisterCubit.get(context).nationalIDPatientController.text,
-                                            age: Patient_RegisterCubit.get(context).agePatientController.text,
-                                            context: context ,
-                                          );
+                                        Patient_RegisterCubit.get(context).PatientRegister(
+                                          fristName: Patient_RegisterCubit.get(context).firstNamePatientController.text,
+                                          lastName: Patient_RegisterCubit.get(context).lastNamePatientController.text,
+                                          bloodType: Patient_RegisterCubit.get(context).containerValues[Patient_RegisterCubit.get(context).selectedContainerIndex] ,
+                                          gender: Patient_RegisterCubit.get(context).Gender,
+                                          password: Patient_RegisterCubit.get(context).passwordPatientController.text,
+                                          email: Patient_RegisterCubit.get(context).emailPatientController.text,
+                                          number: Patient_RegisterCubit.get(context).numberPatientController.text,
+                                          National_ID: Patient_RegisterCubit.get(context).nationalIDPatientController.text,
+                                          age: Patient_RegisterCubit.get(context).agePatientController.text,
+                                          context: context ,
+                                        );
 
 
                                       }
@@ -609,8 +571,8 @@ class RegisterPatientScreen3 extends StatelessWidget {
                                   );
                                 },
                                 fallback: (BuildContext context) {
-                                  return const Center(
-                                      child: CircularProgressIndicator());
+                                  return  Center(
+                                      child: CircularProgressIndicator(color: HexColor("#5DCDC6"),));
                                 },
                               ),
                             ],
@@ -620,7 +582,16 @@ class RegisterPatientScreen3 extends StatelessWidget {
                     ),
                   ),
                 ),
-              ) // Ui Screen
+              ), // Ui Screen
+              if(state is PatientRegisterLoadingState)
+                Positioned.fill(
+                  child: Container(
+                    color: Colors.black.withOpacity(0.5),
+                    child: Center(
+                      child: CircularProgressIndicator( color: HexColor("#5DCDC6"),),
+                    ),
+                  ),
+                ),
             ],
           ),
         );

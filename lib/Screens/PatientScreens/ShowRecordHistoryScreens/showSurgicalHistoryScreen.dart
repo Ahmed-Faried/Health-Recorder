@@ -14,7 +14,7 @@ class SurgicalHistoryShow extends StatelessWidget {
         title: RecordHistoryAppBarTitle("Surgical History     ",),
       ),
       body: ConditionalBuilder(
-        condition: patientDataModel != null,
+        condition:  patientDataModel?.data?.pationt?.surgicalOperations?.length != 0,
         builder: (BuildContext context) {
           return ListView.builder(
             itemBuilder: (BuildContext context, int index) {
@@ -120,8 +120,8 @@ class SurgicalHistoryShow extends StatelessWidget {
           );
         },
         fallback: (BuildContext context) {
-          return CircularProgressIndicator();
-        },
+          return Center(child: Text("Not Fond"),);
+          },
       ),
     );
   }

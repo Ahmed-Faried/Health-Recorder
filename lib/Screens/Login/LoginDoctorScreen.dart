@@ -16,6 +16,8 @@ class LoginDoctorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height ;
+    var width = MediaQuery.of(context).size.width ;
     return BlocProvider(
       create: (context) =>LoginScreenCubit(),
       child: BlocConsumer<LoginScreenCubit, LoginScreenStates>(
@@ -71,8 +73,8 @@ class LoginDoctorScreen extends StatelessWidget {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          const SizedBox(
-                            height: 95,
+                           SizedBox(
+                            height: height*.1425,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -90,8 +92,8 @@ class LoginDoctorScreen extends StatelessWidget {
                               ),
                             ],
                           ), // Text Hello
-                          const SizedBox(
-                            height: 25,
+                           SizedBox(
+                            height: height*.0375,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -109,8 +111,8 @@ class LoginDoctorScreen extends StatelessWidget {
                               )
                             ],
                           ), // Text Sign in to your account
-                          const SizedBox(
-                            height: 20,
+                           SizedBox(
+                            height: height*.0375,
                           ),
                           PhysicalModel(
                             borderRadius: BorderRadius.circular(50),
@@ -150,8 +152,8 @@ class LoginDoctorScreen extends StatelessWidget {
                               ),
                             ),
                           ), //Username
-                          const SizedBox(
-                            height: 30,
+                           SizedBox(
+                            height: height*.055,
                           ),
                           PhysicalModel(
                             borderRadius: BorderRadius.circular(50),
@@ -217,8 +219,8 @@ class LoginDoctorScreen extends StatelessWidget {
                                   LoginScreenCubit.get(context).isPassword,
                             ),
                           ), // Password
-                          const SizedBox(
-                            height: 25,
+                           SizedBox(
+                            height: height*.050,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -244,8 +246,8 @@ class LoginDoctorScreen extends StatelessWidget {
                               )
                             ],
                           ), // Text Forget Your Password
-                          const SizedBox(
-                            height: 35,
+                           SizedBox(
+                            height: height*.050,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.end,
@@ -303,8 +305,8 @@ class LoginDoctorScreen extends StatelessWidget {
                               )
                             ],
                           ), // Sign in and Icon Skip
-                          const SizedBox(
-                            height: 60,
+                           SizedBox(
+                            height: height*.09,
                           ),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,

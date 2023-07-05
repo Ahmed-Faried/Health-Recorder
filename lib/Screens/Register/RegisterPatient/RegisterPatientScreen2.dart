@@ -14,6 +14,10 @@ class RegisterPatientScreen2 extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var height = MediaQuery.of(context).size.height ;
+    var width = MediaQuery.of(context).size.width ;
+
     return BlocConsumer<Patient_RegisterCubit, RegisterPatientStates>(
       listener: (BuildContext context, state) {
 
@@ -53,8 +57,8 @@ class RegisterPatientScreen2 extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          const SizedBox(
-                            height: 45,
+                           SizedBox(
+                            height: height*.0675,
                           ),
                           Column(
                             children: [
@@ -147,8 +151,8 @@ class RegisterPatientScreen2 extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 10,
+                           SizedBox(
+                            height: height*.015,
                           ),
                           Container(
                             width: double.infinity,
@@ -239,8 +243,8 @@ class RegisterPatientScreen2 extends StatelessWidget {
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            height: 10,
+                           SizedBox(
+                            height: height*.015,
                           ),
                           FieldFromRegistr(
                             controller: Patient_RegisterCubit.get(context).emailPatientController,
@@ -258,8 +262,8 @@ class RegisterPatientScreen2 extends StatelessWidget {
                             label: 'E-mail',
                             prefix: Icons.email,
                           ),
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(
+                            height: height*.015,
                           ),
                           FieldFromRegistr(
                             controller: Patient_RegisterCubit.get(context).passwordPatientController,
@@ -291,8 +295,8 @@ class RegisterPatientScreen2 extends StatelessWidget {
                             obscureText:
                             Patient_RegisterCubit.get(context).isPassword,
                           ),
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(
+                            height: height*.015,
                           ),
                           FieldFromRegistr(
                             controller: Patient_RegisterCubit.get(context).numberPatientController,
@@ -311,8 +315,8 @@ class RegisterPatientScreen2 extends StatelessWidget {
                             label: 'Phone',
                             prefix: Icons.phone_android_rounded,
                           ),
-                          const SizedBox(
-                            height: 20,
+                          SizedBox(
+                            height: height*.030,
                           ),
                           // Blood type 2 way
                           // Padding(

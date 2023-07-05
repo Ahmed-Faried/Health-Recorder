@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import '../../../Components/components.dart';
 import '../../../Components/const.dart';
@@ -7,7 +8,10 @@ class HealthProblemShow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ScreensPatientShow(
+    return ConditionalBuilder(
+      condition: patientDataModel?.data?.pationt?.healthProblems?.length != 0,
+
+      builder: (BuildContext context) { return ScreensPatientShow(
         "Health Problem" ,
         context ,
         patientDataModel?.data?.pationt?.healthProblems?.length,
@@ -16,7 +20,10 @@ class HealthProblemShow extends StatelessWidget {
         patientDataModel?.data?.pationt?.healthProblems,
         patientDataModel?.data?.pationt?.healthProblems,
 
-    );
+      ); },
+      fallback: (BuildContext context) { return Center(child: Text("Not Fond"),); },
+
+    )  ;
   }
 
 
