@@ -365,7 +365,16 @@ class LoginPatientScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )   // Ui Screen
+                  ),   // Ui Screen
+                  if(state is LoginPatientScreenLoadingState)
+                    Positioned.fill(
+                      child: Container(
+                        color: Colors.black.withOpacity(0.5),
+                        child: Center(
+                          child: CircularProgressIndicator( color: HexColor("#5DCDC6"),),
+                        ),
+                      ),
+                    ),
                 ],
               ),
             );

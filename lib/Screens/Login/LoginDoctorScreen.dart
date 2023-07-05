@@ -17,7 +17,6 @@ class LoginDoctorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height ;
-    var width = MediaQuery.of(context).size.width ;
     return BlocProvider(
       create: (context) =>LoginScreenCubit(),
       child: BlocConsumer<LoginScreenCubit, LoginScreenStates>(
@@ -31,11 +30,11 @@ class LoginDoctorScreen extends StatelessWidget {
                 navigateAndFinish(context, HomePageDoctorScreen());
 
             }
-            else {
-              toastShow(msg: "خطا في تسجيل الدخول ", state: toastStates.ERROR);
-            }
+
           }
           if(state is LoginDoctorScreenErrorState) {
+            toastShow(msg: "خطا في تسجيل الدخول ", state: toastStates.ERROR);
+
             toastShow(msg: state.error, state: toastStates.ERROR);
 
           }
@@ -346,7 +345,16 @@ class LoginDoctorScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                ) // Ui Screen
+                ), // Ui Screen
+                if(state is LoginDoctorScreenLoadingState)
+                  Positioned.fill(
+                    child: Container(
+                      color: Colors.black.withOpacity(0.5),
+                      child: Center(
+                        child: CircularProgressIndicator( color: HexColor("#5DCDC6"),),
+                      ),
+                    ),
+                  ),
               ],
             ),
           );

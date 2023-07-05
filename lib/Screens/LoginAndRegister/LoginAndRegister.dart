@@ -18,7 +18,7 @@ class LoginAndRegister extends StatelessWidget {
     var width = MediaQuery.of(context).size.width ;
 
     SystemChrome.setSystemUIOverlayStyle( SystemUiOverlayStyle(
-        statusBarColor:  HexColor("#5DCDC6"),
+        statusBarColor: HexColor("44B5AE"),
         statusBarIconBrightness:
         Brightness.dark //or set color with: Color(0xFF0000FF)
     ));
@@ -32,12 +32,12 @@ class LoginAndRegister extends StatelessWidget {
             child: const Image(
               image: AssetImage('assets/bot-L.png'),
               alignment: Alignment.bottomLeft,
-              width: 100,
+              width: 85,
               height: 400,
               fit: BoxFit.fill,
             ),
           ), // Image bot-L.png STACK
-          const SizedBox(
+           SizedBox(
             width: double.infinity,
             height: 95,
             child: Image(
