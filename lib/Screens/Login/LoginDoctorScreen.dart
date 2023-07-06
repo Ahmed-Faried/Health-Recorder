@@ -299,7 +299,7 @@ class LoginDoctorScreen extends StatelessWidget {
                                 },
                                 fallback: (BuildContext context) {
                                   return Center(
-                                      child: CircularProgressIndicator());
+                                      child: CircularProgressIndicator(color: HexColor("5DCDC6"),));
                                 },
                               )
                             ],

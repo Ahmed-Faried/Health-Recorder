@@ -14,7 +14,7 @@ class DiagnosesShow extends StatelessWidget {
 
     return   Scaffold(
       appBar: AppBar(
-        title: RecordHistoryAppBarTitle(" Diagnoses      "),
+        title: RecordHistoryAppBarTitle(" Diagnoses        "),
       ),
       body: ConditionalBuilder(
         condition: patientDataModel?.data?.pationt?.diagonas?.length != 0,
@@ -39,7 +39,7 @@ class DiagnosesShow extends StatelessWidget {
                               height: 10,
                             ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   "Doctor ",
@@ -93,6 +93,42 @@ class DiagnosesShow extends StatelessWidget {
                               height: 20,
                             ),
                             Text(
+                              "Medicine",
+                              style:
+                              TextStyle(fontSize: 16, color: Colors.black),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20.0),
+                                color: Colors.white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 5,
+                                    offset: Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Text(
+                                  "${patientDataModel?.data?.pationt?.diagonas![index].Medicine.map((e) => e).join()}",
+                                  maxLines: null,
+                                  style: TextStyle(
+                                      fontSize: 16, color: Colors.black),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 20,
+                            ),
+                            Text(
                               "Date  ",
                               style:
                               TextStyle(fontSize: 16, color: Colors.black),
@@ -119,7 +155,7 @@ class DiagnosesShow extends StatelessWidget {
                               child: Padding(
                                 padding: const EdgeInsets.all(12.0),
                                 child: Text(
-                                  "${patientDataModel?.data?.pationt?.surgicalOperations![index].date}",
+                                  "${patientDataModel?.data?.pationt?.diagonas![index].date}",
                                   maxLines: null,
                                   style: TextStyle(
                                       fontSize: 16, color: Colors.black),

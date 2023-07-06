@@ -8,7 +8,6 @@ import '../../../Network/Endpoint/EndPoint.dart';
 import '../../../Network/local/shared_preferences.dart';
 import '../../../moudel/LoginModel/PatientDataMoudleing.dart';
 import 'StatesLoginScreen.dart';
-
 class LoginScreenCubit extends Cubit<LoginScreenStates> {
   LoginScreenCubit() : super(InitialStateLoginScreen());
 

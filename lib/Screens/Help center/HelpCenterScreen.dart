@@ -53,9 +53,9 @@ class HelpCenter extends StatelessWidget {
             Text("Please get in touch with us for support" ,  style: TextStyle(color: Colors.grey ,fontSize: 15),),
           ],),
           Spacer(),
-          cardHelpCenter(context , "chat with us" ,Icons.maps_ugc_sharp,EditProfileDoctor()),
-          cardHelpCenter(context , "Email us" ,Icons.mail_sharp,EditProfileDoctor()),
-          cardHelpCenter(context , "Call us" ,Icons.call,EditProfileDoctor()),
+          cardHelpCenter(context , "chat with us" ,Icons.maps_ugc_sharp,),
+          cardHelpCenter(context , "Email us" ,Icons.mail_sharp,),
+          cardHelpCenter(context , "Call us" ,Icons.call,),
           Spacer(),
 
         ],

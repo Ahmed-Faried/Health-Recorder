@@ -13,21 +13,6 @@ class X_rayPatient extends StatelessWidget {
   Widget build(BuildContext context) {
 
 
-     //=[
-     //        "https://picsum.photos/200/300?random=1",
-     //        "https://picsum.photos/200/300?random=2",
-     //        "https://picsum.photos/200/300?random=3",
-     //        "https://picsum.photos/200/300?random=4",
-     //        "https://picsum.photos/200/300?random=5",
-     //        "https://picsum.photos/200/300?random=6",
-     //      ];
-     // List<String> textlist =[
-     //   "https://picsum",
-     //   "https://picsum",
-     //   "https://picsum.",
-     //   "https://picsum.p",
-     //   "httotos/200/300?random=5",
-     //   "https200/300?random=6",];
 
 
     return  Scaffold(

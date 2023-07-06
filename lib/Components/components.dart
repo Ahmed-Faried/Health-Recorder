@@ -435,7 +435,7 @@ Widget cardAccount(context, String title, firstIcon, Screen) => Padding(
       ),
     );
 
-Widget cardHelpCenter(context, String title, firstIcon, Screen) => Padding(
+Widget cardHelpCenter(context, String title, firstIcon) => Padding(
       padding: EdgeInsets.only(bottom: 25),
       child: InkWell(
         child: Container(
@@ -459,7 +459,7 @@ Widget cardHelpCenter(context, String title, firstIcon, Screen) => Padding(
                 ),
                 Text(
                   title,
-                  style: TextStyle(fontSize: 18),
+                  style: TextStyle(fontSize: 16),
                 ),
                 Spacer(),
               ],
@@ -467,7 +467,6 @@ Widget cardHelpCenter(context, String title, firstIcon, Screen) => Padding(
           ),
         ),
         onTap: () {
-          navigateTo(context, Screen);
         },
       ),
     );

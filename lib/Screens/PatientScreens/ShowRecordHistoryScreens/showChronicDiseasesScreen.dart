@@ -12,9 +12,9 @@ class ChronicDiseasesShow extends StatelessWidget {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(
-        title: RecordHistoryAppBarTitle(" Chronic Diseases  ",),
-      ),
+      // appBar: AppBar(
+      //   title: RecordHistoryAppBarTitle(" Chronic Diseases  ",),
+      // ),
       body: ConditionalBuilder(
         condition: patientDataModel?.data?.pationt?.chronicDiseases!.length != 0,
 

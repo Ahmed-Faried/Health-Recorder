@@ -53,8 +53,8 @@ class AccountPatientScreen extends StatelessWidget {
                             size: 35,
                             color: Colors.blue[300],
                           ),
-                          const SizedBox(
-                            width: 7,
+                           SizedBox(
+                            width: width*.010,
                           ),
                           const Expanded(
                             child: Text(
@@ -63,16 +63,6 @@ class AccountPatientScreen extends StatelessWidget {
                                 fontSize: 18),
                             ),
                           ),
-                          // InkWell(
-                          //   child: const Icon(
-                          //     Icons.dangerous_outlined,
-                          //     size: 45,
-                          //     color: Colors.white,
-                          //   ),
-                          //   onTap: (){
-                          //     navigateAndFinish(context, dangerous());
-                          //   },
-                          // ),
 
                         ],
                       ),
@@ -118,12 +108,9 @@ class AccountPatientScreen extends StatelessWidget {
                                     children:  [
                                       Text(
                                         "${patientDataModel?.data?.pationt?.fristName} ${patientDataModel?.data?.pationt?.lastName}",
-                                        style: GoogleFonts.inter(
-                                          textStyle: TextStyle(
-                                              fontWeight: FontWeight.bold,
-                                              fontFamily: 'MontaguSlab',
-                                              fontSize: 16,
-                                          ),
+                                        style: TextStyle(
+                                          fontFamily: 'MontaguSlab',
+                                          fontSize: 16,
                                         )
                                       )
                                     ],
@@ -133,7 +120,7 @@ class AccountPatientScreen extends StatelessWidget {
                                     children:  [
                                       Text(
                                         "${patientDataModel?.data?.pationt?.phoneNumber}",
-                                        style: TextStyle(fontSize: 12 , ),
+                                        style: TextStyle(fontSize: 13,fontFamily: 'MontaguSlab', fontWeight: FontWeight.w100),
                                       )
                                     ],
                                   ),

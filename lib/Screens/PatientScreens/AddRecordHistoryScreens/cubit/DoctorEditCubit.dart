@@ -2,6 +2,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:shop_app/Components/const.dart';
 import '../../../../Components/components.dart';
 import '../../../../Network/Endpoint/EndPoint.dart';
@@ -37,17 +38,20 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
 
 
 
-  DateTime now = DateTime.now();
+
+
+
 
   diagonas({
     DoctorName,
-    now,
     Diagnose_condition,
     Medicine,
     NID_PAtient
 
   }) {
       emit(diagonas_LoadingStates());
+      DateTime now = DateTime.now();
+      String formattedDate = DateFormat('yyyy-MM-dd').format(now);
     DioHelper.update(
 
         path: "$UpdateRegisterPatientHealth$NID_PAtient",
@@ -55,8 +59,7 @@ class DoctorEditCubit extends Cubit<DoctorEditStates> {
           "diagonas": [
             {
               "DoctorName": DoctorName,
-              // "date": now,
-              "date": "01/02/2020",
+              "date": formattedDate,
               "Diagnose_condition": Diagnose_condition,
               "Medicine": [Medicine],
 

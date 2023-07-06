@@ -28,7 +28,7 @@ class HomeDoctorScreen extends StatelessWidget {
         },
         builder: (context, state) {
           return ConditionalBuilder(
-            condition: doctorDataModel != null,
+            condition: doctorDataModel != null && state is !Data_DoctorFromID_LoadingState,
             builder: (BuildContext context) {
              return ProfiledoctorScreen(doctorDataModel,context ,DataPatientID );
             },
@@ -524,9 +524,9 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
                       Text(
                         "${model?.data?.doctor.firstName}",
                         style: TextStyle(
-                            fontSize: 20,
+                            fontSize: 16,fontFamily: 'MontaguSlab',
                             color: Colors.black,
-                            fontWeight: FontWeight.bold),
+                            ),
                       ),
                     ],
                   ),
@@ -618,72 +618,6 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
             ],
           ),
         ),
-
-        // Row(
-        //   mainAxisAlignment: MainAxisAlignment.start,
-        //   children: const [
-        //     Padding(
-        //       padding: EdgeInsets.all(5),
-        //       child: Text(
-        //         "Add new patient",
-        //         style: TextStyle(
-        //             color: Colors.black,
-        //             fontSize: 12,
-        //             fontWeight: FontWeight.bold),
-        //       ),
-        //     ),
-        //   ],
-        // ),
-
-
-        // Enter patient code textFromFiled
-        // Container(
-        //   width: double.infinity,
-        //   height: 50,
-        //   decoration: BoxDecoration(
-        //     borderRadius: BorderRadius.circular(20),
-        //     color: HexColor('E3F8F6'),
-        //   ),
-        //   child: Row(
-        //     crossAxisAlignment: CrossAxisAlignment.start,
-        //     mainAxisAlignment: MainAxisAlignment.start,
-        //     children: [
-        //       Padding(
-        //         padding: const EdgeInsets.all(5),
-        //         child: IconButton(
-        //             onPressed: () {},
-        //             icon: const Icon(
-        //               Icons.add_circle_outlined,
-        //               color: Colors.grey,
-        //             )),
-        //       ),
-        //       Expanded(
-        //         child: TextFormField(
-        //           controller: HomeCubit.get(context).enterCodeController,
-        //           keyboardType: TextInputType.text,
-        //           onChanged: (value) {
-        //             //  NewsAppCubit.get(context).getSearch(value);
-        //             print("value");
-        //           },
-        //           onTap: () {},
-        //           validator: (value) {
-        //             if (value != null) {
-        //               return 'Search must not be empty ';
-        //             }
-        //             return 'A';
-        //           },
-        //           decoration: InputDecoration(
-        //             hintText: "Enter patient code ",
-        //             border: InputBorder.none,
-        //           ),
-        //         ),
-        //       )
-        //     ],
-        //   ),
-        // ),
-        // const SizedBox(
-        //   height: 8,
-        // ),
         Expanded(
           child: ConditionalBuilder(
             condition: DoctorCubit.get(context).ss.isNotEmpty,
@@ -821,7 +755,7 @@ Widget ProfiledoctorScreen(DoctorDataModel? model ,   context ,List<PatientDataM
                                         ),
                                         Spacer(),
                                         Text(
-                                          '${modelPatient?[index].data?.pationt?.nationalId}',
+                                          '${modelPatient?[index].data?.pationt?.nationalId}' , style: TextStyle(fontSize: 13,),
                                         ),
                                       ],
                                     ),

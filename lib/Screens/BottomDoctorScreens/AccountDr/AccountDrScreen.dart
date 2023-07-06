@@ -21,6 +21,9 @@ class AccountDoctorScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    var height = MediaQuery.of(context).size.height ;
+    var width = MediaQuery.of(context).size.width ;
     return BlocProvider(
       create: (BuildContext context) => DoctorCubit(),
       child: BlocConsumer<DoctorCubit, DoctorStates>(
@@ -108,9 +111,9 @@ class AccountDoctorScreen extends StatelessWidget {
                         Row(
                           children: [
                             Text(
-                              "${modele?.data?.doctor.firstName}",
+                              "${modele?.data?.doctor.firstName} ${modele?.data?.doctor.lastName}",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w500, fontSize: 18),
+                                  fontSize: 16,fontFamily: 'MontaguSlab'),
                             )
                           ],
                         ),
@@ -119,7 +122,7 @@ class AccountDoctorScreen extends StatelessWidget {
                           children: [
                             Text(
                               "${modele?.data?.doctor.phoneNumber}",
-                              style: TextStyle(fontSize: 14),
+                              style: TextStyle(fontSize: 13,fontFamily: 'MontaguSlab', fontWeight: FontWeight.w100),
                             )
                           ],
                         ),
@@ -162,7 +165,7 @@ class AccountDoctorScreen extends StatelessWidget {
                             ),
                             Text(
                               "Dark mode",
-                              style: TextStyle(fontSize: 14),
+                              style: TextStyle(fontSize: 13,fontFamily: 'MontaguSlab'),
                             ),
                             Spacer(),
                             IconButton(
@@ -177,6 +180,7 @@ class AccountDoctorScreen extends StatelessWidget {
                                     ? Icons.toggle_on_outlined
                                     : Icons.toggle_off_outlined,
                                 size: 35,
+
                               ),
                             ),
                           ],

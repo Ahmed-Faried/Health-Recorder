@@ -321,7 +321,7 @@ class LoginPatientScreen extends StatelessWidget {
 
                                     },
                                   );},
-                                  fallback: (BuildContext context) { return Center(child: CircularProgressIndicator());  },
+                                  fallback: (BuildContext context) { return Center(child: CircularProgressIndicator(color: HexColor("5DCDC6")));  },
 
                                 )
 

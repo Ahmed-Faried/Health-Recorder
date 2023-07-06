@@ -200,7 +200,6 @@ class DiagnosesAdd extends StatelessWidget {
                             onTap: () {
                               DoctorEditCubit.get(context).diagonas(
                                 DoctorName:  doctorDataModel?.data?.doctor.firstName.toString(),
-                                now : DoctorEditCubit.get(context).now.toString() ,
                                 Diagnose_condition :  DoctorEditCubit.get(context).diagonasController.text  ,
                                 Medicine : DoctorEditCubit.get(context).regularMedicinediagonasController.text,
                                   NID_PAtient: patientDataModel?.data?.pationt?.nationalId
